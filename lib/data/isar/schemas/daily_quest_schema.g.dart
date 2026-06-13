@@ -15,7 +15,7 @@ extension GetDailyQuestEntityCollection on Isar {
 
 const DailyQuestEntitySchema = CollectionSchema(
   name: r'DailyQuestEntity',
-  id: 7078695488057903944,
+  id: 8044073086226009,
   properties: {
     r'assignedDate': PropertySchema(
       id: 0,

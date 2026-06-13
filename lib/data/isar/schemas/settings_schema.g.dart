@@ -15,7 +15,7 @@ extension GetSettingsEntityCollection on Isar {
 
 const SettingsEntitySchema = CollectionSchema(
   name: r'SettingsEntity',
-  id: -7271317039764597112,
+  id: -2507241188617375,
   properties: {
     r'accentColor': PropertySchema(
       id: 0,

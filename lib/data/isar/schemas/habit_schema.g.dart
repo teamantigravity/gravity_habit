@@ -15,7 +15,7 @@ extension GetHabitEntityCollection on Isar {
 
 const HabitEntitySchema = CollectionSchema(
   name: r'HabitEntity',
-  id: 1147391984152539423,
+  id: 3477678800433566,
   properties: {
     r'archivedAt': PropertySchema(
       id: 0,
@@ -133,7 +133,7 @@ const HabitEntitySchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'uuid': IndexSchema(
-      id: 2134397340427724972,
+      id: 8698316308851096,
       name: r'uuid',
       unique: true,
       replace: false,
@@ -146,7 +146,7 @@ const HabitEntitySchema = CollectionSchema(
       ],
     ),
     r'isArchived': IndexSchema(
-      id: 655844772568347876,
+      id: 7326426226996524,
       name: r'isArchived',
       unique: false,
       replace: false,
