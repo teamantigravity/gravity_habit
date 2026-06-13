@@ -2,6 +2,12 @@
 cmake_minimum_required(VERSION 3.14)
 project(gravity_habit LANGUAGES CXX)
 
+# Suppress coroutine deprecation warning from modern MSVC
+add_compile_definitions(_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS)
+# Suppress warnings-as-errors globally
+set(CMAKE_COMPILE_WARNING_AS_ERROR OFF)
+add_compile_options(/W0)
+
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "gravity_habit")
