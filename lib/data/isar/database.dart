@@ -31,9 +31,6 @@ class GravityDatabase {
   static Future<GravityDatabase> initialize() async {
     final dir = await getApplicationDocumentsDirectory();
 
-    // Get or create a valid encryption key
-    final encryptionKey = await _getOrCreateEncryptionKey();
-
     final isar = await Isar.open(
       [
         HabitEntitySchema,
@@ -52,47 +49,6 @@ class GravityDatabase {
     final db = GravityDatabase._(isar);
     await db._ensureDefaults();
     return db;
-  }
-
-  /// Generate or retrieve a valid 32-character encryption key.
-  /// Handles all platform edge cases for FlutterSecureStorage.
-  static Future<String> _getOrCreateEncryptionKey() async {
-    const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(encryptedSharedPreferences: true),
-      iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
-    );
-
-    const keyName = 'gravity_db_encryption_key';
-
-    try {
-      final existing = await storage.read(key: keyName);
-      if (existing != null && existing.length == 32) {
-        return existing;
-      }
-    } catch (e) {
-      debugPrint('SecureStorage read failed: $e');
-      // Fall through to generate new key
-    }
-
-    // Generate a new 32-character key (Isar requires exactly 32 chars)
-    final random = Random.secure();
-    const chars =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    final key = String.fromCharCodes(
-      Iterable.generate(
-        32,
-        (_) => chars.codeUnitAt(random.nextInt(chars.length)),
-      ),
-    );
-
-    try {
-      await storage.write(key: keyName, value: key);
-    } catch (e) {
-      debugPrint('SecureStorage write failed: $e');
-      // Key is still valid for this session even if storage fails
-    }
-
-    return key;
   }
 
   Future<void> _ensureDefaults() async {
