@@ -1,0 +1,29 @@
+[
+  {
+    "id": "habit_1",
+    "title": "Morning Starlight",
+    "description": "Wake up before the sun and breathe the fresh morning air.",
+    "frequency": "daily",
+    "mass": 10,
+    "icon": "sun",
+    "color": "#FFD700"
+  },
+  {
+    "id": "habit_2",
+    "title": "Cosmic Hydration",
+    "description": "Drink at least 8 glasses of water to keep your body fueled.",
+    "frequency": "daily",
+    "mass": 5,
+    "icon": "water",
+    "color": "#00BFFF"
+  },
+  {
+    "id": "habit_3",
+    "title": "Lunar Reading",
+    "description": "Read 20 pages of a book under the moonlight.",
+    "frequency": "daily",
+    "mass": 15,
+    "icon": "book",
+    "color": "#9370DB"
+  }
+]
