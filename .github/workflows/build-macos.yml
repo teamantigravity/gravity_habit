@@ -1,0 +1,41 @@
+name: macOS Build
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build-macos:
+    name: Build macOS App
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Build macOS
+        run: flutter build macos --release
+
+      - name: Archive macOS Build
+        run: tar -czvf gravity-habit-macos.tar.gz -C build/macos/Build/Products/Release gravity_habit.app
+
+      - name: Upload macOS Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gravity-habit-macos
+          path: gravity-habit-macos.tar.gz
