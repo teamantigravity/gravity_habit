@@ -8,9 +8,11 @@ import 'package:gravity_habit/services/ads/consent_manager.dart';
 import 'package:gravity_habit/services/audio/audio_service.dart';
 import 'package:gravity_habit/services/haptics/haptic_service.dart';
 import 'package:gravity_habit/services/notifications/notification_service.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
