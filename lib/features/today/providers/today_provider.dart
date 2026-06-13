@@ -193,6 +193,9 @@ class TodayNotifier extends StateNotifier<AsyncValue<TodayState>> {
       );
     }
 
+    // Evaluate achievements
+    await _orbitRepo.checkAndUnlockAchievements();
+
     await _load();
   }
 
@@ -216,6 +219,9 @@ class TodayNotifier extends StateNotifier<AsyncValue<TodayState>> {
         skipReason: skipReason,
       ),
     );
+
+    // Evaluate achievements
+    await _orbitRepo.checkAndUnlockAchievements();
 
     await _load();
   }

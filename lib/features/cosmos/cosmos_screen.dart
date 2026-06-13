@@ -7,7 +7,9 @@ import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/achievement.dart';
 import 'package:gravity_habit/domain/entities/achievement_catalog.dart';
+import 'package:gravity_habit/domain/entities/orbit_profile.dart';
 import 'package:gravity_habit/domain/gravity_engine/tier_system.dart';
+import 'package:gravity_habit/data/isar/schemas/achievement_schema.dart';
 import 'package:gravity_habit/features/today/widgets/orbit_ring.dart';
 
 class CosmosScreen extends ConsumerWidget {
@@ -15,18 +17,25 @@ class CosmosScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileStream = ref.watch(orbitRepositoryProvider).getProfile();
+    final orbitRepo = ref.watch(orbitRepositoryProvider);
+    final dataFuture = Future.wait([
+      orbitRepo.getProfile(),
+      orbitRepo.getUnlockedAchievements(),
+    ]);
 
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: FutureBuilder(
-          future: profileStream,
+          future: dataFuture,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator(strokeWidth: 2));
             }
-            final profile = snapshot.data!;
+            final results = snapshot.data as List<dynamic>;
+            final profile = results[0] as OrbitProfile;
+            final unlockedList = results[1] as List<AchievementEntity>;
+            final unlockedIds = unlockedList.map((e) => e.achievementId).toSet();
             final tier = TierSystem.tierFromMass(profile.totalMass);
             final tierName = TierSystem.tierName(tier);
             final era = TierSystem.eraForTier(tier);
@@ -145,10 +154,10 @@ class CosmosScreen extends ConsumerWidget {
                           final achievements = AchievementCatalog.byGroup(group);
                           if (index >= achievements.length) return null;
                           final achievement = achievements[index];
-                          // TODO: Check unlock status from DB
+                          final isUnlocked = unlockedIds.contains(achievement.id);
                           return _AchievementCard(
                             achievement: achievement,
-                            isUnlocked: false,
+                            isUnlocked: isUnlocked,
                           );
                         },
                         childCount: AchievementCatalog.byGroup(group).length,

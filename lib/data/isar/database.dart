@@ -29,7 +29,13 @@ class GravityDatabase {
   final Isar isar;
 
   static Future<GravityDatabase> initialize() async {
-    final dir = await getApplicationDocumentsDirectory();
+    final String directoryPath;
+    if (kIsWeb) {
+      directoryPath = ''; // Isar Web ignores directory path
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      directoryPath = dir.path;
+    }
 
     final isar = await Isar.open(
       [
@@ -42,7 +48,7 @@ class GravityDatabase {
         StardustLedgerEntrySchema,
         SettingsEntitySchema,
       ],
-      directory: dir.path,
+      directory: directoryPath,
       name: 'gravity_habit',
     );
 
