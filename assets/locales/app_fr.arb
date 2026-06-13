@@ -1,0 +1,17 @@
+{
+  "@@locale": "fr",
+  "appName": "Gravity Habit",
+  "tagline": "Petites actions. Attraction massive.",
+  "begin": "Commencer",
+  "noAccountFooter": "Pas de compte. Pas de suivi. Jamais.",
+  "whatPullsYouForward": "Qu'est-ce qui vous attire?",
+  "continueButton": "Continuer \u2192",
+  "enterTheCosmos": "Entrer dans le cosmos",
+  "today": "Aujourd'hui",
+  "stats": "Stats",
+  "cosmos": "Cosmos",
+  "settings": "Param\u00e8tres",
+  "complete": "Compl\u00e9ter",
+  "removeAds": "Supprimer les pubs",
+  "cancel": "Annuler"
+}
