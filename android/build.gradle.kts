@@ -22,3 +22,17 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+subprojects {
+    afterEvaluate {
+        val androidExt = project.extensions.findByName("android")
+        if (androidExt != null) {
+            val namespaceGetter = androidExt.javaClass.methods.find { it.name == "getNamespace" }
+            if (namespaceGetter?.invoke(androidExt) == null) {
+                val namespaceSetter = androidExt.javaClass.methods.find { it.name == "setNamespace" }
+                namespaceSetter?.invoke(androidExt, project.group.toString())
+            }
+        }
+    }
+}
+
