@@ -1,6 +1,3 @@
-// lib/domain/gravity_engine/tier_system.dart
-// COMPLETE CORRECTED FILE
-
 import 'dart:math' as math;
 
 class TierSystem {
