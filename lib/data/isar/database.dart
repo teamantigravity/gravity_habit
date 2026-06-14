@@ -98,20 +98,20 @@ class GravityDatabase {
     if (profile == null) {
       final newProfile = OrbitProfileEntity()
         ..id = 0
+        ..totalMass = 0.0
+        ..currentOrbitTier = 1
+        ..streakDays = 0
+        ..longestStreak = 0
+        ..gravitationalPull = 0.0
         ..collectedStardust = 0
-        ..currentPlanetId = 'terra'
-        ..unlockedPlanetsJson = '["terra"]'
+        ..prestigeLevel = 0
+        ..streakFreezes = 0
+        ..lastCalculatedDate = DateTime.now()
         ..unlockedThemesJson = '["midnight"]'
         ..unlockedAvatarsJson = '["av_1"]'
-        ..unlockedIconsJson = '["ic_9"]'
-        ..unlockedParticlesJson = '["pe_4"]'
-        ..unlockedAmbientJson = '["am_none"]'
-        ..unlockedOrbitPathsJson = '["ct_standard"]'
-        ..level = 1
-        ..experience = 0
-        ..rankTitle = 'Novice Voyager'
-        ..totalDaysActive = 0
-        ..lastActiveDate = DateTime.now();
+        ..unlockedAppIconsJson = '["ic_9"]'
+        ..unlockedPlanetSkinsJson = '["ps_terra"]'
+        ..unlockedParticleEffectsJson = '["pe_4"]';
 
       await orbitProfileStore.record(0).put(db, newProfile.toJson());
     }
