@@ -129,105 +129,129 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
     }
   }
 
-  // Planet skins (24 items, 300 Stardust each)
+  static ShopItem _p(String id, String name, String emoji, Color tint) =>
+      ShopItem(id: id, name: name, cost: 300, emoji: emoji, imagePath: 'assets/images/shop/planet_premium.png', tint: tint);
+  
+  static ShopItem _t(String id, String name, String emoji, Color tint) =>
+      ShopItem(id: id, name: name, cost: 500, emoji: emoji, imagePath: 'assets/images/shop/theme_premium.png', tint: tint);
+
+  static ShopItem _a(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 400, emoji: emoji, imagePath: 'assets/images/shop/avatar_premium.png');
+
+  static ShopItem _s(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 800, emoji: emoji, imagePath: 'assets/images/shop/sound_premium.png');
+
+  static ShopItem _i(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 600, emoji: emoji, imagePath: 'assets/images/shop/icon_premium.png');
+
+  static ShopItem _pt(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 700, emoji: emoji, imagePath: 'assets/images/shop/particle_premium.png');
+
+  static ShopItem _am(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 500, emoji: emoji, imagePath: 'assets/images/shop/ambient_premium.png');
+
+  static ShopItem _ct(String id, String name, String emoji) =>
+      ShopItem(id: id, name: name, cost: 1000, emoji: emoji, imagePath: 'assets/images/shop/orbit_premium.png');
+
+  // Planet skins
   static final _planetItems = [
-    ShopItem(id: 'ps_terra', name: 'Terra', cost: 300, emoji: '🌍'),
-    ShopItem(id: 'ps_mars', name: 'Mars', cost: 300, emoji: '🔴'),
-    ShopItem(id: 'ps_jupiter', name: 'Jupiter', cost: 300, emoji: '🟠'),
-    ShopItem(id: 'ps_saturn', name: 'Saturn', cost: 300, emoji: '🪐'),
-    ShopItem(id: 'ps_neptune', name: 'Neptune', cost: 300, emoji: '🔵'),
-    ShopItem(id: 'ps_venus', name: 'Venus', cost: 300, emoji: '🟡'),
-    ShopItem(id: 'ps_mercury', name: 'Mercury', cost: 300, emoji: '🟤'),
-    ShopItem(id: 'ps_uranus', name: 'Uranus', cost: 300, emoji: '🌐'),
-    ShopItem(id: 'ps_pluto', name: 'Pluto', cost: 300, emoji: '🌑'),
-    ShopItem(id: 'ps_kepler', name: 'Kepler', cost: 300, emoji: '🟢'),
-    ShopItem(id: 'ps_titan', name: 'Titan', cost: 300, emoji: '🪨'),
-    ShopItem(id: 'ps_luna', name: 'Luna', cost: 300, emoji: '🌕'),
-    ShopItem(id: 'ps_europa', name: 'Europa', cost: 300, emoji: '🧊'),
-    ShopItem(id: 'ps_io', name: 'Io', cost: 300, emoji: '🌋'),
-    ShopItem(id: 'ps_callisto', name: 'Callisto', cost: 300, emoji: '☄️'),
-    ShopItem(id: 'ps_ganymede', name: 'Ganymede', cost: 300, emoji: '🌘'),
-    ShopItem(id: 'ps_phobos', name: 'Phobos', cost: 300, emoji: '🌒'),
-    ShopItem(id: 'ps_deimos', name: 'Deimos', cost: 300, emoji: '🌗'),
-    ShopItem(id: 'ps_eris', name: 'Eris', cost: 300, emoji: '🌖'),
-    ShopItem(id: 'ps_ceres', name: 'Ceres', cost: 300, emoji: '🌓'),
-    ShopItem(id: 'ps_makemake', name: 'Makemake', cost: 300, emoji: '🌔'),
-    ShopItem(id: 'ps_haumea', name: 'Haumea', cost: 300, emoji: '🥚'),
-    ShopItem(id: 'ps_sedna', name: 'Sedna', cost: 300, emoji: '🩸'),
-    ShopItem(id: 'ps_vulcan', name: 'Vulcan', cost: 300, emoji: '🔥'),
+    _p('ps_terra', 'Terra', '🌍', Colors.blue),
+    _p('ps_mars', 'Mars', '🔴', Colors.red),
+    _p('ps_jupiter', 'Jupiter', '🟠', Colors.orange),
+    _p('ps_saturn', 'Saturn', '🪐', Colors.amber),
+    _p('ps_neptune', 'Neptune', '🔵', Colors.blueAccent),
+    _p('ps_venus', 'Venus', '🟡', Colors.yellow),
+    _p('ps_mercury', 'Mercury', '🟤', Colors.brown),
+    _p('ps_uranus', 'Uranus', '🌐', Colors.lightBlue),
+    _p('ps_pluto', 'Pluto', '🌑', Colors.grey),
+    _p('ps_kepler', 'Kepler', '🟢', Colors.green),
+    _p('ps_titan', 'Titan', '🪨', Colors.orangeAccent),
+    _p('ps_luna', 'Luna', '🌕', Colors.white),
+    _p('ps_europa', 'Europa', '🧊', Colors.cyan),
+    _p('ps_io', 'Io', '🌋', Colors.deepOrange),
+    _p('ps_callisto', 'Callisto', '☄️', Colors.blueGrey),
+    _p('ps_ganymede', 'Ganymede', '🌘', Colors.indigo),
+    _p('ps_phobos', 'Phobos', '🌒', Colors.brown.shade800),
+    _p('ps_deimos', 'Deimos', '🌗', Colors.grey.shade700),
+    _p('ps_eris', 'Eris', '🌖', Colors.purple),
+    _p('ps_ceres', 'Ceres', '🌓', Colors.teal),
+    _p('ps_makemake', 'Makemake', '🌔', Colors.pink),
+    _p('ps_haumea', 'Haumea', '🥚', Colors.lime),
+    _p('ps_sedna', 'Sedna', '🩸', Colors.redAccent),
+    _p('ps_vulcan', 'Vulcan', '🔥', Colors.deepOrangeAccent),
   ];
 
   static final _themeItems = [
-    ShopItem(id: 'verdant', name: 'Verdant', cost: 500, emoji: '🌿'),
-    ShopItem(id: 'sakura', name: 'Sakura', cost: 500, emoji: '🌸'),
-    ShopItem(id: 'glacier', name: 'Glacier', cost: 500, emoji: '🧊'),
-    ShopItem(id: 'ember', name: 'Ember', cost: 500, emoji: '🔥'),
-    ShopItem(id: 'twilight', name: 'Twilight', cost: 500, emoji: '🌆'),
-    ShopItem(id: 'lavender', name: 'Lavender', cost: 500, emoji: '💜'),
-    ShopItem(id: 'onyx', name: 'Onyx', cost: 500, emoji: '⬛'),
-    ShopItem(id: 'pearl', name: 'Pearl', cost: 500, emoji: '🤍'),
+    _t('verdant', 'Verdant', '🌿', Colors.green),
+    _t('sakura', 'Sakura', '🌸', Colors.pink),
+    _t('glacier', 'Glacier', '🧊', Colors.cyan),
+    _t('ember', 'Ember', '🔥', Colors.orange),
+    _t('twilight', 'Twilight', '🌆', Colors.deepPurple),
+    _t('lavender', 'Lavender', '💜', Colors.purpleAccent),
+    _t('onyx', 'Onyx', '⬛', Colors.black),
+    _t('pearl', 'Pearl', '🤍', Colors.white),
   ];
 
   static final _avatarItems = [
-    ShopItem(id: 'av_1', name: 'The Explorer', cost: 400, emoji: '👨‍🚀'),
-    ShopItem(id: 'av_2', name: 'The Martian', cost: 400, emoji: '👽'),
-    ShopItem(id: 'av_3', name: 'Void Walker', cost: 400, emoji: '👾'),
-    ShopItem(id: 'av_4', name: 'Android', cost: 400, emoji: '🤖'),
-    ShopItem(id: 'av_5', name: 'Star Child', cost: 400, emoji: '👼'),
-    ShopItem(id: 'av_6', name: 'Scientist', cost: 400, emoji: '🧑‍🔬'),
-    ShopItem(id: 'av_7', name: 'Captain', cost: 400, emoji: '🧑‍✈️'),
-    ShopItem(id: 'av_8', name: 'Hacker', cost: 400, emoji: '🧑‍💻'),
-    ShopItem(id: 'av_9', name: 'Oracle', cost: 400, emoji: '👁️'),
-    ShopItem(id: 'av_10', name: 'Ninja', cost: 400, emoji: '🥷'),
-    ShopItem(id: 'av_11', name: 'Monk', cost: 400, emoji: '🧘'),
-    ShopItem(id: 'av_12', name: 'Hero', cost: 400, emoji: '🦸'),
-    ShopItem(id: 'av_13', name: 'Villain', cost: 400, emoji: '🦹'),
-    ShopItem(id: 'av_14', name: 'Ghost', cost: 400, emoji: '👻'),
+    _a('av_1', 'The Explorer', '👨‍🚀'),
+    _a('av_2', 'The Martian', '👽'),
+    _a('av_3', 'Void Walker', '👾'),
+    _a('av_4', 'Android', '🤖'),
+    _a('av_5', 'Star Child', '👼'),
+    _a('av_6', 'Scientist', '🧑‍🔬'),
+    _a('av_7', 'Captain', '🧑‍✈️'),
+    _a('av_8', 'Hacker', '🧑‍💻'),
+    _a('av_9', 'Oracle', '👁️'),
+    _a('av_10', 'Ninja', '🥷'),
+    _a('av_11', 'Monk', '🧘'),
+    _a('av_12', 'Hero', '🦸'),
+    _a('av_13', 'Villain', '🦹'),
+    _a('av_14', 'Ghost', '👻'),
   ];
 
   static final _soundItems = [
-    ShopItem(id: 'sp_bamboo', name: 'Bamboo', cost: 800, emoji: '🎋'),
-    ShopItem(id: 'sp_hearth', name: 'Hearth', cost: 800, emoji: '🏠'),
+    _s('sp_bamboo', 'Bamboo', '🎋'),
+    _s('sp_hearth', 'Hearth', '🏠'),
   ];
 
   static final _iconItems = [
-    ShopItem(id: 'ic_1', name: 'Midnight', cost: 600, emoji: '🌌'),
-    ShopItem(id: 'ic_2', name: 'Neon', cost: 600, emoji: '🕹️'),
-    ShopItem(id: 'ic_3', name: 'Retro', cost: 600, emoji: '👾'),
-    ShopItem(id: 'ic_4', name: 'Minimal', cost: 600, emoji: '🔲'),
-    ShopItem(id: 'ic_5', name: 'Glass', cost: 600, emoji: '💠'),
-    ShopItem(id: 'ic_6', name: 'Void', cost: 600, emoji: '⬛'),
-    ShopItem(id: 'ic_7', name: 'Gold', cost: 600, emoji: '🪙'),
-    ShopItem(id: 'ic_8', name: 'Holo', cost: 600, emoji: '💿'),
-    ShopItem(id: 'ic_9', name: 'Classic', cost: 600, emoji: '📱'),
+    _i('ic_1', 'Midnight', '🌌'),
+    _i('ic_2', 'Neon', '🕹️'),
+    _i('ic_3', 'Retro', '👾'),
+    _i('ic_4', 'Minimal', '🔲'),
+    _i('ic_5', 'Glass', '💠'),
+    _i('ic_6', 'Void', '⬛'),
+    _i('ic_7', 'Gold', '🪙'),
+    _i('ic_8', 'Holo', '💿'),
+    _i('ic_9', 'Classic', '📱'),
   ];
 
   static final _particleItems = [
-    ShopItem(id: 'pe_1', name: 'Nova', cost: 700, emoji: '✨'),
-    ShopItem(id: 'pe_2', name: 'Sparks', cost: 700, emoji: '🎇'),
-    ShopItem(id: 'pe_3', name: 'Comet', cost: 700, emoji: '☄️'),
-    ShopItem(id: 'pe_4', name: 'Stars', cost: 700, emoji: '🌟'),
-    ShopItem(id: 'pe_5', name: 'Glitter', cost: 700, emoji: '💖'),
-    ShopItem(id: 'pe_6', name: 'Snow', cost: 700, emoji: '❄️'),
+    _pt('pe_1', 'Nova', '✨'),
+    _pt('pe_2', 'Sparks', '🎇'),
+    _pt('pe_3', 'Comet', '☄️'),
+    _pt('pe_4', 'Stars', '🌟'),
+    _pt('pe_5', 'Glitter', '💖'),
+    _pt('pe_6', 'Snow', '❄️'),
   ];
 
   static final _ambientItems = [
-    ShopItem(id: 'am_rain', name: 'Rain', cost: 500, emoji: '🌧️'),
-    ShopItem(id: 'am_ocean', name: 'Ocean', cost: 500, emoji: '🌊'),
-    ShopItem(id: 'am_forest', name: 'Forest', cost: 500, emoji: '🌲'),
-    ShopItem(id: 'am_wind', name: 'Wind', cost: 500, emoji: '💨'),
-    ShopItem(id: 'am_fireplace', name: 'Fireplace', cost: 500, emoji: '🔥'),
-    ShopItem(id: 'am_cafe', name: 'Cafe', cost: 500, emoji: '☕'),
-    ShopItem(id: 'am_brown_noise', name: 'Brown Noise', cost: 500, emoji: '📻'),
-    ShopItem(id: 'am_singing_bowls', name: 'Singing Bowls', cost: 500, emoji: '🥣'),
-    ShopItem(id: 'am_night_sounds', name: 'Night Sounds', cost: 500, emoji: '🦉'),
-    ShopItem(id: 'am_distant_storm', name: 'Distant Storm', cost: 500, emoji: '⛈️'),
+    _am('am_rain', 'Rain', '🌧️'),
+    _am('am_ocean', 'Ocean', '🌊'),
+    _am('am_forest', 'Forest', '🌲'),
+    _am('am_wind', 'Wind', '💨'),
+    _am('am_fireplace', 'Fireplace', '🔥'),
+    _am('am_cafe', 'Cafe', '☕'),
+    _am('am_brown_noise', 'Brown Noise', '📻'),
+    _am('am_singing_bowls', 'Singing Bowls', '🥣'),
+    _am('am_night_sounds', 'Night Sounds', '🦉'),
+    _am('am_distant_storm', 'Distant Storm', '⛈️'),
   ];
 
   static final _constellationItems = [
-    ShopItem(id: 'ct_ink', name: 'Ink Orbit', cost: 1000, emoji: '⭕'),
-    ShopItem(id: 'ct_neon', name: 'Neon Orbit', cost: 1000, emoji: '💫'),
-    ShopItem(id: 'ct_hand', name: 'Dashed Orbit', cost: 1000, emoji: '🔄'),
+    _ct('ct_ink', 'Ink Orbit', '⭕'),
+    _ct('ct_neon', 'Neon Orbit', '💫'),
+    _ct('ct_hand', 'Dashed Orbit', '🔄'),
   ];
 }
 
@@ -237,12 +261,16 @@ class ShopItem {
     required this.name,
     required this.cost,
     required this.emoji,
+    required this.imagePath,
+    this.tint,
   });
 
   final String id;
   final String name;
   final int cost;
   final String emoji;
+  final String imagePath;
+  final Color? tint;
 }
 
 class _ShopGrid extends StatelessWidget {
@@ -274,25 +302,71 @@ class _ShopGrid extends StatelessWidget {
                 color: context.colors.outlineVariant.withOpacity(0.15),
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            clipBehavior: Clip.hardEdge,
+            child: Stack(
               children: [
-                Text(item.emoji, style: const TextStyle(fontSize: 32)),
-                const SizedBox(height: Spacing.xs),
-                Text(
-                  item.name,
-                  style: context.textTheme.labelMedium,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                Positioned.fill(
+                  child: item.tint != null
+                      ? ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            item.tint!.withOpacity(0.4),
+                            BlendMode.color,
+                          ),
+                          child: Image.asset(item.imagePath, fit: BoxFit.cover),
+                        )
+                      : Image.asset(item.imagePath, fit: BoxFit.cover),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  '${item.cost} ✨',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontFamily: 'JetBrainsMono',
-                    color: context.colors.primary,
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          context.colors.surface.withOpacity(0.9),
+                        ],
+                        stops: const [0.4, 1.0],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: Spacing.sm,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(item.emoji, style: const TextStyle(fontSize: 16)),
+                      const SizedBox(height: 2),
+                      Text(
+                        item.name,
+                        style: context.textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 2),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: context.colors.primaryContainer.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '${item.cost} ✨',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontFamily: 'JetBrainsMono',
+                            color: context.colors.onPrimaryContainer,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -303,3 +377,4 @@ class _ShopGrid extends StatelessWidget {
     );
   }
 }
+

@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
@@ -77,18 +76,25 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Constellation draws
+              // Lottie Animation
               SizedBox(
-                width: 200,
-                height: 200,
-                child: CustomPaint(
-                  painter: _ConstellationPainter(
-                    progress: _controller.value,
-                    color: widget.color,
+                width: 250,
+                height: 250,
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    widget.color.withOpacity(0.5),
+                    BlendMode.srcATop,
+                  ),
+                  child: Lottie.asset(
+                    'assets/lottie/success.json',
+                    controller: _controller,
+                    onLoaded: (composition) {
+                      _controller.duration = composition.duration;
+                    },
                   ),
                 ),
               ),
-              const SizedBox(height: Spacing.xxl),
+              const SizedBox(height: Spacing.xl),
 
               // Milestone number
               Text(
@@ -143,75 +149,3 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
   }
 }
 
-class _ConstellationPainter extends CustomPainter {
-  _ConstellationPainter({
-    required this.progress,
-    required this.color,
-  });
-
-  final double progress;
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final random = Random(13);
-
-    // Generate 7 constellation nodes
-    final nodes = <Offset>[];
-    for (var i = 0; i < 7; i++) {
-      final angle = (2 * pi * i / 7) + random.nextDouble() * 0.3;
-      final radius = 40.0 + random.nextDouble() * 50.0;
-      nodes.add(Offset(
-        center.dx + cos(angle) * radius,
-        center.dy + sin(angle) * radius,
-      ));
-    }
-
-    // Draw lines between nodes (progressively)
-    final linesToDraw = (progress * 6).floor();
-    for (var i = 0; i < linesToDraw && i < nodes.length - 1; i++) {
-      final lineProgress =
-          ((progress * 6) - i).clamp(0.0, 1.0);
-      final from = nodes[i];
-      final to = nodes[i + 1];
-      final currentEnd = Offset.lerp(from, to, lineProgress)!;
-
-      canvas.drawLine(
-        from,
-        currentEnd,
-        Paint()
-          ..color = color.withOpacity(0.5)
-          ..strokeWidth = 1.5
-          ..strokeCap = StrokeCap.round,
-      );
-    }
-
-    // Draw star nodes
-    final nodesToDraw = (progress * 7).ceil();
-    for (var i = 0; i < nodesToDraw && i < nodes.length; i++) {
-      final nodeProgress =
-          ((progress * 7) - i).clamp(0.0, 1.0);
-
-      // Glow
-      canvas.drawCircle(
-        nodes[i],
-        6 * nodeProgress,
-        Paint()
-          ..color = color.withOpacity(0.2 * nodeProgress)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
-      );
-
-      // Star
-      canvas.drawCircle(
-        nodes[i],
-        3 * nodeProgress,
-        Paint()..color = color.withOpacity(nodeProgress),
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(_ConstellationPainter oldDelegate) =>
-      oldDelegate.progress != progress;
-}

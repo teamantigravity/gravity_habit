@@ -99,6 +99,7 @@ flutter:
     - assets/rive/
     - assets/lottie/
     - assets/images/
+    - assets/images/shop/
 
   fonts:
     - family: SpaceGrotesk
