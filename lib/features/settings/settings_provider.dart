@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sembast/sembast.dart';
 import 'package:gravity_habit/data/isar/database.dart';
 import 'package:gravity_habit/data/isar/schemas/settings_schema.dart';
 
@@ -169,8 +170,9 @@ class SettingsNotifier extends StateNotifier<AppSettings> {
   final GravityDatabase _db;
 
   Future<void> _load() async {
-    final entity = await _db.isar.settingsEntitys.get(0);
-    if (entity != null) {
+    final map = await _db.settingsStore.record(0).get(_db.db);
+    if (map != null) {
+      final entity = SettingsEntity.fromJson(map);
       state = AppSettings(
         themeMode: ThemeMode.values[entity.themeMode],
         paletteId: entity.paletteId,
@@ -216,45 +218,43 @@ class SettingsNotifier extends StateNotifier<AppSettings> {
   }
 
   Future<void> _persist() async {
-    await _db.isar.writeTxn(() async {
-      await _db.isar.settingsEntitys.put(
-        SettingsEntity()
-          ..id = 0
-          ..themeMode = state.themeMode.index
-          ..paletteId = state.paletteId
-          ..accentColor = state.accentColor
-          ..hapticIntensity = state.hapticIntensity
-          ..soundEnabled = state.soundEnabled
-          ..soundVolume = state.soundVolume
-          ..soundPackId = state.soundPackId
-          ..ambientEnabled = state.ambientEnabled
-          ..reduceMotion = state.reduceMotion
-          ..highContrast = state.highContrast
-          ..colorBlindMode = state.colorBlindMode
-          ..colorBlindType = state.colorBlindType
-          ..fontScale = state.fontScale
-          ..dyslexiaFont = state.dyslexiaFont
-          ..languageCode = state.languageCode
-          ..firstDayOfWeek = state.firstDayOfWeek
-          ..quietHoursStart = state.quietHoursStart
-          ..quietHoursEnd = state.quietHoursEnd
-          ..adsRemoved = state.adsRemoved
-          ..hasOnboarded = state.hasOnboarded
-          ..notificationStyle = state.notificationStyle
-          ..smartNudgesEnabled = state.smartNudgesEnabled
-          ..streakSaveReminderEnabled = state.streakSaveReminderEnabled
-          ..weeklyReviewEnabled = state.weeklyReviewEnabled
-          ..monthlyReviewEnabled = state.monthlyReviewEnabled
-          ..appLockEnabled = state.appLockEnabled
-          ..appLockTimeout = state.appLockTimeout
-          ..screenshotBlocking = state.screenshotBlocking
-          ..personalizedAdsConsent = state.personalizedAdsConsent
-          ..installDate = state.installDate ?? DateTime.now()
-          ..totalCompletions = state.totalCompletions
-          ..appIconId = state.appIconId
-          ..isListMode = state.isListMode
-          ..isUnder13 = state.isUnder13,
-      );
-    });
+    final entity = SettingsEntity()
+      ..id = 0
+      ..themeMode = state.themeMode.index
+      ..paletteId = state.paletteId
+      ..accentColor = state.accentColor
+      ..hapticIntensity = state.hapticIntensity
+      ..soundEnabled = state.soundEnabled
+      ..soundVolume = state.soundVolume
+      ..soundPackId = state.soundPackId
+      ..ambientEnabled = state.ambientEnabled
+      ..reduceMotion = state.reduceMotion
+      ..highContrast = state.highContrast
+      ..colorBlindMode = state.colorBlindMode
+      ..colorBlindType = state.colorBlindType
+      ..fontScale = state.fontScale
+      ..dyslexiaFont = state.dyslexiaFont
+      ..languageCode = state.languageCode
+      ..firstDayOfWeek = state.firstDayOfWeek
+      ..quietHoursStart = state.quietHoursStart
+      ..quietHoursEnd = state.quietHoursEnd
+      ..adsRemoved = state.adsRemoved
+      ..hasOnboarded = state.hasOnboarded
+      ..notificationStyle = state.notificationStyle
+      ..smartNudgesEnabled = state.smartNudgesEnabled
+      ..streakSaveReminderEnabled = state.streakSaveReminderEnabled
+      ..weeklyReviewEnabled = state.weeklyReviewEnabled
+      ..monthlyReviewEnabled = state.monthlyReviewEnabled
+      ..appLockEnabled = state.appLockEnabled
+      ..appLockTimeout = state.appLockTimeout
+      ..screenshotBlocking = state.screenshotBlocking
+      ..personalizedAdsConsent = state.personalizedAdsConsent
+      ..installDate = state.installDate ?? DateTime.now()
+      ..totalCompletions = state.totalCompletions
+      ..appIconId = state.appIconId
+      ..isListMode = state.isListMode
+      ..isUnder13 = state.isUnder13;
+
+    await _db.settingsStore.record(0).put(_db.db, entity.toJson());
   }
 }

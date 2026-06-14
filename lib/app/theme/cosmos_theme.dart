@@ -221,6 +221,10 @@ class CosmosTheme {
   }
 
   ThemeData get lightTheme {
+    if (palette.backgroundLight == null) {
+      return darkTheme;
+    }
+
     final colorScheme = ColorScheme(
       brightness: Brightness.light,
       primary: palette.accentLight ?? palette.accent,

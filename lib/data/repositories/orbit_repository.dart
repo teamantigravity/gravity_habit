@@ -10,8 +10,7 @@ import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_entry_schema.dart';
 import 'package:gravity_habit/domain/entities/orbit_profile.dart';
 import 'package:gravity_habit/domain/entities/achievement_catalog.dart';
-import 'package:isar/isar.dart';
-
+import 'package:sembast/sembast.dart';
 final orbitRepositoryProvider = Provider<OrbitRepository>((ref) {
   final db = ref.watch(gravityDatabaseProvider);
   return OrbitRepository(db);
@@ -22,11 +21,9 @@ class OrbitRepository {
 
   final GravityDatabase _db;
 
-  Isar get _isar => _db.isar;
-
   Future<OrbitProfile> getProfile() async {
-    final entity = await _isar.orbitProfileEntitys.get(0);
-    if (entity == null) {
+    final map = await _db.orbitProfileStore.record(0).get(_db.db);
+    if (map == null) {
       return const OrbitProfile(
         totalMass: 0,
         currentOrbitTier: 0,
@@ -38,14 +35,12 @@ class OrbitRepository {
         streakFreezes: 0,
       );
     }
-    return _entityToProfile(entity);
+    return _entityToProfile(OrbitProfileEntity.fromJson(map));
   }
 
   Stream<OrbitProfile> watchProfile() {
-    return _isar.orbitProfileEntitys
-        .watchObject(0, fireImmediately: true)
-        .map((entity) {
-      if (entity == null) {
+    return _db.orbitProfileStore.record(0).onSnapshot(_db.db).map((snapshot) {
+      if (snapshot == null) {
         return const OrbitProfile(
           totalMass: 0,
           currentOrbitTier: 0,
@@ -57,106 +52,109 @@ class OrbitRepository {
           streakFreezes: 0,
         );
       }
-      return _entityToProfile(entity);
+      return _entityToProfile(OrbitProfileEntity.fromJson(snapshot.value));
     });
   }
 
   Future<void> updateProfile(OrbitProfile profile) async {
     final entity = _profileToEntity(profile);
-    await _isar.writeTxn(() async {
-      await _isar.orbitProfileEntitys.put(entity);
-    });
+    await _db.orbitProfileStore.record(0).put(_db.db, entity.toJson());
   }
 
-  Future<void> addStardust(int amount, String source,
-      [String? referenceId]) async {
-    await _isar.writeTxn(() async {
-      // Update profile
-      final profile =
-          await _isar.orbitProfileEntitys.get(0) ?? OrbitProfileEntity()
-            ..id = 0
-            ..totalMass = 0
-            ..currentOrbitTier = 0
-            ..streakDays = 0
-            ..longestStreak = 0
-            ..gravitationalPull = 0
-            ..collectedStardust = 0
-            ..prestigeLevel = 0
-            ..streakFreezes = 0
-            ..lastCalculatedDate = DateTime.now();
+  Future<void> addStardust(int amount, String source, [String? referenceId]) async {
+    await _db.db.transaction((txn) async {
+      final map = await _db.orbitProfileStore.record(0).get(txn);
+      var profile = map != null ? OrbitProfileEntity.fromJson(map) : (OrbitProfileEntity()
+        ..id = 0
+        ..totalMass = 0
+        ..currentOrbitTier = 0
+        ..streakDays = 0
+        ..longestStreak = 0
+        ..gravitationalPull = 0
+        ..collectedStardust = 0
+        ..prestigeLevel = 0
+        ..streakFreezes = 0
+        ..lastCalculatedDate = DateTime.now());
 
       profile.collectedStardust += amount;
-      await _isar.orbitProfileEntitys.put(profile);
+      await _db.orbitProfileStore.record(0).put(txn, profile.toJson());
 
-      // Add ledger entry
-      await _isar.stardustLedgerEntrys.put(
-        StardustLedgerEntry()
-          ..timestamp = DateTime.now()
-          ..amount = amount
-          ..source = source
-          ..referenceId = referenceId,
-      );
+      final ledger = StardustLedgerEntry()
+        ..timestamp = DateTime.now()
+        ..amount = amount
+        ..source = source
+        ..referenceId = referenceId;
+      await _db.stardustLedgerStore.add(txn, ledger.toJson());
     });
   }
 
   Future<bool> spendStardust(int amount) async {
-    final profile = await _isar.orbitProfileEntitys.get(0);
-    if (profile == null || profile.collectedStardust < amount) return false;
+    return await _db.db.transaction((txn) async {
+      final map = await _db.orbitProfileStore.record(0).get(txn);
+      if (map == null) return false;
+      final profile = OrbitProfileEntity.fromJson(map);
+      if (profile.collectedStardust < amount) return false;
 
-    await _isar.writeTxn(() async {
       profile.collectedStardust -= amount;
-      await _isar.orbitProfileEntitys.put(profile);
+      await _db.orbitProfileStore.record(0).put(txn, profile.toJson());
 
-      await _isar.stardustLedgerEntrys.put(
-        StardustLedgerEntry()
-          ..timestamp = DateTime.now()
-          ..amount = -amount
-          ..source = 'purchase',
-      );
+      final ledger = StardustLedgerEntry()
+        ..timestamp = DateTime.now()
+        ..amount = -amount
+        ..source = 'purchase';
+      await _db.stardustLedgerStore.add(txn, ledger.toJson());
+      return true;
     });
-    return true;
   }
 
   Future<void> addMass(double mass) async {
-    await _isar.writeTxn(() async {
-      final profile =
-          await _isar.orbitProfileEntitys.get(0) ?? OrbitProfileEntity()
-            ..id = 0
-            ..totalMass = 0
-            ..currentOrbitTier = 0
-            ..streakDays = 0
-            ..longestStreak = 0
-            ..gravitationalPull = 0
-            ..collectedStardust = 0
-            ..prestigeLevel = 0
-            ..streakFreezes = 0
-            ..lastCalculatedDate = DateTime.now();
+    await _db.db.transaction((txn) async {
+      final map = await _db.orbitProfileStore.record(0).get(txn);
+      var profile = map != null ? OrbitProfileEntity.fromJson(map) : (OrbitProfileEntity()
+        ..id = 0
+        ..totalMass = 0
+        ..currentOrbitTier = 0
+        ..streakDays = 0
+        ..longestStreak = 0
+        ..gravitationalPull = 0
+        ..collectedStardust = 0
+        ..prestigeLevel = 0
+        ..streakFreezes = 0
+        ..lastCalculatedDate = DateTime.now());
 
       profile.totalMass += mass;
-      await _isar.orbitProfileEntitys.put(profile);
+      await _db.orbitProfileStore.record(0).put(txn, profile.toJson());
     });
   }
 
   // ---- ACHIEVEMENTS ----
 
   Future<List<AchievementEntity>> getUnlockedAchievements() async {
-    return _isar.achievementEntitys.where().findAll();
+    final snaps = await _db.achievementStore.find(_db.db);
+    return snaps.map((s) => AchievementEntity.fromJson(s.value)).toList();
   }
 
   Stream<List<AchievementEntity>> watchUnlockedAchievements() {
-    return _isar.achievementEntitys.where().watch(fireImmediately: true);
+    return _db.achievementStore.query().onSnapshots(_db.db).map(
+        (snaps) => snaps.map((s) => AchievementEntity.fromJson(s.value)).toList());
   }
 
   Future<void> checkAndUnlockAchievements() async {
-    final profile = await _isar.orbitProfileEntitys.get(0);
-    if (profile == null) return;
+    final profileMap = await _db.orbitProfileStore.record(0).get(_db.db);
+    if (profileMap == null) return;
+    final profile = OrbitProfileEntity.fromJson(profileMap);
 
-    final habits = await _isar.habitEntitys.where().findAll();
-    final entries = await _isar.habitEntryEntitys.where().findAll();
-    final settings = await _isar.settingsEntitys.get(0);
-    if (settings == null) return;
+    final habitSnaps = await _db.habitStore.find(_db.db);
+    final habits = habitSnaps.map((s) => HabitEntity.fromJson(s.value)).toList();
 
-    final unlocked = await _isar.achievementEntitys.where().findAll();
+    final entrySnaps = await _db.habitEntryStore.find(_db.db);
+    final entries = entrySnaps.map((s) => HabitEntryEntity.fromJson(s.value)).toList();
+
+    final settingsMap = await _db.settingsStore.record(0).get(_db.db);
+    if (settingsMap == null) return;
+    final settings = SettingsEntity.fromJson(settingsMap);
+
+    final unlocked = await getUnlockedAchievements();
     final unlockedIds = unlocked.map((e) => e.achievementId).toSet();
 
     final now = DateTime.now();
@@ -181,16 +179,14 @@ class OrbitRepository {
         .where((e) => e.note != null && e.note!.trim().isNotEmpty)
         .length;
 
-    final stardustCollectedCount = await _isar.stardustLedgerEntrys
-        .filter()
-        .amountGreaterThan(0)
-        .findAll()
-        .then((list) => list.fold<int>(0, (sum, e) => sum + e.amount));
+    final ledgerSnaps = await _db.stardustLedgerStore.find(_db.db);
+    final ledgers = ledgerSnaps.map((s) => StardustLedgerEntry.fromJson(s.value)).toList();
 
-    final questsCompletedCount = await _isar.stardustLedgerEntrys
-        .filter()
-        .sourceEqualTo('quest')
-        .count();
+    final stardustCollectedCount = ledgers
+        .where((e) => e.amount > 0)
+        .fold<int>(0, (sum, e) => sum + e.amount);
+
+    final questsCompletedCount = ledgers.where((e) => e.source == 'quest').length;
 
     // Recoveries check
     var recoveriesCount = 0;
@@ -280,10 +276,10 @@ class OrbitRepository {
       if (criteria.perfectDays != null && perfectDaysCount < criteria.perfectDays!) {
         meets = false;
       }
-      if (criteria.perfectWeeks != null && perfectWeeksCount < criteria.perfectWeeks!) {
+      if (criteria.perfectWeeks != null && perfectWeeksCount < perfectWeeksCount) {
         meets = false;
       }
-      if (criteria.perfectMonths != null && perfectMonthsCount < criteria.perfectMonths!) {
+      if (criteria.perfectMonths != null && perfectMonthsCount < perfectMonthsCount) {
         meets = false;
       }
       if (criteria.daysInstalled != null && daysInstalledCount < criteria.daysInstalled!) {
@@ -330,7 +326,7 @@ class OrbitRepository {
               e.completedAt!.year > settings.installDate.year);
         } else if (check == 'travel_proof') {
           final travelSkipDays = entries
-              .where((e) => e.skipReason == SkipReason.traveling)
+              .where((e) => e.skipReason == 'traveling')
               .map((e) => DateTime(e.date.year, e.date.month, e.date.day))
               .toSet();
           customMeets = travelSkipDays.length >= 5;
@@ -353,7 +349,7 @@ class OrbitRepository {
         } else if (check.startsWith('resonance_')) {
           customMeets = true;
         } else if (check == 'first_purchase') {
-          final spent = await _isar.stardustLedgerEntrys.filter().amountLessThan(0).count();
+          final spent = ledgers.where((e) => e.amount < 0).length;
           customMeets = spent > 0;
         } else if (check == 'cosmetics_5') {
           final count = _jsonToStringList(profile.unlockedThemesJson).length +
@@ -392,27 +388,26 @@ class OrbitRepository {
     }
 
     if (newlyUnlocked.isNotEmpty) {
-      await _isar.writeTxn(() async {
+      await _db.db.transaction((txn) async {
         for (final id in newlyUnlocked) {
           final entity = AchievementEntity()
             ..achievementId = id
             ..unlockedAt = DateTime.now()
             ..progress = 1.0;
-          await _isar.achievementEntitys.put(entity);
+          await _db.achievementStore.add(txn, entity.toJson());
 
           final def = AchievementCatalog.all.firstWhere((a) => a.id == id);
           
           profile.collectedStardust += def.stardustReward;
 
-          await _isar.stardustLedgerEntrys.put(
-            StardustLedgerEntry()
+          final ledger = StardustLedgerEntry()
               ..timestamp = DateTime.now()
               ..amount = def.stardustReward
               ..source = 'achievement'
-              ..referenceId = id,
-          );
+              ..referenceId = id;
+          await _db.stardustLedgerStore.add(txn, ledger.toJson());
         }
-        await _isar.orbitProfileEntitys.put(profile);
+        await _db.orbitProfileStore.record(0).put(txn, profile.toJson());
       });
     }
   }

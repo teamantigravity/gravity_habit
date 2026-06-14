@@ -1,12 +1,11 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'habit_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class HabitEntity {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   late String uuid;
 
   late String name;
@@ -14,13 +13,11 @@ class HabitEntity {
   late int color;
   String? description;
 
-  @Enumerated(EnumType.ordinal)
-  late HabitFrequency frequency;
+  late String frequency;
 
   String? frequencyConfigJson;
 
-  @Enumerated(EnumType.ordinal)
-  late HabitTargetType targetType;
+  late String targetType;
 
   late double targetValue;
   late String unit;
@@ -28,8 +25,7 @@ class HabitEntity {
   String? reminderTimesJson; // List<TimeOfDay> serialized
   String? reminderDaysJson; // List<int> serialized
 
-  @Enumerated(EnumType.ordinal)
-  late GravityClass gravityClass;
+  late String gravityClass;
 
   late DateTime createdAt;
   DateTime? archivedAt;
@@ -40,8 +36,12 @@ class HabitEntity {
   String? cueText;
   String? whyText;
 
-  @Index()
   bool get isArchived => archivedAt != null;
+
+  HabitEntity();
+
+  factory HabitEntity.fromJson(Map<String, dynamic> json) => _$HabitEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$HabitEntityToJson(this);
 }
 
 enum HabitFrequency {

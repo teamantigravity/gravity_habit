@@ -1,10 +1,10 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'settings_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class SettingsEntity {
-  Id id = 0; // Singleton
+  int id = 0; // Singleton
 
   late int themeMode; // 0=system, 1=light, 2=dark
   late String paletteId;
@@ -41,4 +41,9 @@ class SettingsEntity {
   late bool isListMode;
   String? userBirthDateJson; // for under-13 check, stored locally
   late bool isUnder13;
+
+  SettingsEntity();
+
+  factory SettingsEntity.fromJson(Map<String, dynamic> json) => _$SettingsEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$SettingsEntityToJson(this);
 }

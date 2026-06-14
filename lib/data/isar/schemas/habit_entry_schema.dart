@@ -1,18 +1,15 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'habit_entry_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class HabitEntryEntity {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   late String uuid;
 
-  @Index()
   late String habitId;
 
-  @Index()
   late DateTime date;
 
   late double completedValue;
@@ -21,8 +18,12 @@ class HabitEntryEntity {
   String? note;
   int? mood; // 1-5
   
-  @Enumerated(EnumType.name)
-  SkipReason? skipReason;
+  String? skipReason;
+
+  HabitEntryEntity();
+
+  factory HabitEntryEntity.fromJson(Map<String, dynamic> json) => _$HabitEntryEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$HabitEntryEntityToJson(this);
 }
 
 enum SkipReason {

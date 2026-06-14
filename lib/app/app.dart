@@ -54,12 +54,23 @@ class GravityHabitApp extends ConsumerWidget {
       builder: (context, child) {
         final mediaQuery = MediaQuery.of(context);
         final textScaleFactor = settings.fontScale.clamp(0.9, 1.5).toDouble();
-        return MediaQuery(
+        
+        final scaledChild = MediaQuery(
           data: mediaQuery.copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
           child: child ?? const SizedBox.shrink(),
         );
+
+        if (mediaQuery.size.width > 600) {
+          // No longer constrained. Allow it to fill the screen but remain styled if needed.
+          return Scaffold(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            body: scaledChild,
+          );
+        }
+        
+        return scaledChild;
       },
     );
   }

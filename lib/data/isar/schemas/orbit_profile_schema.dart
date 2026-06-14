@@ -1,10 +1,10 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'orbit_profile_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class OrbitProfileEntity {
-  Id id = 0; // Singleton
+  int id = 0; // Singleton
 
   late double totalMass;
   late int currentOrbitTier;
@@ -33,4 +33,9 @@ class OrbitProfileEntity {
 
   late int streakFreezes;
   late DateTime lastCalculatedDate;
+
+  OrbitProfileEntity();
+
+  factory OrbitProfileEntity.fromJson(Map<String, dynamic> json) => _$OrbitProfileEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$OrbitProfileEntityToJson(this);
 }

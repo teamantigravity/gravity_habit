@@ -305,10 +305,17 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
   }
 
   Widget? _buildFAB(AsyncValue<TodayState> todayState) {
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
       onPressed: () => context.push('/habit-editor'),
       heroTag: 'today_fab',
-      child: const Icon(Icons.add_rounded),
+      backgroundColor: context.colors.primary,
+      foregroundColor: context.colors.onPrimary,
+      elevation: 4,
+      icon: const Icon(Icons.add_rounded),
+      label: const Text(
+        'New Habit',
+        style: TextStyle(fontWeight: FontWeight.w700),
+      ),
     ).animate().scaleXY(
           begin: 0,
           end: 1,

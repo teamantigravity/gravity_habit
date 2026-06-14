@@ -1,16 +1,20 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'category_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class CategoryEntity {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   late String uuid;
 
   late String name;
   late String emoji;
   late int color;
   late int order;
+
+  CategoryEntity();
+
+  factory CategoryEntity.fromJson(Map<String, dynamic> json) => _$CategoryEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$CategoryEntityToJson(this);
 }

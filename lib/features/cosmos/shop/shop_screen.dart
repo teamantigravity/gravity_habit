@@ -45,7 +45,7 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
             Tab(text: 'Icons'),
             Tab(text: 'Particles'),
             Tab(text: 'Ambient'),
-            Tab(text: 'Stars'),
+            Tab(text: 'Orbit Paths'),
           ],
         ),
       ),
@@ -131,11 +131,31 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
 
   // Planet skins (24 items, 300 Stardust each)
   static final _planetItems = [
-    'Terra', 'Mars', 'Jupiter', 'Saturn', 'Neptune', 'Ice',
-    'Lava', 'Crystal', 'Forest', 'Ocean', 'Desert', 'Moss',
-    'Cloud', 'Storm', 'Aurora', 'Ringed', 'Cratered', 'Smooth',
-    'Geode', 'Marble', 'Obsidian', 'Pearl', 'Gold', 'Silver',
-  ].map((n) => ShopItem(id: 'ps_${n.toLowerCase()}', name: n, cost: 300, emoji: '🪐')).toList();
+    ShopItem(id: 'ps_terra', name: 'Terra', cost: 300, emoji: '🌍'),
+    ShopItem(id: 'ps_mars', name: 'Mars', cost: 300, emoji: '🔴'),
+    ShopItem(id: 'ps_jupiter', name: 'Jupiter', cost: 300, emoji: '🟠'),
+    ShopItem(id: 'ps_saturn', name: 'Saturn', cost: 300, emoji: '🪐'),
+    ShopItem(id: 'ps_neptune', name: 'Neptune', cost: 300, emoji: '🔵'),
+    ShopItem(id: 'ps_venus', name: 'Venus', cost: 300, emoji: '🟡'),
+    ShopItem(id: 'ps_mercury', name: 'Mercury', cost: 300, emoji: '🟤'),
+    ShopItem(id: 'ps_uranus', name: 'Uranus', cost: 300, emoji: '🌐'),
+    ShopItem(id: 'ps_pluto', name: 'Pluto', cost: 300, emoji: '🌑'),
+    ShopItem(id: 'ps_kepler', name: 'Kepler', cost: 300, emoji: '🟢'),
+    ShopItem(id: 'ps_titan', name: 'Titan', cost: 300, emoji: '🪨'),
+    ShopItem(id: 'ps_luna', name: 'Luna', cost: 300, emoji: '🌕'),
+    ShopItem(id: 'ps_europa', name: 'Europa', cost: 300, emoji: '🧊'),
+    ShopItem(id: 'ps_io', name: 'Io', cost: 300, emoji: '🌋'),
+    ShopItem(id: 'ps_callisto', name: 'Callisto', cost: 300, emoji: '☄️'),
+    ShopItem(id: 'ps_ganymede', name: 'Ganymede', cost: 300, emoji: '🌘'),
+    ShopItem(id: 'ps_phobos', name: 'Phobos', cost: 300, emoji: '🌒'),
+    ShopItem(id: 'ps_deimos', name: 'Deimos', cost: 300, emoji: '🌗'),
+    ShopItem(id: 'ps_eris', name: 'Eris', cost: 300, emoji: '🌖'),
+    ShopItem(id: 'ps_ceres', name: 'Ceres', cost: 300, emoji: '🌓'),
+    ShopItem(id: 'ps_makemake', name: 'Makemake', cost: 300, emoji: '🌔'),
+    ShopItem(id: 'ps_haumea', name: 'Haumea', cost: 300, emoji: '🥚'),
+    ShopItem(id: 'ps_sedna', name: 'Sedna', cost: 300, emoji: '🩸'),
+    ShopItem(id: 'ps_vulcan', name: 'Vulcan', cost: 300, emoji: '🔥'),
+  ];
 
   static final _themeItems = [
     ShopItem(id: 'verdant', name: 'Verdant', cost: 500, emoji: '🌿'),
@@ -148,32 +168,66 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
     ShopItem(id: 'pearl', name: 'Pearl', cost: 500, emoji: '🤍'),
   ];
 
-  static final _avatarItems = List.generate(
-    14, (i) => ShopItem(id: 'av_${i + 1}', name: 'Avatar ${i + 1}', cost: 400, emoji: '👤'),
-  );
+  static final _avatarItems = [
+    ShopItem(id: 'av_1', name: 'The Explorer', cost: 400, emoji: '👨‍🚀'),
+    ShopItem(id: 'av_2', name: 'The Martian', cost: 400, emoji: '👽'),
+    ShopItem(id: 'av_3', name: 'Void Walker', cost: 400, emoji: '👾'),
+    ShopItem(id: 'av_4', name: 'Android', cost: 400, emoji: '🤖'),
+    ShopItem(id: 'av_5', name: 'Star Child', cost: 400, emoji: '👼'),
+    ShopItem(id: 'av_6', name: 'Scientist', cost: 400, emoji: '🧑‍🔬'),
+    ShopItem(id: 'av_7', name: 'Captain', cost: 400, emoji: '🧑‍✈️'),
+    ShopItem(id: 'av_8', name: 'Hacker', cost: 400, emoji: '🧑‍💻'),
+    ShopItem(id: 'av_9', name: 'Oracle', cost: 400, emoji: '👁️'),
+    ShopItem(id: 'av_10', name: 'Ninja', cost: 400, emoji: '🥷'),
+    ShopItem(id: 'av_11', name: 'Monk', cost: 400, emoji: '🧘'),
+    ShopItem(id: 'av_12', name: 'Hero', cost: 400, emoji: '🦸'),
+    ShopItem(id: 'av_13', name: 'Villain', cost: 400, emoji: '🦹'),
+    ShopItem(id: 'av_14', name: 'Ghost', cost: 400, emoji: '👻'),
+  ];
 
   static final _soundItems = [
     ShopItem(id: 'sp_bamboo', name: 'Bamboo', cost: 800, emoji: '🎋'),
     ShopItem(id: 'sp_hearth', name: 'Hearth', cost: 800, emoji: '🏠'),
   ];
 
-  static final _iconItems = List.generate(
-    9, (i) => ShopItem(id: 'ic_${i + 1}', name: 'Icon ${i + 1}', cost: 600, emoji: '📱'),
-  );
+  static final _iconItems = [
+    ShopItem(id: 'ic_1', name: 'Midnight', cost: 600, emoji: '🌌'),
+    ShopItem(id: 'ic_2', name: 'Neon', cost: 600, emoji: '🕹️'),
+    ShopItem(id: 'ic_3', name: 'Retro', cost: 600, emoji: '👾'),
+    ShopItem(id: 'ic_4', name: 'Minimal', cost: 600, emoji: '🔲'),
+    ShopItem(id: 'ic_5', name: 'Glass', cost: 600, emoji: '💠'),
+    ShopItem(id: 'ic_6', name: 'Void', cost: 600, emoji: '⬛'),
+    ShopItem(id: 'ic_7', name: 'Gold', cost: 600, emoji: '🪙'),
+    ShopItem(id: 'ic_8', name: 'Holo', cost: 600, emoji: '💿'),
+    ShopItem(id: 'ic_9', name: 'Classic', cost: 600, emoji: '📱'),
+  ];
 
-  static final _particleItems = List.generate(
-    6, (i) => ShopItem(id: 'pe_${i + 1}', name: 'Effect ${i + 1}', cost: 700, emoji: '✨'),
-  );
+  static final _particleItems = [
+    ShopItem(id: 'pe_1', name: 'Nova', cost: 700, emoji: '✨'),
+    ShopItem(id: 'pe_2', name: 'Sparks', cost: 700, emoji: '🎇'),
+    ShopItem(id: 'pe_3', name: 'Comet', cost: 700, emoji: '☄️'),
+    ShopItem(id: 'pe_4', name: 'Stars', cost: 700, emoji: '🌟'),
+    ShopItem(id: 'pe_5', name: 'Glitter', cost: 700, emoji: '💖'),
+    ShopItem(id: 'pe_6', name: 'Snow', cost: 700, emoji: '❄️'),
+  ];
 
   static final _ambientItems = [
-    'Rain', 'Ocean', 'Forest', 'Wind', 'Fireplace',
-    'Cafe', 'Brown Noise', 'Singing Bowls', 'Night Sounds', 'Distant Storm',
-  ].map((n) => ShopItem(id: 'am_${n.toLowerCase().replaceAll(' ', '_')}', name: n, cost: 500, emoji: '🎵')).toList();
+    ShopItem(id: 'am_rain', name: 'Rain', cost: 500, emoji: '🌧️'),
+    ShopItem(id: 'am_ocean', name: 'Ocean', cost: 500, emoji: '🌊'),
+    ShopItem(id: 'am_forest', name: 'Forest', cost: 500, emoji: '🌲'),
+    ShopItem(id: 'am_wind', name: 'Wind', cost: 500, emoji: '💨'),
+    ShopItem(id: 'am_fireplace', name: 'Fireplace', cost: 500, emoji: '🔥'),
+    ShopItem(id: 'am_cafe', name: 'Cafe', cost: 500, emoji: '☕'),
+    ShopItem(id: 'am_brown_noise', name: 'Brown Noise', cost: 500, emoji: '📻'),
+    ShopItem(id: 'am_singing_bowls', name: 'Singing Bowls', cost: 500, emoji: '🥣'),
+    ShopItem(id: 'am_night_sounds', name: 'Night Sounds', cost: 500, emoji: '🦉'),
+    ShopItem(id: 'am_distant_storm', name: 'Distant Storm', cost: 500, emoji: '⛈️'),
+  ];
 
   static final _constellationItems = [
-    ShopItem(id: 'ct_ink', name: 'Ink Wash', cost: 1000, emoji: '🖋️'),
-    ShopItem(id: 'ct_neon', name: 'Neon Glow', cost: 1000, emoji: '💡'),
-    ShopItem(id: 'ct_hand', name: 'Hand-Drawn', cost: 1000, emoji: '✏️'),
+    ShopItem(id: 'ct_ink', name: 'Ink Orbit', cost: 1000, emoji: '⭕'),
+    ShopItem(id: 'ct_neon', name: 'Neon Orbit', cost: 1000, emoji: '💫'),
+    ShopItem(id: 'ct_hand', name: 'Dashed Orbit', cost: 1000, emoji: '🔄'),
   ];
 }
 
@@ -201,8 +255,8 @@ class _ShopGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.all(Spacing.md),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: context.isTablet ? 4 : 3,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 140,
         childAspectRatio: 0.85,
         crossAxisSpacing: Spacing.sm,
         mainAxisSpacing: Spacing.sm,

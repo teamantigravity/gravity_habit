@@ -1,14 +1,18 @@
-import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'achievement_schema.g.dart';
 
-@collection
+@JsonSerializable()
 class AchievementEntity {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   late String achievementId;
 
   DateTime? unlockedAt;
   late double progress; // 0.0 to 1.0
+
+  AchievementEntity();
+
+  factory AchievementEntity.fromJson(Map<String, dynamic> json) => _$AchievementEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$AchievementEntityToJson(this);
 }

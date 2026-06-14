@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/data/repositories/habit_repository.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';

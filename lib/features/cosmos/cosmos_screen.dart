@@ -143,8 +143,8 @@ class CosmosScreen extends ConsumerWidget {
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
                     sliver: SliverGrid(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 140,
                         childAspectRatio: 0.85,
                         crossAxisSpacing: 8,
                         mainAxisSpacing: 8,
@@ -216,24 +216,25 @@ class _AchievementCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               achievement.name,
-              style: context.textTheme.labelSmall?.copyWith(
+              style: context.textTheme.labelMedium?.copyWith(
                 fontFamily: 'Inter',
-                fontWeight: isUnlocked ? FontWeight.w600 : FontWeight.w400,
+                fontWeight: isUnlocked ? FontWeight.w700 : FontWeight.w600,
                 color: isUnlocked
                     ? context.colors.onSurface
-                    : context.colors.onSurface.withOpacity(0.4),
+                    : context.colors.onSurface.withOpacity(0.6),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 4),
             Text(
               '${achievement.stardustReward} ✨',
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
                 fontFamily: 'JetBrainsMono',
-                color: context.colors.onSurface.withOpacity(0.3),
+                color: context.colors.onSurface.withOpacity(0.5),
               ),
             ),
           ],
