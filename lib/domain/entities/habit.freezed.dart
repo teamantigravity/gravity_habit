@@ -42,8 +42,12 @@ mixin _$Habit {
   String? get cueText => throw _privateConstructorUsedError;
   String? get whyText => throw _privateConstructorUsedError;
 
+  /// Serializes this Habit to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Habit
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HabitCopyWith<Habit> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -85,6 +89,8 @@ class _$HabitCopyWithImpl<$Res, $Val extends Habit>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Habit
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -232,6 +238,8 @@ class __$$HabitImplCopyWithImpl<$Res>
       _$HabitImpl _value, $Res Function(_$HabitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Habit
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -487,7 +495,7 @@ class _$HabitImpl implements _Habit {
             (identical(other.whyText, whyText) || other.whyText == whyText));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -513,7 +521,9 @@ class _$HabitImpl implements _Habit {
         whyText
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Habit
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HabitImplCopyWith<_$HabitImpl> get copyWith =>
@@ -592,8 +602,11 @@ abstract class _Habit implements Habit {
   String? get cueText;
   @override
   String? get whyText;
+
+  /// Create a copy of Habit
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HabitImplCopyWith<_$HabitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -607,8 +620,12 @@ mixin _$TimeOfDayData {
   int get hour => throw _privateConstructorUsedError;
   int get minute => throw _privateConstructorUsedError;
 
+  /// Serializes this TimeOfDayData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TimeOfDayData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TimeOfDayDataCopyWith<TimeOfDayData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -632,6 +649,8 @@ class _$TimeOfDayDataCopyWithImpl<$Res, $Val extends TimeOfDayData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TimeOfDayData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -670,6 +689,8 @@ class __$$TimeOfDayDataImplCopyWithImpl<$Res>
       _$TimeOfDayDataImpl _value, $Res Function(_$TimeOfDayDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TimeOfDayData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -716,11 +737,13 @@ class _$TimeOfDayDataImpl implements _TimeOfDayData {
             (identical(other.minute, minute) || other.minute == minute));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, hour, minute);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TimeOfDayData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TimeOfDayDataImplCopyWith<_$TimeOfDayDataImpl> get copyWith =>
@@ -746,8 +769,11 @@ abstract class _TimeOfDayData implements TimeOfDayData {
   int get hour;
   @override
   int get minute;
+
+  /// Create a copy of TimeOfDayData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TimeOfDayDataImplCopyWith<_$TimeOfDayDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -768,8 +794,12 @@ mixin _$HabitEntry {
   int? get mood => throw _privateConstructorUsedError;
   SkipReason? get skipReason => throw _privateConstructorUsedError;
 
+  /// Serializes this HabitEntry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HabitEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HabitEntryCopyWith<HabitEntry> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -802,6 +832,8 @@ class _$HabitEntryCopyWithImpl<$Res, $Val extends HabitEntry>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HabitEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -884,6 +916,8 @@ class __$$HabitEntryImplCopyWithImpl<$Res>
       _$HabitEntryImpl _value, $Res Function(_$HabitEntryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HabitEntry
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -999,12 +1033,14 @@ class _$HabitEntryImpl implements _HabitEntry {
                 other.skipReason == skipReason));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, habitId, date,
       completedValue, isComplete, completedAt, note, mood, skipReason);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HabitEntry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HabitEntryImplCopyWith<_$HabitEntryImpl> get copyWith =>
@@ -1051,8 +1087,11 @@ abstract class _HabitEntry implements HabitEntry {
   int? get mood;
   @override
   SkipReason? get skipReason;
+
+  /// Create a copy of HabitEntry
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HabitEntryImplCopyWith<_$HabitEntryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

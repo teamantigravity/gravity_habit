@@ -26,14 +26,14 @@ subprojects {
                 namespaceSetter?.invoke(androidExt, project.group.toString())
             }
             
-            // Force compileSdkVersion to 34 to resolve plugin incompatibilities
+            // Force compileSdkVersion to 35 to resolve plugin incompatibilities
             try {
                 val setCompileSdk = androidExt.javaClass.methods.find { it.name == "setCompileSdk" }
-                setCompileSdk?.invoke(androidExt, 34)
+                setCompileSdk?.invoke(androidExt, 35)
             } catch (e: Exception) {
                 try {
                     val setCompileSdkVersion = androidExt.javaClass.methods.find { it.name == "setCompileSdkVersion" && it.parameterTypes.isNotEmpty() && it.parameterTypes[0].name == "int" }
-                    setCompileSdkVersion?.invoke(androidExt, 34)
+                    setCompileSdkVersion?.invoke(androidExt, 35)
                 } catch (e2: Exception) {}
             }
         }

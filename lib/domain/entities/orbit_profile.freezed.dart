@@ -28,7 +28,9 @@ mixin _$OrbitProfile {
   int get prestigeLevel => throw _privateConstructorUsedError;
   int get streakFreezes => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrbitProfile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrbitProfileCopyWith<OrbitProfile> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +65,8 @@ class _$OrbitProfileCopyWithImpl<$Res, $Val extends OrbitProfile>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrbitProfile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,6 +161,8 @@ class __$$OrbitProfileImplCopyWithImpl<$Res>
       _$OrbitProfileImpl _value, $Res Function(_$OrbitProfileImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrbitProfile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -334,7 +340,9 @@ class _$OrbitProfileImpl implements _OrbitProfile {
       prestigeLevel,
       streakFreezes);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrbitProfile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrbitProfileImplCopyWith<_$OrbitProfileImpl> get copyWith =>
@@ -377,8 +385,11 @@ abstract class _OrbitProfile implements OrbitProfile {
   int get prestigeLevel;
   @override
   int get streakFreezes;
+
+  /// Create a copy of OrbitProfile
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrbitProfileImplCopyWith<_$OrbitProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
