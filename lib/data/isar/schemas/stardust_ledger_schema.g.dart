@@ -16,7 +16,7 @@ extension GetStardustLedgerEntryCollection on Isar {
 
 const StardustLedgerEntrySchema = CollectionSchema(
   name: r'StardustLedgerEntry',
-  id: -4322344260571137,
+  id: -6210282630777113936,
   properties: {
     r'amount': PropertySchema(
       id: 0,

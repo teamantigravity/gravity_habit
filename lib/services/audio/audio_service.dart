@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -32,7 +33,7 @@ class AudioService {
     if (enabled != null) _enabled = enabled;
     if (volume != null) {
       _volume = volume;
-      _player.setVolume(_volume);
+      unawaited(_player.setVolume(_volume));
     }
     if (soundPackId != null) _soundPackId = soundPackId;
   }

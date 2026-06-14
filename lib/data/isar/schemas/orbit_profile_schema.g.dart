@@ -16,7 +16,7 @@ extension GetOrbitProfileEntityCollection on Isar {
 
 const OrbitProfileEntitySchema = CollectionSchema(
   name: r'OrbitProfileEntity',
-  id: -8755555103121001,
+  id: -3710714448801668302,
   properties: {
     r'collectedStardust': PropertySchema(
       id: 0,

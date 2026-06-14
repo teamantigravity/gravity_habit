@@ -96,7 +96,8 @@ class GravityDatabase {
             ..installDate = DateTime.now()
             ..totalCompletions = 0
             ..appIconId = 'default'
-            ..isListMode = false,
+            ..isListMode = false
+            ..isUnder13 = false,
         );
       });
     }

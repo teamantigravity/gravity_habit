@@ -15,7 +15,7 @@ extension GetSettingsEntityCollection on Isar {
 
 const SettingsEntitySchema = CollectionSchema(
   name: r'SettingsEntity',
-  id: -2507241188617375,
+  id: -7271317039764597112,
   properties: {
     r'accentColor': PropertySchema(
       id: 0,
@@ -97,93 +97,98 @@ const SettingsEntitySchema = CollectionSchema(
       name: r'isListMode',
       type: IsarType.bool,
     ),
-    r'languageCode': PropertySchema(
+    r'isUnder13': PropertySchema(
       id: 16,
+      name: r'isUnder13',
+      type: IsarType.bool,
+    ),
+    r'languageCode': PropertySchema(
+      id: 17,
       name: r'languageCode',
       type: IsarType.string,
     ),
     r'monthlyReviewEnabled': PropertySchema(
-      id: 17,
+      id: 18,
       name: r'monthlyReviewEnabled',
       type: IsarType.bool,
     ),
     r'notificationStyle': PropertySchema(
-      id: 18,
+      id: 19,
       name: r'notificationStyle',
       type: IsarType.long,
     ),
     r'paletteId': PropertySchema(
-      id: 19,
+      id: 20,
       name: r'paletteId',
       type: IsarType.string,
     ),
     r'personalizedAdsConsent': PropertySchema(
-      id: 20,
+      id: 21,
       name: r'personalizedAdsConsent',
       type: IsarType.bool,
     ),
     r'quietHoursEnd': PropertySchema(
-      id: 21,
+      id: 22,
       name: r'quietHoursEnd',
       type: IsarType.long,
     ),
     r'quietHoursStart': PropertySchema(
-      id: 22,
+      id: 23,
       name: r'quietHoursStart',
       type: IsarType.long,
     ),
     r'reduceMotion': PropertySchema(
-      id: 23,
+      id: 24,
       name: r'reduceMotion',
       type: IsarType.bool,
     ),
     r'screenshotBlocking': PropertySchema(
-      id: 24,
+      id: 25,
       name: r'screenshotBlocking',
       type: IsarType.bool,
     ),
     r'smartNudgesEnabled': PropertySchema(
-      id: 25,
+      id: 26,
       name: r'smartNudgesEnabled',
       type: IsarType.bool,
     ),
     r'soundEnabled': PropertySchema(
-      id: 26,
+      id: 27,
       name: r'soundEnabled',
       type: IsarType.bool,
     ),
     r'soundPackId': PropertySchema(
-      id: 27,
+      id: 28,
       name: r'soundPackId',
       type: IsarType.string,
     ),
     r'soundVolume': PropertySchema(
-      id: 28,
+      id: 29,
       name: r'soundVolume',
       type: IsarType.double,
     ),
     r'streakSaveReminderEnabled': PropertySchema(
-      id: 29,
+      id: 30,
       name: r'streakSaveReminderEnabled',
       type: IsarType.bool,
     ),
     r'themeMode': PropertySchema(
-      id: 30,
+      id: 31,
       name: r'themeMode',
       type: IsarType.long,
     ),
     r'totalCompletions': PropertySchema(
-      id: 31,
+      id: 32,
       name: r'totalCompletions',
       type: IsarType.long,
     ),
     r'userBirthDateJson': PropertySchema(
-      id: 32,
+      id: 33,
       name: r'userBirthDateJson',
       type: IsarType.string,
     ),
     r'weeklyReviewEnabled': PropertySchema(
-      id: 33,
+      id: 34,
       name: r'weeklyReviewEnabled',
       type: IsarType.bool,
     )
@@ -243,24 +248,25 @@ void _settingsEntitySerialize(
   writer.writeBool(offsets[13], object.highContrast);
   writer.writeDateTime(offsets[14], object.installDate);
   writer.writeBool(offsets[15], object.isListMode);
-  writer.writeString(offsets[16], object.languageCode);
-  writer.writeBool(offsets[17], object.monthlyReviewEnabled);
-  writer.writeLong(offsets[18], object.notificationStyle);
-  writer.writeString(offsets[19], object.paletteId);
-  writer.writeBool(offsets[20], object.personalizedAdsConsent);
-  writer.writeLong(offsets[21], object.quietHoursEnd);
-  writer.writeLong(offsets[22], object.quietHoursStart);
-  writer.writeBool(offsets[23], object.reduceMotion);
-  writer.writeBool(offsets[24], object.screenshotBlocking);
-  writer.writeBool(offsets[25], object.smartNudgesEnabled);
-  writer.writeBool(offsets[26], object.soundEnabled);
-  writer.writeString(offsets[27], object.soundPackId);
-  writer.writeDouble(offsets[28], object.soundVolume);
-  writer.writeBool(offsets[29], object.streakSaveReminderEnabled);
-  writer.writeLong(offsets[30], object.themeMode);
-  writer.writeLong(offsets[31], object.totalCompletions);
-  writer.writeString(offsets[32], object.userBirthDateJson);
-  writer.writeBool(offsets[33], object.weeklyReviewEnabled);
+  writer.writeBool(offsets[16], object.isUnder13);
+  writer.writeString(offsets[17], object.languageCode);
+  writer.writeBool(offsets[18], object.monthlyReviewEnabled);
+  writer.writeLong(offsets[19], object.notificationStyle);
+  writer.writeString(offsets[20], object.paletteId);
+  writer.writeBool(offsets[21], object.personalizedAdsConsent);
+  writer.writeLong(offsets[22], object.quietHoursEnd);
+  writer.writeLong(offsets[23], object.quietHoursStart);
+  writer.writeBool(offsets[24], object.reduceMotion);
+  writer.writeBool(offsets[25], object.screenshotBlocking);
+  writer.writeBool(offsets[26], object.smartNudgesEnabled);
+  writer.writeBool(offsets[27], object.soundEnabled);
+  writer.writeString(offsets[28], object.soundPackId);
+  writer.writeDouble(offsets[29], object.soundVolume);
+  writer.writeBool(offsets[30], object.streakSaveReminderEnabled);
+  writer.writeLong(offsets[31], object.themeMode);
+  writer.writeLong(offsets[32], object.totalCompletions);
+  writer.writeString(offsets[33], object.userBirthDateJson);
+  writer.writeBool(offsets[34], object.weeklyReviewEnabled);
 }
 
 SettingsEntity _settingsEntityDeserialize(
@@ -287,24 +293,25 @@ SettingsEntity _settingsEntityDeserialize(
   object.id = id;
   object.installDate = reader.readDateTime(offsets[14]);
   object.isListMode = reader.readBool(offsets[15]);
-  object.languageCode = reader.readString(offsets[16]);
-  object.monthlyReviewEnabled = reader.readBool(offsets[17]);
-  object.notificationStyle = reader.readLong(offsets[18]);
-  object.paletteId = reader.readString(offsets[19]);
-  object.personalizedAdsConsent = reader.readBool(offsets[20]);
-  object.quietHoursEnd = reader.readLong(offsets[21]);
-  object.quietHoursStart = reader.readLong(offsets[22]);
-  object.reduceMotion = reader.readBool(offsets[23]);
-  object.screenshotBlocking = reader.readBool(offsets[24]);
-  object.smartNudgesEnabled = reader.readBool(offsets[25]);
-  object.soundEnabled = reader.readBool(offsets[26]);
-  object.soundPackId = reader.readString(offsets[27]);
-  object.soundVolume = reader.readDouble(offsets[28]);
-  object.streakSaveReminderEnabled = reader.readBool(offsets[29]);
-  object.themeMode = reader.readLong(offsets[30]);
-  object.totalCompletions = reader.readLong(offsets[31]);
-  object.userBirthDateJson = reader.readStringOrNull(offsets[32]);
-  object.weeklyReviewEnabled = reader.readBool(offsets[33]);
+  object.isUnder13 = reader.readBool(offsets[16]);
+  object.languageCode = reader.readString(offsets[17]);
+  object.monthlyReviewEnabled = reader.readBool(offsets[18]);
+  object.notificationStyle = reader.readLong(offsets[19]);
+  object.paletteId = reader.readString(offsets[20]);
+  object.personalizedAdsConsent = reader.readBool(offsets[21]);
+  object.quietHoursEnd = reader.readLong(offsets[22]);
+  object.quietHoursStart = reader.readLong(offsets[23]);
+  object.reduceMotion = reader.readBool(offsets[24]);
+  object.screenshotBlocking = reader.readBool(offsets[25]);
+  object.smartNudgesEnabled = reader.readBool(offsets[26]);
+  object.soundEnabled = reader.readBool(offsets[27]);
+  object.soundPackId = reader.readString(offsets[28]);
+  object.soundVolume = reader.readDouble(offsets[29]);
+  object.streakSaveReminderEnabled = reader.readBool(offsets[30]);
+  object.themeMode = reader.readLong(offsets[31]);
+  object.totalCompletions = reader.readLong(offsets[32]);
+  object.userBirthDateJson = reader.readStringOrNull(offsets[33]);
+  object.weeklyReviewEnabled = reader.readBool(offsets[34]);
   return object;
 }
 
@@ -348,21 +355,21 @@ P _settingsEntityDeserializeProp<P>(
     case 15:
       return (reader.readBool(offset)) as P;
     case 16:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 17:
-      return (reader.readBool(offset)) as P;
-    case 18:
-      return (reader.readLong(offset)) as P;
-    case 19:
       return (reader.readString(offset)) as P;
-    case 20:
+    case 18:
       return (reader.readBool(offset)) as P;
-    case 21:
+    case 19:
       return (reader.readLong(offset)) as P;
+    case 20:
+      return (reader.readString(offset)) as P;
+    case 21:
+      return (reader.readBool(offset)) as P;
     case 22:
       return (reader.readLong(offset)) as P;
     case 23:
-      return (reader.readBool(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 24:
       return (reader.readBool(offset)) as P;
     case 25:
@@ -370,18 +377,20 @@ P _settingsEntityDeserializeProp<P>(
     case 26:
       return (reader.readBool(offset)) as P;
     case 27:
-      return (reader.readString(offset)) as P;
-    case 28:
-      return (reader.readDouble(offset)) as P;
-    case 29:
       return (reader.readBool(offset)) as P;
+    case 28:
+      return (reader.readString(offset)) as P;
+    case 29:
+      return (reader.readDouble(offset)) as P;
     case 30:
-      return (reader.readLong(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 31:
       return (reader.readLong(offset)) as P;
     case 32:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 33:
+      return (reader.readStringOrNull(offset)) as P;
+    case 34:
       return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1152,6 +1161,16 @@ extension SettingsEntityQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isListMode',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<SettingsEntity, SettingsEntity, QAfterFilterCondition>
+      isUnder13EqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isUnder13',
         value: value,
       ));
     });
@@ -2376,6 +2395,19 @@ extension SettingsEntityQuerySortBy
     });
   }
 
+  QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy> sortByIsUnder13() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isUnder13', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy>
+      sortByIsUnder13Desc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isUnder13', Sort.desc);
+    });
+  }
+
   QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy>
       sortByLanguageCode() {
     return QueryBuilder.apply(this, (query) {
@@ -2863,6 +2895,19 @@ extension SettingsEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy> thenByIsUnder13() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isUnder13', Sort.asc);
+    });
+  }
+
+  QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy>
+      thenByIsUnder13Desc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isUnder13', Sort.desc);
+    });
+  }
+
   QueryBuilder<SettingsEntity, SettingsEntity, QAfterSortBy>
       thenByLanguageCode() {
     return QueryBuilder.apply(this, (query) {
@@ -3229,6 +3274,13 @@ extension SettingsEntityQueryWhereDistinct
   }
 
   QueryBuilder<SettingsEntity, SettingsEntity, QDistinct>
+      distinctByIsUnder13() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isUnder13');
+    });
+  }
+
+  QueryBuilder<SettingsEntity, SettingsEntity, QDistinct>
       distinctByLanguageCode({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'languageCode', caseSensitive: caseSensitive);
@@ -3462,6 +3514,12 @@ extension SettingsEntityQueryProperty
   QueryBuilder<SettingsEntity, bool, QQueryOperations> isListModeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isListMode');
+    });
+  }
+
+  QueryBuilder<SettingsEntity, bool, QQueryOperations> isUnder13Property() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isUnder13');
     });
   }
 

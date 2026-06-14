@@ -205,6 +205,7 @@ class SettingsNotifier extends StateNotifier<AppSettings> {
         totalCompletions: entity.totalCompletions,
         appIconId: entity.appIconId,
         isListMode: entity.isListMode,
+        isUnder13: entity.isUnder13,
       );
     }
   }
@@ -251,7 +252,8 @@ class SettingsNotifier extends StateNotifier<AppSettings> {
           ..installDate = state.installDate ?? DateTime.now()
           ..totalCompletions = state.totalCompletions
           ..appIconId = state.appIconId
-          ..isListMode = state.isListMode,
+          ..isListMode = state.isListMode
+          ..isUnder13 = state.isUnder13,
       );
     });
   }

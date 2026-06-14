@@ -40,4 +40,5 @@ class SettingsEntity {
   late String appIconId;
   late bool isListMode;
   String? userBirthDateJson; // for under-13 check, stored locally
+  late bool isUnder13;
 }

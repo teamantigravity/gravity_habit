@@ -15,7 +15,7 @@ extension GetAchievementEntityCollection on Isar {
 
 const AchievementEntitySchema = CollectionSchema(
   name: r'AchievementEntity',
-  id: -1385440077593810,
+  id: -8720354318666873098,
   properties: {
     r'achievementId': PropertySchema(
       id: 0,
@@ -40,7 +40,7 @@ const AchievementEntitySchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'achievementId': IndexSchema(
-      id: 7055660077052397,
+      id: 547487615361511857,
       name: r'achievementId',
       unique: true,
       replace: false,

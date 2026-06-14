@@ -53,7 +53,7 @@ class GravityHabitApp extends ConsumerWidget {
       ],
       builder: (context, child) {
         final mediaQuery = MediaQuery.of(context);
-        final textScaleFactor = settings.fontScale.clamp(0.9, 1.5);
+        final textScaleFactor = settings.fontScale.clamp(0.9, 1.5).toDouble();
         return MediaQuery(
           data: mediaQuery.copyWith(
             textScaler: TextScaler.linear(textScaleFactor),

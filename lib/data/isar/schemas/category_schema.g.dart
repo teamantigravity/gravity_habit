@@ -15,7 +15,7 @@ extension GetCategoryEntityCollection on Isar {
 
 const CategoryEntitySchema = CollectionSchema(
   name: r'CategoryEntity',
-  id: -4783526262049333,
+  id: -4373275164811429968,
   properties: {
     r'color': PropertySchema(
       id: 0,
@@ -50,7 +50,7 @@ const CategoryEntitySchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'uuid': IndexSchema(
-      id: 8698316308851096,
+      id: 2134397340427724972,
       name: r'uuid',
       unique: true,
       replace: false,
