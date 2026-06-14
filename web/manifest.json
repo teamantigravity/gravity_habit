@@ -1,6 +1,6 @@
 {
-    "name": "gravity_habit",
-    "short_name": "gravity_habit",
+    "name": "Gravity Habit",
+    "short_name": "Gravity Habit",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
