@@ -66,7 +66,6 @@ dependencies:
   sensors_plus: ^4.0.2
   wakelock_plus: ^1.1.4
   webview_flutter: ^4.14.0
-  firebase_messaging_web: ^4.2.0
 
 dev_dependencies:
   flutter_test:
@@ -110,5 +109,4 @@ flutter:
         - asset: assets/fonts/OpenDyslexic-Bold.ttf
           weight: 700
 
-dependency_overrides:
-  isar: 3.0.0-dev.14
+# No dependency overrides needed.

@@ -2,10 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
-import 'package:sembast/sembast_io.dart';
-import 'package:sembast_web/sembast_web.dart';
 import 'package:path/path.dart' as p;
 
+import 'database_factory.dart';
 import 'schemas/achievement_schema.dart';
 import 'schemas/category_schema.dart';
 import 'schemas/daily_quest_schema.dart';
@@ -35,15 +34,15 @@ class GravityDatabase {
   final stardustLedgerStore = intMapStoreFactory.store('stardustLedger');
 
   static Future<GravityDatabase> initialize() async {
+    final factory = getDatabaseFactory();
     Database db;
+    
     if (kIsWeb) {
-      final factory = databaseFactoryWeb;
       db = await factory.openDatabase('gravity_habit.db');
     } else {
       final dir = await getApplicationDocumentsDirectory();
       await dir.create(recursive: true);
       final dbPath = p.join(dir.path, 'gravity_habit.db');
-      final factory = databaseFactoryIo;
       db = await factory.openDatabase(dbPath);
     }
 
@@ -99,15 +98,20 @@ class GravityDatabase {
     if (profile == null) {
       final newProfile = OrbitProfileEntity()
         ..id = 0
-        ..totalMass = 0.0
-        ..currentOrbitTier = 0
-        ..streakDays = 0
-        ..longestStreak = 0
-        ..gravitationalPull = 0.0
         ..collectedStardust = 0
-        ..prestigeLevel = 0
-        ..streakFreezes = 0
-        ..lastCalculatedDate = DateTime.now();
+        ..currentPlanetId = 'terra'
+        ..unlockedPlanetsJson = '["terra"]'
+        ..unlockedThemesJson = '["midnight"]'
+        ..unlockedAvatarsJson = '["av_1"]'
+        ..unlockedIconsJson = '["ic_9"]'
+        ..unlockedParticlesJson = '["pe_4"]'
+        ..unlockedAmbientJson = '["am_none"]'
+        ..unlockedOrbitPathsJson = '["ct_standard"]'
+        ..level = 1
+        ..experience = 0
+        ..rankTitle = 'Novice Voyager'
+        ..totalDaysActive = 0
+        ..lastActiveDate = DateTime.now();
 
       await orbitProfileStore.record(0).put(db, newProfile.toJson());
     }
