@@ -27,8 +27,18 @@ class _ShellScaffoldState extends ConsumerState<ShellScaffold> {
     _currentIndex = _routes.indexOf(location).clamp(0, 3);
 
     return Scaffold(
-      body: widget.child,
       extendBody: true,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/cosmic_bg.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          widget.child,
+        ],
+      ),
       bottomNavigationBar: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),

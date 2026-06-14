@@ -41,22 +41,18 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Orbit ring
+            // App Logo
             SizedBox(
-              width: 80,
-              height: 80,
-              child: CustomPaint(
-                painter: _OrbitRingPainter(
-                  color: context.colors.primary,
-                ),
-              ),
+              width: 120,
+              height: 120,
+              child: Image.asset('assets/images/app_logo.png'),
             )
                 .animate(
                   onPlay: (controller) => controller.repeat(),
                 )
-                .rotate(
-                  duration: 3.seconds,
-                  curve: Curves.linear,
+                .shimmer(
+                  duration: 2.seconds,
+                  color: context.colors.primary.withOpacity(0.5),
                 ),
             const SizedBox(height: 24),
             Text(
@@ -74,34 +70,4 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 }
 
-class _OrbitRingPainter extends CustomPainter {
-  _OrbitRingPainter({required this.color});
 
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2 - 4;
-
-    final paint = Paint()
-      ..color = color.withOpacity(0.3)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-
-    canvas.drawCircle(center, radius, paint);
-
-    // Small orbiting dot
-    final dotPaint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
-    canvas.drawCircle(
-      Offset(center.dx + radius, center.dy),
-      4,
-      dotPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
