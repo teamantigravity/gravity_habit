@@ -367,7 +367,7 @@ class _OrbitCard extends StatelessWidget {
                 : null,
           ),
           transform: isSelected
-              ? (Matrix4.identity()..translate(0.0, -4))
+              ? Matrix4.translationValues(0.0, -4.0, 0.0)
               : Matrix4.identity(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

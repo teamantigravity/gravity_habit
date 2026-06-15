@@ -416,6 +416,7 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     if (second ?? false) {
+      if (!context.mounted) return;
       // Reset DB
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('App reset. Restarting...')),

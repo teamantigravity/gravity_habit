@@ -13,3 +13,12 @@ linter:
     always_put_required_named_parameters_first: false
     # We want to use absolute imports sometimes
     always_use_package_imports: false
+    require_trailing_commas: false
+    unawaited_futures: false
+    use_setters_to_change_properties: false
+    join_return_with_assignment: false
+    deprecated_member_use: false
+    unnecessary_null_checks: false
+    directives_ordering: false
+    curly_braces_in_flow_control_structures: false
+    prefer_int_literals: false

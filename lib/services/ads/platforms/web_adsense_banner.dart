@@ -18,9 +18,7 @@ class WebAdsenseBanner extends StatefulWidget {
 }
 
 class _WebAdsenseBannerState extends State<WebAdsenseBanner> {
-  bool _isLoaded = false;
   bool _hasError = false;
-  final _viewId = 'adsense-banner-${DateTime.now().millisecondsSinceEpoch}';
 
   @override
   void initState() {
@@ -86,8 +84,6 @@ class _WebAdsenseBannerState extends State<WebAdsenseBanner> {
       // NOTE: The AdSense base script must be included in web/index.html:
       // <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script>
 
-      // For build safety on non-web platforms, wrap in try
-      _isLoaded = true; // Placeholder
     } catch (e) {
       debugPrint('Web AdSense init failed: $e');
       _hasError = true;

@@ -6,10 +6,9 @@ import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
 
 class DataImporter {
-  DataImporter(this._habitRepo, this._orbitRepo);
+  DataImporter(this._habitRepo);
 
   final HabitRepository _habitRepo;
-  final OrbitRepository _orbitRepo;
 
   /// Import from .gravity JSON file.
   /// Returns number of habits imported.

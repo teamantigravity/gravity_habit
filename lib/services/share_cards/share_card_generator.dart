@@ -157,7 +157,7 @@ class ShareCardGenerator {
     final bgPaint = Paint()..color = backgroundColor;
     canvas.drawRect(Rect.fromLTWH(0, 0, width, height), bgPaint);
 
-    final center = Offset(width / 2, height * 0.4);
+
 
     // Tier number
     _drawText(

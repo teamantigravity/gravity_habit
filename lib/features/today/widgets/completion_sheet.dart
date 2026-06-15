@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
+import 'package:gravity_habit/domain/entities/habit.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/features/today/providers/today_provider.dart';
 import 'package:gravity_habit/features/today/widgets/completion_animation.dart';
