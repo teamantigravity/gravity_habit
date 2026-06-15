@@ -33,7 +33,7 @@ dependencies:
 
   # Animations
   flutter_animate: ^4.3.0
-  rive: ^0.14.8
+  rive: ^0.13.4
   lottie: ^3.0.0
 
   # Charts
