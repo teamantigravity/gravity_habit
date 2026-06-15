@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/ui/widgets/cosmic_button.dart';
-import 'package:rive/rive.dart';
+
 
 class EmptyCosmos extends StatelessWidget {
   const EmptyCosmos({super.key});
@@ -21,8 +21,8 @@ class EmptyCosmos extends StatelessWidget {
             const SizedBox(
               width: 160,
               height: 160,
-              child: RiveAnimation.asset(
-                'assets/rive/rocket.riv',
+              child: Image.asset(
+                'assets/images/planet_icon.png',
                 fit: BoxFit.contain,
               ),
             ).animate(onPlay: (c) => c.repeat(reverse: true)).moveY(

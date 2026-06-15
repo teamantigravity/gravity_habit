@@ -1,0 +1,1 @@
+import 'dart:isolate'; import 'dart:io'; void main() async { var uri = await Isolate.resolvePackageUri(Uri.parse('package:rive/src/widgets/rive_widget.dart')); print(File(uri!.toFilePath()).readAsStringSync()); }
