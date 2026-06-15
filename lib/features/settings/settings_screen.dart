@@ -5,7 +5,6 @@ import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/features/settings/settings_provider.dart';
 import 'package:gravity_habit/services/ads/ad_service.dart';
-import 'package:gravity_habit/services/haptics/haptic_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -33,7 +32,7 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: Spacing.xl),
 
             // ---- APPEARANCE ----
-            _SectionHeader('Appearance'),
+            const _SectionHeader('Appearance'),
             _SettingsTile(
               title: 'Theme',
               subtitle: switch (settings.themeMode) {
@@ -51,17 +50,20 @@ class SettingsScreen extends ConsumerWidget {
             _SwitchTile(
               title: 'Reduce Motion',
               value: settings.reduceMotion,
-              onChanged: (v) => notifier.update((s) => s.copyWith(reduceMotion: v)),
+              onChanged: (v) =>
+                  notifier.update((s) => s.copyWith(reduceMotion: v)),
             ),
             _SwitchTile(
               title: 'High Contrast',
               value: settings.highContrast,
-              onChanged: (v) => notifier.update((s) => s.copyWith(highContrast: v)),
+              onChanged: (v) =>
+                  notifier.update((s) => s.copyWith(highContrast: v)),
             ),
             _SwitchTile(
               title: 'Dyslexia Font',
               value: settings.dyslexiaFont,
-              onChanged: (v) => notifier.update((s) => s.copyWith(dyslexiaFont: v)),
+              onChanged: (v) =>
+                  notifier.update((s) => s.copyWith(dyslexiaFont: v)),
             ),
             _SettingsTile(
               title: 'Font Scale',
@@ -70,11 +72,12 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('Sound & Haptics'),
+            const _SectionHeader('Sound & Haptics'),
             _SwitchTile(
               title: 'Sound',
               value: settings.soundEnabled,
-              onChanged: (v) => notifier.update((s) => s.copyWith(soundEnabled: v)),
+              onChanged: (v) =>
+                  notifier.update((s) => s.copyWith(soundEnabled: v)),
             ),
             _SettingsTile(
               title: 'Haptic Intensity',
@@ -89,7 +92,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('Notifications'),
+            const _SectionHeader('Notifications'),
             _SwitchTile(
               title: 'Smart Nudges',
               value: settings.smartNudgesEnabled,
@@ -99,8 +102,8 @@ class SettingsScreen extends ConsumerWidget {
             _SwitchTile(
               title: 'Streak-Save Reminders',
               value: settings.streakSaveReminderEnabled,
-              onChanged: (v) =>
-                  notifier.update((s) => s.copyWith(streakSaveReminderEnabled: v)),
+              onChanged: (v) => notifier
+                  .update((s) => s.copyWith(streakSaveReminderEnabled: v)),
             ),
             _SwitchTile(
               title: 'Weekly Review',
@@ -110,7 +113,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('Privacy & Security'),
+            const _SectionHeader('Privacy & Security'),
             _SwitchTile(
               title: 'App Lock',
               value: settings.appLockEnabled,
@@ -125,7 +128,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('Data'),
+            const _SectionHeader('Data'),
             _SettingsTile(
               title: 'Export Data',
               subtitle: 'JSON, CSV, or .gravity',
@@ -144,7 +147,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('Subscription'),
+            const _SectionHeader('Subscription'),
             if (!settings.adsRemoved)
               _SettingsTile(
                 title: 'Remove Ads',
@@ -159,7 +162,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
 
             const SizedBox(height: Spacing.xl),
-            _SectionHeader('About'),
+            const _SectionHeader('About'),
             _SettingsTile(
               title: 'Version',
               subtitle: '1.0.0',
@@ -168,7 +171,8 @@ class SettingsScreen extends ConsumerWidget {
             _SettingsTile(
               title: 'Privacy Policy',
               subtitle: '',
-              onTap: () => launchUrl(Uri.parse('https://gravityhabit.app/privacy')),
+              onTap: () =>
+                  launchUrl(Uri.parse('https://gravityhabit.app/privacy')),
             ),
             _SettingsTile(
               title: 'Open Source Licenses',
@@ -185,10 +189,10 @@ class SettingsScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(Spacing.md),
               decoration: BoxDecoration(
-                color: context.colors.primaryContainer.withOpacity(0.1),
+                color: context.colors.primaryContainer.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(CornerRadii.md),
                 border: Border.all(
-                  color: context.colors.primary.withOpacity(0.1),
+                  color: context.colors.primary.withValues(alpha: 0.1),
                 ),
               ),
               child: Text(
@@ -196,15 +200,15 @@ class SettingsScreen extends ConsumerWidget {
                 'or anything about you. Your data lives only on your device \u2014 we cannot see '
                 'it, even if we wanted to. Every feature is free, forever. The only thing you '
                 'can pay for is to remove the small banner ads that help keep the lights on, '
-                'and even that is one-time if you\'d prefer.\n\n'
-                'We will never sell your data because we don\'t have it. We will never spam you '
+                "and even that is one-time if you'd prefer.\n\n"
+                "We will never sell your data because we don't have it. We will never spam you "
                 'with notifications. We will never use dark patterns to manipulate you. We will '
                 'never lock features behind paywalls.\n\n'
                 'This app exists to help you become who you want to be \u2014 quietly, beautifully, '
                 'on your own terms.\n\n'
-                'Welcome to the cosmos. It\'s yours.',
+                "Welcome to the cosmos. It's yours.",
                 style: context.textTheme.bodySmall?.copyWith(
-                  color: context.colors.onSurface.withOpacity(0.6),
+                  color: context.colors.onSurface.withValues(alpha: 0.6),
                   height: 1.5,
                 ),
               ),
@@ -256,7 +260,14 @@ class SettingsScreen extends ConsumerWidget {
     SettingsNotifier notifier,
     AppSettings settings,
   ) {
-    final palettes = ['midnight', 'nebula', 'aurora', 'void', 'solstice', 'dawn'];
+    final palettes = [
+      'midnight',
+      'nebula',
+      'aurora',
+      'void',
+      'solstice',
+      'dawn'
+    ];
     showModalBottomSheet<void>(
       context: context,
       builder: (ctx) => Column(
@@ -368,12 +379,16 @@ class SettingsScreen extends ConsumerWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Reset App'),
-        content: const Text('This will permanently delete ALL your data. Are you sure?'),
+        content: const Text(
+            'This will permanently delete ALL your data. Are you sure?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancel')),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Continue', style: TextStyle(color: context.colors.error)),
+            child:
+                Text('Continue', style: TextStyle(color: context.colors.error)),
           ),
         ],
       ),
@@ -385,18 +400,22 @@ class SettingsScreen extends ConsumerWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Are you absolutely sure?'),
-        content: const Text('This cannot be undone. All habits, streaks, and progress will be lost.'),
+        content: const Text(
+            'This cannot be undone. All habits, streaks, and progress will be lost.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancel')),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Delete Everything', style: TextStyle(color: context.colors.error)),
+            child: Text('Delete Everything',
+                style: TextStyle(color: context.colors.error)),
           ),
         ],
       ),
     );
 
-    if (second == true) {
+    if (second ?? false) {
       // Reset DB
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('App reset. Restarting...')),

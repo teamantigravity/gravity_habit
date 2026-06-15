@@ -14,19 +14,19 @@ class MassCalculator {
   }
 
   static double streakMultiplier(int streakDays) {
-    if (streakDays >= 365) return 2.0;
+    if (streakDays >= 365) return 2;
     if (streakDays >= 100) return 1.8;
     if (streakDays >= 60) return 1.6;
     if (streakDays >= 21) return 1.4;
     if (streakDays >= 7) return 1.2;
-    return 1.0;
+    return 1;
   }
 
   static double resonanceBonus(int chainLength) {
     if (chainLength >= 4) return 0.40;
     if (chainLength >= 3) return 0.25;
     if (chainLength >= 2) return 0.10;
-    return 0.0;
+    return 0;
   }
 
   static double calculateMass({

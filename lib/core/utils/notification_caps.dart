@@ -41,12 +41,12 @@ class NotificationCaps {
     'sale',
     'discount',
     'hurry',
-    'don\'t miss',
+    "don't miss",
     'last chance',
   ];
 
   static bool isForbiddenCopy(String text) {
     final lower = text.toLowerCase();
-    return forbiddenPatterns.any((p) => lower.contains(p));
+    return forbiddenPatterns.any(lower.contains);
   }
 }

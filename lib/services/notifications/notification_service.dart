@@ -59,17 +59,15 @@ class NotificationService {
     required int minute,
     required List<int> days,
   }) async {
-    final androidDetails = AndroidNotificationDetails(
+    const androidDetails = AndroidNotificationDetails(
       'habit_reminders',
       'Habit Reminders',
       channelDescription: 'Reminders for your habits',
-      importance: Importance.defaultImportance,
-      priority: Priority.defaultPriority,
       category: AndroidNotificationCategory.reminder,
       actions: [
-        const AndroidNotificationAction('complete', 'Complete'),
-        const AndroidNotificationAction('skip', 'Skip'),
-        const AndroidNotificationAction('snooze', 'Snooze 1hr'),
+        AndroidNotificationAction('complete', 'Complete'),
+        AndroidNotificationAction('skip', 'Skip'),
+        AndroidNotificationAction('snooze', 'Snooze 1hr'),
       ],
     );
 
@@ -77,7 +75,7 @@ class NotificationService {
       categoryIdentifier: 'habit_reminder',
     );
 
-    final details = NotificationDetails(
+    const details = NotificationDetails(
       android: androidDetails,
       iOS: iosDetails,
     );

@@ -67,8 +67,7 @@ class StreakEngine {
     // Check if today's habit is at risk (scheduled but not done)
     final today = DateTime.now();
     final todayKey = _dateKey(today);
-    final todayScheduled =
-        sorted.any((d) => _dateKey(d) == todayKey);
+    final todayScheduled = sorted.any((d) => _dateKey(d) == todayKey);
     final todayDone = entryMap[todayKey]?.isComplete ?? false;
     final isAtRisk = todayScheduled && !todayDone && current >= 7;
 

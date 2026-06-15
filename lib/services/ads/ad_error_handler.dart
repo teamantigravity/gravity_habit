@@ -46,12 +46,12 @@ class AdErrorHandler {
 
     // ---- ADAPTER-SPECIFIC ERRORS ----
 
-    if (adapterClassName?.contains('UnityAds') == true) {
+    if (adapterClassName?.contains('UnityAds') ?? false) {
       return _handleUnityAdsError(errorCode, message);
     }
 
-    if (adapterClassName?.contains('Meta') == true ||
-        adapterClassName?.contains('Facebook') == true) {
+    if ((adapterClassName?.contains('Meta') ?? false) ||
+        (adapterClassName?.contains('Facebook') ?? false)) {
       return _handleMetaError(errorCode, message);
     }
 

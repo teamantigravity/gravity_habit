@@ -63,8 +63,7 @@ class HabitTemplates {
       color: 0xFF66BB6A,
       category: 'Health',
       description: 'Walk at least 10,000 steps',
-      whyText:
-          'Regular walking reduces cardiovascular risk and improves mood.',
+      whyText: 'Regular walking reduces cardiovascular risk and improves mood.',
       gravityClass: GravityClass.stone,
     ),
     HabitTemplate(
@@ -74,7 +73,8 @@ class HabitTemplates {
       color: 0xFFAB47BC,
       category: 'Health',
       description: '5 minutes of stretching',
-      whyText: 'Stretching improves flexibility, reduces injury risk, and eases tension.',
+      whyText:
+          'Stretching improves flexibility, reduces injury risk, and eases tension.',
       gravityClass: GravityClass.feather,
     ),
     HabitTemplate(
@@ -115,7 +115,6 @@ class HabitTemplates {
       category: 'Health',
       description: '30 seconds of cold water',
       whyText: 'Cold exposure improves alertness and resilience.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'h_walk_meal',
@@ -125,7 +124,6 @@ class HabitTemplates {
       category: 'Health',
       description: '10-minute walk after eating',
       whyText: 'Post-meal walking helps regulate blood sugar.',
-      gravityClass: GravityClass.pebble,
     ),
 
     // ---- MIND (8-14) ----
@@ -137,7 +135,6 @@ class HabitTemplates {
       category: 'Mind',
       description: '5 minutes of mindful breathing',
       whyText: 'Meditation reduces stress and improves emotional regulation.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'm_journal',
@@ -147,7 +144,6 @@ class HabitTemplates {
       category: 'Mind',
       description: 'Write about your day',
       whyText: 'Journaling clarifies thoughts and processes emotions.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'm_read',
@@ -177,7 +173,6 @@ class HabitTemplates {
       category: 'Mind',
       description: 'Start the day without screens',
       whyText: 'Avoiding screens early protects your attention and calm.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'm_gratitude',
@@ -186,7 +181,8 @@ class HabitTemplates {
       color: 0xFFFFD54F,
       category: 'Mind',
       description: 'Write 3 things you are grateful for',
-      whyText: 'Gratitude practice is linked to greater happiness and resilience.',
+      whyText:
+          'Gratitude practice is linked to greater happiness and resilience.',
       gravityClass: GravityClass.feather,
     ),
     HabitTemplate(
@@ -239,7 +235,6 @@ class HabitTemplates {
       category: 'Body',
       description: 'Daily push-up set',
       whyText: 'Push-ups build functional strength with no equipment.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'b_plank',
@@ -249,7 +244,6 @@ class HabitTemplates {
       category: 'Body',
       description: 'Hold a plank for 60 seconds',
       whyText: 'Planks strengthen the core and improve posture.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'b_run',
@@ -291,7 +285,6 @@ class HabitTemplates {
       category: 'Creative',
       description: 'Draw or sketch something',
       whyText: 'Sketching trains observation and creative expression.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'c_instrument',
@@ -333,7 +326,6 @@ class HabitTemplates {
       category: 'Connection',
       description: 'Call a family member',
       whyText: 'Regular contact nurtures bonds that matter most.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'cn_compliment',
@@ -365,7 +357,6 @@ class HabitTemplates {
       category: 'Productivity',
       description: 'Process all emails',
       whyText: 'A clear inbox reduces cognitive load.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'p_plan',
@@ -373,9 +364,8 @@ class HabitTemplates {
       emoji: '📋',
       color: 0xFFFFCA28,
       category: 'Productivity',
-      description: 'Write out tomorrow\'s priorities',
+      description: "Write out tomorrow's priorities",
       whyText: 'Planning the night before reduces morning decision fatigue.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'p_deep_work',
@@ -407,7 +397,6 @@ class HabitTemplates {
       category: 'Spirit',
       description: 'Daily prayer or contemplation',
       whyText: 'Prayer centers the mind and connects to purpose.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 's_nature',
@@ -417,7 +406,6 @@ class HabitTemplates {
       category: 'Spirit',
       description: 'Spend time outdoors',
       whyText: 'Nature exposure reduces stress and restores attention.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 's_sunset',
@@ -459,7 +447,6 @@ class HabitTemplates {
       category: 'Recovery',
       description: 'One hour without screens',
       whyText: 'Tech-free time restores attention and reduces eye strain.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'r_early_bed',
@@ -493,7 +480,6 @@ class HabitTemplates {
       category: 'Productivity',
       description: 'Start the day without your phone',
       whyText: 'Protecting the first hour protects your entire day.',
-      gravityClass: GravityClass.pebble,
     ),
 
     // ---- EXTRA MIND ----
@@ -537,7 +523,6 @@ class HabitTemplates {
       category: 'Mind',
       description: 'Listen to an educational podcast',
       whyText: 'Podcasts turn passive time into learning opportunities.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'p_review',
@@ -547,7 +532,6 @@ class HabitTemplates {
       category: 'Productivity',
       description: 'Review what you accomplished today',
       whyText: 'Daily review turns effort into self-awareness.',
-      gravityClass: GravityClass.pebble,
     ),
     HabitTemplate(
       id: 'cn_listen',

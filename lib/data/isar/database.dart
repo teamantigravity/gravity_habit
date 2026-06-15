@@ -1,18 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gravity_habit/data/isar/database_factory.dart';
+import 'package:gravity_habit/data/isar/schemas/orbit_profile_schema.dart';
+import 'package:gravity_habit/data/isar/schemas/settings_schema.dart';
+import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
-import 'package:path/path.dart' as p;
-
-import 'database_factory.dart';
-import 'schemas/achievement_schema.dart';
-import 'schemas/category_schema.dart';
-import 'schemas/daily_quest_schema.dart';
-import 'schemas/habit_entry_schema.dart';
-import 'schemas/habit_schema.dart';
-import 'schemas/orbit_profile_schema.dart';
-import 'schemas/settings_schema.dart';
-import 'schemas/stardust_ledger_schema.dart';
 
 final gravityDatabaseProvider = Provider<GravityDatabase>((ref) {
   throw UnimplementedError('Must be overridden in main');
@@ -36,7 +29,7 @@ class GravityDatabase {
   static Future<GravityDatabase> initialize() async {
     final factory = getDatabaseFactory();
     Database db;
-    
+
     if (kIsWeb) {
       db = await factory.openDatabase('gravity_habit.db');
     } else {
@@ -90,7 +83,7 @@ class GravityDatabase {
         ..appIconId = 'default'
         ..isListMode = false
         ..isUnder13 = false;
-        
+
       await settingsStore.record(0).put(db, settings.toJson());
     }
 

@@ -58,9 +58,11 @@ class SemanticsHelper {
     double linearize(int channel) {
       final sRgb = channel / 255.0;
       return sRgb <= 0.03928
-          ? sRgb / 12.92
-          : ((sRgb + 0.055) / 1.055) * ((sRgb + 0.055) / 1.055) * ((sRgb + 0.055) / 1.055) // pow approximation
-              ;
+              ? sRgb / 12.92
+              : ((sRgb + 0.055) / 1.055) *
+                  ((sRgb + 0.055) / 1.055) *
+                  ((sRgb + 0.055) / 1.055) // pow approximation
+          ;
     }
 
     final r = linearize(color.red);

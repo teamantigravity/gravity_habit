@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sembast/sembast.dart';
 import 'package:gravity_habit/data/isar/database.dart';
 import 'package:gravity_habit/data/isar/schemas/settings_schema.dart';
+import 'package:sembast/sembast.dart';
 
 final settingsProvider =
     StateNotifierProvider<SettingsNotifier, AppSettings>((ref) {

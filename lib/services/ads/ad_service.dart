@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gravity_habit/core/constants/spacing.dart';
 
 /// Placeholder ad banner widget.
 /// In production, this wraps google_mobile_ads BannerAd.
@@ -17,7 +16,10 @@ class AdBannerWidget extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.1),
+          color: Theme.of(context)
+              .colorScheme
+              .outlineVariant
+              .withValues(alpha: 0.1),
         ),
       ),
       child: Center(
@@ -25,7 +27,8 @@ class AdBannerWidget extends StatelessWidget {
           'Ad',
           style: TextStyle(
             fontSize: 11,
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+            color:
+                Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.2),
           ),
         ),
       ),

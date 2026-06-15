@@ -16,7 +16,7 @@ void main() {
     });
 
     test('same date always returns same quest (deterministic)', () {
-      final date = DateTime(2025, 6, 1);
+      final date = DateTime(2025, 6);
       final quest1 = QuestEngine.selectQuestForDate(
         date,
         strongCategories: ['Mind'],
@@ -31,7 +31,7 @@ void main() {
     });
 
     test('different dates return potentially different quests', () {
-      final date1 = DateTime(2025, 1, 1);
+      final date1 = DateTime(2025);
       final date2 = DateTime(2025, 1, 2);
       final quest1 = QuestEngine.selectQuestForDate(
         date1,

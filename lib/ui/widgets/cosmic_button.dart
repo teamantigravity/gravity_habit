@@ -38,7 +38,7 @@ class _CosmicButtonState extends State<CosmicButton>
       vsync: this,
       duration: GravityDurations.micro,
     );
-    _scale = Tween<double>(begin: 1.0, end: 0.96).animate(
+    _scale = Tween<double>(begin: 1, end: 0.96).animate(
       CurvedAnimation(parent: _controller, curve: GravityCurves.gravityIn),
     );
   }
@@ -51,12 +51,10 @@ class _CosmicButtonState extends State<CosmicButton>
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = widget.isPrimary
-        ? context.colors.primary
-        : context.colors.surface;
-    final fgColor = widget.isPrimary
-        ? context.colors.onPrimary
-        : context.colors.onSurface;
+    final bgColor =
+        widget.isPrimary ? context.colors.primary : context.colors.surface;
+    final fgColor =
+        widget.isPrimary ? context.colors.onPrimary : context.colors.onSurface;
 
     return AnimatedBuilder(
       animation: _scale,
@@ -88,7 +86,7 @@ class _CosmicButtonState extends State<CosmicButton>
               boxShadow: widget.isPrimary
                   ? [
                       BoxShadow(
-                        color: context.colors.primary.withOpacity(0.24),
+                        color: context.colors.primary.withValues(alpha: 0.24),
                         blurRadius: 24,
                         offset: const Offset(0, 4),
                       ),

@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /// Generates share cards 100% on-device.
 /// Formats: 1080×1920 (stories) and 1080×1080 (square).
@@ -20,7 +19,7 @@ class ShareCardGenerator {
     required Color backgroundColor,
     bool isSquare = false,
   }) async {
-    final width = 1080.0;
+    const width = 1080.0;
     final height = isSquare ? 1080.0 : 1920.0;
 
     final recorder = ui.PictureRecorder();
@@ -36,8 +35,8 @@ class ShareCardGenerator {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          accentColor.withOpacity(0.1),
-          accentColor.withOpacity(0.02),
+          accentColor.withValues(alpha: 0.1),
+          accentColor.withValues(alpha: 0.02),
         ],
       ).createShader(Rect.fromLTWH(0, 0, width, height));
     canvas.drawRect(Rect.fromLTWH(0, 0, width, height), gradientPaint);
@@ -49,7 +48,7 @@ class ShareCardGenerator {
         center,
         80.0 + i * 60.0,
         Paint()
-          ..color = accentColor.withOpacity(0.08 + i * 0.02)
+          ..color = accentColor.withValues(alpha: 0.08 + i * 0.02)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5,
       );
@@ -62,8 +61,8 @@ class ShareCardGenerator {
       Paint()
         ..shader = RadialGradient(
           colors: [
-            accentColor.withOpacity(0.5),
-            accentColor.withOpacity(0.1),
+            accentColor.withValues(alpha: 0.5),
+            accentColor.withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ).createShader(Rect.fromCircle(center: center, radius: 80)),
@@ -89,7 +88,7 @@ class ShareCardGenerator {
       'days',
       Offset(width / 2 - 30, height * 0.58),
       32,
-      Colors.white.withOpacity(0.6),
+      Colors.white.withValues(alpha: 0.6),
     );
 
     // Milestone name
@@ -98,7 +97,7 @@ class ShareCardGenerator {
       milestoneName,
       Offset(width / 2 - 100, height * 0.64),
       28,
-      Colors.white.withOpacity(0.8),
+      Colors.white.withValues(alpha: 0.8),
       fontWeight: FontWeight.w600,
     );
 
@@ -108,7 +107,7 @@ class ShareCardGenerator {
       habitName,
       Offset(width / 2 - 100, height * 0.70),
       24,
-      Colors.white.withOpacity(0.5),
+      Colors.white.withValues(alpha: 0.5),
     );
 
     // Watermark
@@ -117,7 +116,7 @@ class ShareCardGenerator {
       'Gravity Habit',
       Offset(width - 200, height - 60),
       16,
-      Colors.white.withOpacity(0.2),
+      Colors.white.withValues(alpha: 0.2),
     );
 
     // Stars (decorative particles)
@@ -129,7 +128,9 @@ class ShareCardGenerator {
       canvas.drawCircle(
         Offset(x, y),
         size,
-        Paint()..color = Colors.white.withOpacity(0.1 + random.nextDouble() * 0.2),
+        Paint()
+          ..color =
+              Colors.white.withValues(alpha: 0.1 + random.nextDouble() * 0.2),
       );
     }
 
@@ -147,7 +148,7 @@ class ShareCardGenerator {
     required Color backgroundColor,
     bool isSquare = false,
   }) async {
-    final width = 1080.0;
+    const width = 1080.0;
     final height = isSquare ? 1080.0 : 1920.0;
 
     final recorder = ui.PictureRecorder();
@@ -164,7 +165,7 @@ class ShareCardGenerator {
       'TIER',
       Offset(width / 2 - 40, height * 0.28),
       20,
-      accentColor.withOpacity(0.6),
+      accentColor.withValues(alpha: 0.6),
       fontWeight: FontWeight.w600,
     );
 
@@ -192,7 +193,7 @@ class ShareCardGenerator {
       eraName,
       Offset(width / 2 - 60, height * 0.56),
       20,
-      Colors.white.withOpacity(0.5),
+      Colors.white.withValues(alpha: 0.5),
     );
 
     _drawText(
@@ -200,7 +201,7 @@ class ShareCardGenerator {
       'Gravity Habit',
       Offset(width - 200, height - 60),
       16,
-      Colors.white.withOpacity(0.2),
+      Colors.white.withValues(alpha: 0.2),
     );
 
     final picture = recorder.endRecording();

@@ -114,11 +114,11 @@ class CosmosTheme {
       brightness: Brightness.dark,
       primary: palette.accent,
       onPrimary: palette.onAccent,
-      primaryContainer: palette.accent.withOpacity(0.16),
+      primaryContainer: palette.accent.withValues(alpha: 0.16),
       onPrimaryContainer: palette.accent,
       secondary: palette.secondary,
       onSecondary: palette.onSecondary,
-      secondaryContainer: palette.secondary.withOpacity(0.16),
+      secondaryContainer: palette.secondary.withValues(alpha: 0.16),
       onSecondaryContainer: palette.secondary,
       tertiary: palette.tertiary,
       onTertiary: Colors.white,
@@ -149,9 +149,9 @@ class CosmosTheme {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: palette.surfaceDark.withOpacity(0.9),
+        backgroundColor: palette.surfaceDark.withValues(alpha: 0.9),
         selectedItemColor: palette.accent,
-        unselectedItemColor: palette.onSurfaceDark.withOpacity(0.5),
+        unselectedItemColor: palette.onSurfaceDark.withValues(alpha: 0.5),
         type: BottomNavigationBarType.fixed,
       ),
       appBarTheme: AppBarTheme(
@@ -202,20 +202,20 @@ class CosmosTheme {
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) return palette.accent;
-          return palette.onSurfaceDark.withOpacity(0.5);
+          return palette.onSurfaceDark.withValues(alpha: 0.5);
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return palette.accent.withOpacity(0.3);
+            return palette.accent.withValues(alpha: 0.3);
           }
           return palette.outlineVariantDark;
         }),
       ),
       sliderTheme: SliderThemeData(
         activeTrackColor: palette.accent,
-        inactiveTrackColor: palette.accent.withOpacity(0.2),
+        inactiveTrackColor: palette.accent.withValues(alpha: 0.2),
         thumbColor: palette.accent,
-        overlayColor: palette.accent.withOpacity(0.1),
+        overlayColor: palette.accent.withValues(alpha: 0.1),
       ),
     );
   }
@@ -230,12 +230,12 @@ class CosmosTheme {
       primary: palette.accentLight ?? palette.accent,
       onPrimary: Colors.white,
       primaryContainer:
-          (palette.accentLight ?? palette.accent).withOpacity(0.12),
+          (palette.accentLight ?? palette.accent).withValues(alpha: 0.12),
       onPrimaryContainer: palette.accentLight ?? palette.accent,
       secondary: palette.secondaryLight ?? palette.secondary,
       onSecondary: Colors.white,
       secondaryContainer:
-          (palette.secondaryLight ?? palette.secondary).withOpacity(0.12),
+          (palette.secondaryLight ?? palette.secondary).withValues(alpha: 0.12),
       onSecondaryContainer: palette.secondaryLight ?? palette.secondary,
       tertiary: palette.tertiaryLight ?? palette.tertiary,
       onTertiary: Colors.white,
@@ -267,7 +267,7 @@ class CosmosTheme {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,

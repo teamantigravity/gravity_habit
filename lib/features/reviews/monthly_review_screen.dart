@@ -19,8 +19,6 @@ class _MonthlyReviewScreenState extends ConsumerState<MonthlyReviewScreen> {
   int _totalCompletions = 0;
   int _daysActive = 0;
   double _consistency = 0;
-  int _tiersGained = 0;
-  int _newAchievements = 0;
   int _stardustEarned = 0;
 
   @override
@@ -76,7 +74,6 @@ class _MonthlyReviewScreenState extends ConsumerState<MonthlyReviewScreen> {
           child: Column(
             children: [
               const Spacer(),
-
               Text(
                 'Your Month',
                 style: context.textTheme.displaySmall?.copyWith(
@@ -84,9 +81,7 @@ class _MonthlyReviewScreenState extends ConsumerState<MonthlyReviewScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ).animate().fadeIn(duration: 400.ms),
-
               const SizedBox(height: Spacing.xxl),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -98,9 +93,7 @@ class _MonthlyReviewScreenState extends ConsumerState<MonthlyReviewScreen> {
                   ),
                 ],
               ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
-
               const SizedBox(height: Spacing.xxl),
-
               if (_stardustEarned > 0)
                 Text(
                   '+$_stardustEarned ✨',
@@ -109,26 +102,22 @@ class _MonthlyReviewScreenState extends ConsumerState<MonthlyReviewScreen> {
                     fontFamily: 'JetBrainsMono',
                   ),
                 ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
-
               if (_consistency > 0.7)
                 Padding(
                   padding: const EdgeInsets.only(top: Spacing.sm),
                   child: Text(
                     'Above 70% consistency \u2014 Stardust earned.',
                     style: context.textTheme.bodyMedium?.copyWith(
-                      color: context.colors.onSurface.withOpacity(0.5),
+                      color: context.colors.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
-
               const Spacer(flex: 2),
-
               CosmicButton(
                 label: 'Continue',
                 isExpanded: true,
                 onPressed: () => Navigator.pop(context),
               ),
-
               const SizedBox(height: Spacing.xl),
             ],
           ),
@@ -154,9 +143,12 @@ class _MonthStat extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        Text(label, style: context.textTheme.bodySmall?.copyWith(
-          color: context.colors.onSurface.withOpacity(0.5),
-        )),
+        Text(
+          label,
+          style: context.textTheme.bodySmall?.copyWith(
+            color: context.colors.onSurface.withValues(alpha: 0.5),
+          ),
+        ),
       ],
     );
   }

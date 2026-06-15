@@ -126,7 +126,7 @@ class _ParticlePainter extends CustomPainter {
       final y = center.dy + sin(particle.angle) * actualDistance;
 
       final paint = Paint()
-        ..color = color.withOpacity(opacity * 0.8)
+        ..color = color.withValues(alpha: opacity * 0.8)
         ..maskFilter = MaskFilter.blur(
           BlurStyle.normal,
           particle.size * 0.5,

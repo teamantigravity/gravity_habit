@@ -4,6 +4,10 @@ part 'orbit_profile_schema.g.dart';
 
 @JsonSerializable()
 class OrbitProfileEntity {
+  OrbitProfileEntity();
+
+  factory OrbitProfileEntity.fromJson(Map<String, dynamic> json) =>
+      _$OrbitProfileEntityFromJson(json);
   int id = 0; // Singleton
 
   late double totalMass;
@@ -33,9 +37,5 @@ class OrbitProfileEntity {
 
   late int streakFreezes;
   late DateTime lastCalculatedDate;
-
-  OrbitProfileEntity();
-
-  factory OrbitProfileEntity.fromJson(Map<String, dynamic> json) => _$OrbitProfileEntityFromJson(json);
   Map<String, dynamic> toJson() => _$OrbitProfileEntityToJson(this);
 }

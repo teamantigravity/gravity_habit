@@ -8,8 +8,6 @@ import 'package:gravity_habit/data/repositories/habit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
 import 'package:gravity_habit/domain/gravity_engine/streak_engine.dart';
 import 'package:gravity_habit/features/today/providers/today_provider.dart';
-import 'package:gravity_habit/features/today/widgets/orbit_ring.dart';
-import 'package:gravity_habit/services/haptics/haptic_service.dart';
 
 class HabitDetailScreen extends ConsumerStatefulWidget {
   const HabitDetailScreen({required this.habitId, super.key});
@@ -17,8 +15,7 @@ class HabitDetailScreen extends ConsumerStatefulWidget {
   final String habitId;
 
   @override
-  ConsumerState<HabitDetailScreen> createState() =>
-      _HabitDetailScreenState();
+  ConsumerState<HabitDetailScreen> createState() => _HabitDetailScreenState();
 }
 
 class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
@@ -54,9 +51,8 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
       scheduledDates: scheduledDates,
     );
 
-    final consistency = daysSinceCreation > 0
-        ? completions / daysSinceCreation
-        : 0.0;
+    final consistency =
+        daysSinceCreation > 0 ? completions / daysSinceCreation : 0.0;
 
     setState(() {
       _habit = habit;
@@ -87,8 +83,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.edit_outlined),
-            onPressed: () =>
-                context.push('/habit-editor?id=${habit.id}'),
+            onPressed: () => context.push('/habit-editor?id=${habit.id}'),
           ),
           PopupMenuButton<String>(
             onSelected: (v) async {
@@ -111,7 +106,6 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(Spacing.md),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Hero planet
             Container(
@@ -121,13 +115,13 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Color(habit.color).withOpacity(0.8),
-                    Color(habit.color).withOpacity(0.3),
+                    Color(habit.color).withValues(alpha: 0.8),
+                    Color(habit.color).withValues(alpha: 0.3),
                   ],
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(habit.color).withOpacity(0.25),
+                    color: Color(habit.color).withValues(alpha: 0.25),
                     blurRadius: 32,
                   ),
                 ],
@@ -138,10 +132,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
                   style: const TextStyle(fontSize: 48),
                 ),
               ),
-            )
-                .animate()
-                .scaleXY(begin: 0.8, end: 1, duration: 400.ms)
-                .fadeIn(),
+            ).animate().scaleXY(begin: 0.8, end: 1, duration: 400.ms).fadeIn(),
 
             const SizedBox(height: Spacing.md),
             Text(
@@ -158,8 +149,11 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.local_fire_department,
-                      size: 18, color: Color(habit.color)),
+                  Icon(
+                    Icons.local_fire_department,
+                    size: 18,
+                    color: Color(habit.color),
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     '$_currentStreak day streak',
@@ -196,7 +190,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // 90-day heatmap
-            _SectionTitle(title: 'Last 90 Days'),
+            const _SectionTitle(title: 'Last 90 Days'),
             const SizedBox(height: Spacing.sm),
             _HeatmapGrid(
               entries: _entries,
@@ -207,23 +201,23 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
             // Why card
             if (habit.whyText != null && habit.whyText!.isNotEmpty) ...[
               const SizedBox(height: Spacing.xxl),
-              _SectionTitle(title: 'Why'),
+              const _SectionTitle(title: 'Why'),
               const SizedBox(height: Spacing.sm),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(Spacing.md),
                 decoration: BoxDecoration(
-                  color: Color(habit.color).withOpacity(0.08),
+                  color: Color(habit.color).withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(CornerRadii.md),
                   border: Border.all(
-                    color: Color(habit.color).withOpacity(0.15),
+                    color: Color(habit.color).withValues(alpha: 0.15),
                   ),
                 ),
                 child: Text(
                   habit.whyText!,
                   style: context.textTheme.bodyLarge?.copyWith(
                     fontStyle: FontStyle.italic,
-                    color: context.colors.onSurface.withOpacity(0.7),
+                    color: context.colors.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
               ),
@@ -231,7 +225,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
 
             // Recent entries
             const SizedBox(height: Spacing.xxl),
-            _SectionTitle(title: 'Recent'),
+            const _SectionTitle(title: 'Recent'),
             const SizedBox(height: Spacing.sm),
             ..._entries.take(15).map((entry) {
               return Padding(
@@ -247,7 +241,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
                       size: 18,
                       color: entry.isComplete
                           ? Color(habit.color)
-                          : context.colors.onSurface.withOpacity(0.3),
+                          : context.colors.onSurface.withValues(alpha: 0.3),
                     ),
                     const SizedBox(width: Spacing.sm),
                     Text(
@@ -263,7 +257,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
                           entry.note!,
                           style: context.textTheme.bodySmall?.copyWith(
                             color:
-                                context.colors.onSurface.withOpacity(0.5),
+                                context.colors.onSurface.withValues(alpha: 0.5),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -318,7 +312,7 @@ class _HabitDetailScreenState extends ConsumerState<HabitDetailScreen> {
       ),
     );
 
-    if (confirmed == true) {
+    if (confirmed ?? false) {
       await ref.read(habitRepositoryProvider).deleteHabit(widget.habitId);
       ref.read(todayProvider.notifier).refresh();
       if (mounted) context.pop();
@@ -347,7 +341,7 @@ class _DetailStat extends StatelessWidget {
         Text(
           label,
           style: context.textTheme.bodySmall?.copyWith(
-            color: context.colors.onSurface.withOpacity(0.5),
+            color: context.colors.onSurface.withValues(alpha: 0.5),
           ),
         ),
       ],
@@ -418,7 +412,7 @@ class _HeatmapGrid extends StatelessWidget {
                   ? Colors.transparent
                   : isComplete
                       ? color
-                      : color.withOpacity(0.08),
+                      : color.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(2),
             ),
           ),

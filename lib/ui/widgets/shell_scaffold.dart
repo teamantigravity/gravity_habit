@@ -44,10 +44,10 @@ class _ShellScaffoldState extends ConsumerState<ShellScaffold> {
           filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
           child: Container(
             decoration: BoxDecoration(
-              color: context.colors.surface.withOpacity(0.85),
+              color: context.colors.surface.withValues(alpha: 0.85),
               border: Border(
                 top: BorderSide(
-                  color: context.colors.outlineVariant.withOpacity(0.2),
+                  color: context.colors.outlineVariant.withValues(alpha: 0.2),
                 ),
               ),
             ),
@@ -122,7 +122,7 @@ class _NavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = isActive
         ? context.colors.primary
-        : context.colors.onSurface.withOpacity(0.5);
+        : context.colors.onSurface.withValues(alpha: 0.5);
 
     return Semantics(
       label: label,

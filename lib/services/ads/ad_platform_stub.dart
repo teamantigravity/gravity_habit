@@ -1,6 +1,7 @@
 /// Stub implementation for platforms where google_mobile_ads is unavailable.
 /// Web, Desktop (macOS/Windows/Linux), Watch, XR.
 /// All calls are silent no-ops — the app NEVER crashes due to ads.
+library;
 
 import 'dart:async';
 

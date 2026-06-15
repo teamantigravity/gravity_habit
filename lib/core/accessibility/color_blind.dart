@@ -20,24 +20,36 @@ class ColorBlindFilter {
     final r = c.red * 0.625 + c.green * 0.375;
     final g = c.red * 0.7 + c.green * 0.3;
     final b = c.blue * 1.0;
-    return Color.fromARGB(c.alpha, r.round().clamp(0, 255),
-        g.round().clamp(0, 255), b.round().clamp(0, 255));
+    return Color.fromARGB(
+      c.alpha,
+      r.round().clamp(0, 255),
+      g.round().clamp(0, 255),
+      b.round().clamp(0, 255),
+    );
   }
 
   static Color _protanopia(Color c) {
     final r = c.red * 0.567 + c.green * 0.433;
     final g = c.red * 0.558 + c.green * 0.442;
     final b = c.blue * 1.0;
-    return Color.fromARGB(c.alpha, r.round().clamp(0, 255),
-        g.round().clamp(0, 255), b.round().clamp(0, 255));
+    return Color.fromARGB(
+      c.alpha,
+      r.round().clamp(0, 255),
+      g.round().clamp(0, 255),
+      b.round().clamp(0, 255),
+    );
   }
 
   static Color _tritanopia(Color c) {
     final r = c.red * 0.95 + c.green * 0.05;
     final g = c.green * 0.433 + c.blue * 0.567;
     final b = c.green * 0.475 + c.blue * 0.525;
-    return Color.fromARGB(c.alpha, r.round().clamp(0, 255),
-        g.round().clamp(0, 255), b.round().clamp(0, 255));
+    return Color.fromARGB(
+      c.alpha,
+      r.round().clamp(0, 255),
+      g.round().clamp(0, 255),
+      b.round().clamp(0, 255),
+    );
   }
 
   static Color _achromatopsia(Color c) {

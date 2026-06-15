@@ -1,10 +1,11 @@
 /// Stub for UMP consent types on non-mobile platforms.
+library;
 
 class ConsentRequestParameters {}
 
 class ConsentInformation {
-  static final instance = ConsentInformation._();
   ConsentInformation._();
+  static final instance = ConsentInformation._();
 
   void requestConsentInfoUpdate(
     ConsentRequestParameters params,

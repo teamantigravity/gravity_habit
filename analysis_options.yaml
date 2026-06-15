@@ -1,1 +1,15 @@
 include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    # Disable pedantic documentation requirements for every single public member
+    public_member_api_docs: false
+    # Disable pedantic alphabetical sorting of pubspec which breaks logical grouping
+    sort_pub_dependencies: false
+    # Cascades are subjective and not always cleaner
+    cascade_invocations: false
+    # 80 characters is too short for modern monitors and flutter widget trees
+    lines_longer_than_80_chars: false
+    always_put_required_named_parameters_first: false
+    # We want to use absolute imports sometimes
+    always_use_package_imports: false

@@ -4,6 +4,10 @@ part 'category_schema.g.dart';
 
 @JsonSerializable()
 class CategoryEntity {
+  CategoryEntity();
+
+  factory CategoryEntity.fromJson(Map<String, dynamic> json) =>
+      _$CategoryEntityFromJson(json);
   int? id;
 
   late String uuid;
@@ -12,9 +16,5 @@ class CategoryEntity {
   late String emoji;
   late int color;
   late int order;
-
-  CategoryEntity();
-
-  factory CategoryEntity.fromJson(Map<String, dynamic> json) => _$CategoryEntityFromJson(json);
   Map<String, dynamic> toJson() => _$CategoryEntityToJson(this);
 }

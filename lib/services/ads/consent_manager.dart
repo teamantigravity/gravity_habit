@@ -1,7 +1,6 @@
 // lib/services/ads/consent_manager.dart
 // COMPLETE CORRECTED FILE
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gravity_habit/services/ads/ad_config.dart';
 

@@ -1,17 +1,15 @@
 // lib/services/ads/ad_banner_widget.dart
 // COMPLETE CORRECTED FILE — safe for ALL platforms
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gravity_habit/services/ads/ad_config.dart';
 import 'package:gravity_habit/services/ads/ad_manager.dart';
 import 'package:gravity_habit/services/ads/platforms/desktop_webview_banner.dart';
-import 'package:gravity_habit/services/ads/platforms/web_adsense_banner.dart';
-
 // DO NOT import mobile_banner.dart here — it contains google_mobile_ads
 // Instead, construct it conditionally using a factory
 import 'package:gravity_habit/services/ads/platforms/mobile_banner_factory.dart';
+import 'package:gravity_habit/services/ads/platforms/web_adsense_banner.dart';
 
 class AdBannerWidget extends ConsumerWidget {
   const AdBannerWidget({this.currentRoute = '/stats', super.key});

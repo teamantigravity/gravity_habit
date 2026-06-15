@@ -4,6 +4,10 @@ part 'habit_schema.g.dart';
 
 @JsonSerializable()
 class HabitEntity {
+  HabitEntity();
+
+  factory HabitEntity.fromJson(Map<String, dynamic> json) =>
+      _$HabitEntityFromJson(json);
   int? id;
 
   late String uuid;
@@ -37,10 +41,6 @@ class HabitEntity {
   String? whyText;
 
   bool get isArchived => archivedAt != null;
-
-  HabitEntity();
-
-  factory HabitEntity.fromJson(Map<String, dynamic> json) => _$HabitEntityFromJson(json);
   Map<String, dynamic> toJson() => _$HabitEntityToJson(this);
 }
 

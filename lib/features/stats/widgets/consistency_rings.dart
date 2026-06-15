@@ -28,7 +28,7 @@ class ConsistencyRings extends StatelessWidget {
             month: month,
             accentColor: context.colors.primary,
             textColor: context.colors.onSurface,
-            trackColor: context.colors.outlineVariant.withOpacity(0.15),
+            trackColor: context.colors.outlineVariant.withValues(alpha: 0.15),
           ),
         ),
       ),
@@ -65,13 +65,13 @@ class _RingsPainter extends CustomPainter {
         radius: 70.0 - strokeWidth - gap,
         value: week,
         label: 'W',
-        color: accentColor.withOpacity(0.7)
+        color: accentColor.withValues(alpha: 0.7)
       ),
       (
         radius: 70.0 - (strokeWidth + gap) * 2,
         value: month,
         label: 'M',
-        color: accentColor.withOpacity(0.45)
+        color: accentColor.withValues(alpha: 0.45)
       ),
     ];
 
@@ -117,7 +117,8 @@ class _RingsPainter extends CustomPainter {
       ),
       textDirection: TextDirection.ltr,
     )..layout();
-    tp.paint(canvas, Offset(center.dx - tp.width / 2, center.dy - tp.height / 2));
+    tp.paint(
+        canvas, Offset(center.dx - tp.width / 2, center.dy - tp.height / 2));
   }
 
   @override

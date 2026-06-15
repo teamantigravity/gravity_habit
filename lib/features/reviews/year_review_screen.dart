@@ -2,7 +2,6 @@
 // COMPLETE CORRECTED FILE — removed duplicate AnimatedBuilder
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
@@ -55,7 +54,10 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen>
     }
 
     await orbitRepo.addStardust(
-        1000, 'year_review', 'year_${widget.yearNumber}');
+      1000,
+      'year_review',
+      'year_${widget.yearNumber}',
+    );
 
     if (mounted) {
       setState(() {
@@ -150,7 +152,8 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen>
                           style: TextStyle(
                             fontFamily: 'JetBrainsMono',
                             fontSize: 28,
-                            color: context.colors.primary.withOpacity(0.8),
+                            color:
+                                context.colors.primary.withValues(alpha: 0.8),
                           ),
                         ),
                         const SizedBox(height: Spacing.xxl),
@@ -206,7 +209,7 @@ class _AnimatedStat extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha: 0.5),
               ),
             ),
           ],

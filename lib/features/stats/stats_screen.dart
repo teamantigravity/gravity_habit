@@ -35,7 +35,7 @@ final statsProvider = FutureProvider<StatsData>((ref) async {
     var streak = 0;
     for (var d = 0; d < 1000; d++) {
       final date = now.subtract(Duration(days: d));
-      final key = '${date.year}-${date.month}-${date.day}';
+
       final found = entries.any(
         (e) =>
             e.isComplete &&
@@ -54,10 +54,8 @@ final statsProvider = FutureProvider<StatsData>((ref) async {
 
   // Today / week / month consistency
   final todayEntries = allEntries.where((e) => _isToday(e.date)).toList();
-  final todayComplete =
-      todayEntries.where((e) => e.isComplete).length;
-  final todayRatio =
-      habits.isEmpty ? 0.0 : todayComplete / habits.length;
+  final todayComplete = todayEntries.where((e) => e.isComplete).length;
+  final todayRatio = habits.isEmpty ? 0.0 : todayComplete / habits.length;
 
   final weekStart = now.subtract(Duration(days: now.weekday - 1));
   var weekDays = 0;
@@ -91,8 +89,7 @@ final statsProvider = FutureProvider<StatsData>((ref) async {
     );
     if (dayEntries.isNotEmpty) monthCompleteDays++;
   }
-  final monthRatio =
-      monthDays == 0 ? 0.0 : monthCompleteDays / monthDays;
+  final monthRatio = monthDays == 0 ? 0.0 : monthCompleteDays / monthDays;
 
   // Best streaks leaderboard
   final sortedStreaks = habitStreaks.entries.toList()
@@ -100,7 +97,8 @@ final statsProvider = FutureProvider<StatsData>((ref) async {
 
   // Time-of-day distribution
   final hourCounts = List.filled(24, 0);
-  for (final e in allEntries.where((e) => e.isComplete && e.completedAt != null)) {
+  for (final e
+      in allEntries.where((e) => e.isComplete && e.completedAt != null)) {
     hourCounts[e.completedAt!.hour]++;
   }
 
@@ -111,8 +109,7 @@ final statsProvider = FutureProvider<StatsData>((ref) async {
   }
 
   // Mood average
-  final moodEntries =
-      allEntries.where((e) => e.mood != null).toList();
+  final moodEntries = allEntries.where((e) => e.mood != null).toList();
   final avgMood = moodEntries.isEmpty
       ? 0.0
       : moodEntries.map((e) => e.mood!).reduce((a, b) => a + b) /
@@ -204,9 +201,11 @@ class StatsScreen extends ConsumerWidget {
       body: SafeArea(
         bottom: false,
         child: statsAsync.when(
-          data: (data) => _StatsContent(data: data, adsRemoved: settings.adsRemoved),
-          loading: () => const Center(child: CircularProgressIndicator(strokeWidth: 2)),
-          error: (e, _) => Center(child: Text('Unable to load stats')),
+          data: (data) =>
+              _StatsContent(data: data, adsRemoved: settings.adsRemoved),
+          loading: () =>
+              const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+          error: (e, _) => const Center(child: Text('Unable to load stats')),
         ),
       ),
     );
@@ -226,7 +225,10 @@ class _StatsContent extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(
-              Spacing.md, Spacing.sm, Spacing.md, 0,
+              Spacing.md,
+              Spacing.sm,
+              Spacing.md,
+              0,
             ),
             child: Text(
               'Stats & Insights',
@@ -274,7 +276,8 @@ class _StatsContent extends StatelessWidget {
                       Text(
                         'Total Mass',
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: context.colors.onSurface.withOpacity(0.5),
+                          color:
+                              context.colors.onSurface.withValues(alpha: 0.5),
                         ),
                       ),
                     ],
@@ -292,7 +295,8 @@ class _StatsContent extends StatelessWidget {
                       Text(
                         'Tier ${data.currentTier}',
                         style: context.textTheme.bodySmall?.copyWith(
-                          color: context.colors.onSurface.withOpacity(0.5),
+                          color:
+                              context.colors.onSurface.withValues(alpha: 0.5),
                         ),
                       ),
                     ],
@@ -330,7 +334,8 @@ class _StatsContent extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: Spacing.xs),
                       child: Row(
                         children: [
-                          Text(habit.emoji, style: const TextStyle(fontSize: 20)),
+                          Text(habit.emoji,
+                              style: const TextStyle(fontSize: 20)),
                           const SizedBox(width: Spacing.sm),
                           Expanded(
                             child: Text(
@@ -466,10 +471,10 @@ class _StatsContent extends StatelessWidget {
 
         // Ad banner slot
         if (!adsRemoved)
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(Spacing.md),
-              child: const AdBannerWidget(),
+              padding: EdgeInsets.all(Spacing.md),
+              child: AdBannerWidget(),
             ),
           ),
 
@@ -493,7 +498,7 @@ class _TimeOfDayChart extends StatelessWidget {
         child: Text(
           'Complete habits to see patterns',
           style: context.textTheme.bodySmall?.copyWith(
-            color: context.colors.onSurface.withOpacity(0.4),
+            color: context.colors.onSurface.withValues(alpha: 0.4),
           ),
         ),
       );
@@ -507,8 +512,8 @@ class _TimeOfDayChart extends StatelessWidget {
             barRods: [
               BarChartRodData(
                 toY: data[i].toDouble(),
-                color: accentColor.withOpacity(
-                  0.3 + (data[i] / maxVal) * 0.7,
+                color: accentColor.withValues(
+                  alpha: 0.3 + (data[i] / maxVal) * 0.7,
                 ),
                 width: 8,
                 borderRadius: const BorderRadius.vertical(
@@ -519,9 +524,9 @@ class _TimeOfDayChart extends StatelessWidget {
           );
         }),
         titlesData: FlTitlesData(
-          leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          leftTitles: const AxisTitles(),
+          rightTitles: const AxisTitles(),
+          topTitles: const AxisTitles(),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -531,7 +536,7 @@ class _TimeOfDayChart extends StatelessWidget {
                   '${value.toInt()}',
                   style: TextStyle(
                     fontSize: 10,
-                    color: context.colors.onSurface.withOpacity(0.4),
+                    color: context.colors.onSurface.withValues(alpha: 0.4),
                     fontFamily: 'JetBrainsMono',
                   ),
                 );
@@ -576,7 +581,7 @@ class _DayOfWeekBar extends StatelessWidget {
                   height: 8 + ratio * 52,
                   width: 24,
                   decoration: BoxDecoration(
-                    color: accentColor.withOpacity(0.3 + ratio * 0.7),
+                    color: accentColor.withValues(alpha: 0.3 + ratio * 0.7),
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(6),
                     ),
@@ -589,7 +594,7 @@ class _DayOfWeekBar extends StatelessWidget {
               labels[i],
               style: TextStyle(
                 fontSize: 10,
-                color: context.colors.onSurface.withOpacity(0.5),
+                color: context.colors.onSurface.withValues(alpha: 0.5),
               ),
             ),
           ],

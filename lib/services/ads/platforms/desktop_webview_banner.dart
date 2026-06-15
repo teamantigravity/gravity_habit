@@ -325,7 +325,7 @@ class _WebViewContainerState extends State<_WebViewContainer> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.5),
+        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(8),
       ),
       // This container is where WebViewWidget would be placed

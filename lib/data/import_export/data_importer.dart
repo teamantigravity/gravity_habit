@@ -4,7 +4,6 @@ import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/data/repositories/habit_repository.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
-import 'package:gravity_habit/domain/entities/orbit_profile.dart';
 
 class DataImporter {
   DataImporter(this._habitRepo, this._orbitRepo);
@@ -21,12 +20,14 @@ class DataImporter {
       // Schema validation
       final version = data['version'] as int?;
       if (version == null || version < 1) {
-        return const ImportResult(success: false, message: 'Invalid file version');
+        return const ImportResult(
+            success: false, message: 'Invalid file version');
       }
 
       final habitsJson = data['habits'] as List<dynamic>?;
       if (habitsJson == null) {
-        return const ImportResult(success: false, message: 'No habits found in file');
+        return const ImportResult(
+            success: false, message: 'No habits found in file');
       }
 
       var imported = 0;

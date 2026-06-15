@@ -7,10 +7,10 @@ import 'package:gravity_habit/domain/entities/habit.dart';
 class HabitListCard extends StatelessWidget {
   const HabitListCard({
     required this.habit,
-    this.entry,
     required this.onTap,
     required this.onComplete,
     required this.onSkip,
+    this.entry,
     super.key,
   });
 
@@ -31,9 +31,8 @@ class HabitListCard extends StatelessWidget {
       button: true,
       child: Dismissible(
         key: ValueKey(habit.id),
-        direction: isComplete
-            ? DismissDirection.none
-            : DismissDirection.horizontal,
+        direction:
+            isComplete ? DismissDirection.none : DismissDirection.horizontal,
         confirmDismiss: (direction) async {
           if (direction == DismissDirection.startToEnd) {
             // Swipe right to complete
@@ -49,7 +48,7 @@ class HabitListCard extends StatelessWidget {
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(left: Spacing.xl),
           decoration: BoxDecoration(
-            color: context.colors.primary.withOpacity(0.15),
+            color: context.colors.primary.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(CornerRadii.md),
           ),
           child: Icon(
@@ -61,12 +60,12 @@ class HabitListCard extends StatelessWidget {
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: Spacing.xl),
           decoration: BoxDecoration(
-            color: context.colors.outlineVariant.withOpacity(0.15),
+            color: context.colors.outlineVariant.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(CornerRadii.md),
           ),
           child: Icon(
             Icons.skip_next_rounded,
-            color: context.colors.onSurface.withOpacity(0.5),
+            color: context.colors.onSurface.withValues(alpha: 0.5),
           ),
         ),
         child: GestureDetector(
@@ -79,18 +78,18 @@ class HabitListCard extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: isComplete
-                  ? context.colors.primaryContainer.withOpacity(0.3)
+                  ? context.colors.primaryContainer.withValues(alpha: 0.3)
                   : context.colors.surface,
               borderRadius: BorderRadius.circular(CornerRadii.md),
               border: Border.all(
                 color: isComplete
-                    ? context.colors.primary.withOpacity(0.3)
-                    : context.colors.outlineVariant.withOpacity(0.15),
+                    ? context.colors.primary.withValues(alpha: 0.3)
+                    : context.colors.outlineVariant.withValues(alpha: 0.15),
               ),
               boxShadow: isComplete
                   ? [
                       BoxShadow(
-                        color: context.colors.primary.withOpacity(0.08),
+                        color: context.colors.primary.withValues(alpha: 0.08),
                         blurRadius: 16,
                       ),
                     ]
@@ -117,11 +116,10 @@ class HabitListCard extends StatelessWidget {
                         habit.name,
                         style: context.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w500,
-                          decoration: isComplete
-                              ? TextDecoration.lineThrough
-                              : null,
+                          decoration:
+                              isComplete ? TextDecoration.lineThrough : null,
                           color: isComplete
-                              ? context.colors.onSurface.withOpacity(0.5)
+                              ? context.colors.onSurface.withValues(alpha: 0.5)
                               : null,
                         ),
                       ),
@@ -130,7 +128,7 @@ class HabitListCard extends StatelessWidget {
                           _skipLabel(entry!.skipReason!),
                           style: context.textTheme.bodySmall?.copyWith(
                             color:
-                                context.colors.onSurface.withOpacity(0.4),
+                                context.colors.onSurface.withValues(alpha: 0.4),
                           ),
                         ),
                     ],
@@ -147,8 +145,8 @@ class HabitListCard extends StatelessWidget {
                       CircularProgressIndicator(
                         value: isComplete ? 1.0 : 0.0,
                         strokeWidth: 3,
-                        backgroundColor:
-                            context.colors.outlineVariant.withOpacity(0.2),
+                        backgroundColor: context.colors.outlineVariant
+                            .withValues(alpha: 0.2),
                         valueColor: AlwaysStoppedAnimation(
                           Color(habit.color),
                         ),
@@ -173,7 +171,7 @@ class HabitListCard extends StatelessWidget {
                       height: 44,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(habit.color).withOpacity(0.1),
+                        color: Color(habit.color).withValues(alpha: 0.1),
                       ),
                       child: Icon(
                         Icons.add_rounded,

@@ -8,12 +8,15 @@ class DynamicCopy {
 
   // ---- GREETINGS ----
 
-  static String greeting(DateTime now, {bool perfectYesterday = false, bool missedYesterday = false, int dayAbsence = 0}) {
+  static String greeting(DateTime now,
+      {bool perfectYesterday = false,
+      bool missedYesterday = false,
+      int dayAbsence = 0}) {
     if (dayAbsence >= 7) {
       return 'Welcome back. Nothing was lost. Begin again with one.';
     }
     if (now.isLateNight) {
-      return 'It\'s late. One small act is enough.';
+      return "It's late. One small act is enough.";
     }
     if (perfectYesterday) {
       return 'Welcome back, voyager. Yesterday was complete.';
@@ -33,8 +36,7 @@ class DynamicCopy {
 
   // ---- STREAKS ----
 
-  static String streakBroken() =>
-      'Yesterday drifted. Today gravity returns.';
+  static String streakBroken() => 'Yesterday drifted. Today gravity returns.';
 
   static String streakMilestone(int days) {
     return switch (days) {
@@ -67,8 +69,7 @@ class DynamicCopy {
 
   // ---- TIER ----
 
-  static String tierUp(String tierName) =>
-      'You have become $tierName.';
+  static String tierUp(String tierName) => 'You have become $tierName.';
 
   static String tierProgress(int currentTier, int nextTier, double progress) {
     final pct = (progress * 100).round();
@@ -84,11 +85,9 @@ class DynamicCopy {
     return '$done habits done.';
   }
 
-  static String lastHabitOfDay() =>
-      'Your day is complete.';
+  static String lastHabitOfDay() => 'Your day is complete.';
 
-  static String perfectDay() =>
-      'Every orbit complete. Well done, voyager.';
+  static String perfectDay() => 'Every orbit complete. Well done, voyager.';
 
   // ---- IDENTITY REINFORCEMENT ----
 
@@ -106,7 +105,8 @@ class DynamicCopy {
 
   static const emptyToday = 'Your cosmos is waiting. Add a single small thing.';
   static const emptyStats = 'Complete habits to see your patterns emerge.';
-  static const emptyAchievements = 'Your achievements will appear here as you grow.';
+  static const emptyAchievements =
+      'Your achievements will appear here as you grow.';
 
   // ---- RECOVERY ----
 
@@ -127,8 +127,7 @@ class DynamicCopy {
   static String streakSaveReminder(int streakDays) =>
       'Your $streakDays-day orbit is holding. One habit closes today.';
 
-  static const weeklyReviewNotification =
-      'Your week is ready to reflect on.';
+  static const weeklyReviewNotification = 'Your week is ready to reflect on.';
 
   // ---- FORBIDDEN PATTERNS (for reference/lint) ----
   // NEVER: "We miss you", "Come back!", "You haven't opened",

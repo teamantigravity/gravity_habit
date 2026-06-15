@@ -51,16 +51,14 @@ class AdConfig {
   }
 
   /// Whether the native google_mobile_ads SDK is available.
-  static bool get isNativeMobile =>
-      currentTier == AdPlatformTier.nativeMobile;
+  static bool get isNativeMobile => currentTier == AdPlatformTier.nativeMobile;
 
   /// Whether we should use WebView-based ads.
   static bool get isDesktopWebView =>
       currentTier == AdPlatformTier.desktopWebView;
 
   /// Whether we should use web/AdSense ads.
-  static bool get isWebAdsense =>
-      currentTier == AdPlatformTier.webAdsense;
+  static bool get isWebAdsense => currentTier == AdPlatformTier.webAdsense;
 
   // ---- ADMOB AD UNIT IDs (Mobile only) ----
 

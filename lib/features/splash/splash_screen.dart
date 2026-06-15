@@ -52,7 +52,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 )
                 .shimmer(
                   duration: 2.seconds,
-                  color: context.colors.primary.withOpacity(0.5),
+                  color: context.colors.primary.withValues(alpha: 0.5),
                 ),
             const SizedBox(height: 24),
             Text(
@@ -69,5 +69,3 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     );
   }
 }
-
-

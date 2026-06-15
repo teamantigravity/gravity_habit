@@ -57,8 +57,7 @@ class _OrbitCanvasState extends State<OrbitCanvas>
       child: LayoutBuilder(
         builder: (context, constraints) {
           return GestureDetector(
-            onTapDown: (details) =>
-                _handleTap(details, constraints.biggest),
+            onTapDown: (details) => _handleTap(details, constraints.biggest),
             child: AnimatedBuilder(
               animation: _orbitController,
               builder: (context, child) {
@@ -91,10 +90,12 @@ class _OrbitCanvasState extends State<OrbitCanvas>
     for (var i = 0; i < widget.habits.length; i++) {
       final habit = widget.habits[i];
       final orbitRadius = _orbitRadiusForIndex(
-        i, widget.habits.length, maxRadius,
+        i,
+        widget.habits.length,
+        maxRadius,
       );
 
-      final baseAngle = (2 * pi * i / widget.habits.length);
+      final baseAngle = 2 * pi * i / widget.habits.length;
       final speedMultiplier = 1.0 + (1.0 - (orbitRadius / maxRadius)) * 2.0;
       final angle =
           baseAngle + _orbitController.value * 2 * pi * speedMultiplier;
@@ -169,17 +170,16 @@ class _OrbitPainter extends CustomPainter {
 
       // Orbit ring
       final ringPaint = Paint()
-        ..color = (isComplete ? accentColor : surfaceColor).withOpacity(
-          isComplete ? 0.2 : 0.08,
+        ..color = (isComplete ? accentColor : surfaceColor).withValues(
+          alpha: isComplete ? 0.2 : 0.08,
         )
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1;
       canvas.drawCircle(center, orbitRadius, ringPaint);
 
       // Planet position
-      final baseAngle = (2 * pi * i / habits.length);
-      final speedMultiplier =
-          1.0 + (1.0 - (orbitRadius / maxRadius)) * 2.0;
+      final baseAngle = 2 * pi * i / habits.length;
+      final speedMultiplier = 1.0 + (1.0 - (orbitRadius / maxRadius)) * 2.0;
       final angle = reduceMotion
           ? baseAngle
           : baseAngle + animationValue * 2 * pi * speedMultiplier;
@@ -193,7 +193,7 @@ class _OrbitPainter extends CustomPainter {
       // Glow if complete
       if (isComplete) {
         final glowPaint = Paint()
-          ..color = Color(habit.color).withOpacity(0.25)
+          ..color = Color(habit.color).withValues(alpha: 0.25)
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16);
         canvas.drawCircle(planetCenter, planetRadius + 8, glowPaint);
       }
@@ -202,8 +202,8 @@ class _OrbitPainter extends CustomPainter {
       final planetPaint = Paint()
         ..shader = RadialGradient(
           colors: [
-            Color(habit.color).withOpacity(isComplete ? 1.0 : 0.5),
-            Color(habit.color).withOpacity(isComplete ? 0.7 : 0.3),
+            Color(habit.color).withValues(alpha: isComplete ? 1.0 : 0.5),
+            Color(habit.color).withValues(alpha: isComplete ? 0.7 : 0.3),
           ],
         ).createShader(
           Rect.fromCircle(center: planetCenter, radius: planetRadius),
@@ -229,15 +229,14 @@ class _OrbitPainter extends CustomPainter {
   }
 
   void _drawCore(Canvas canvas, Offset center) {
-    final coreRadius =
-        12.0 + (longestStreak.clamp(0, 365) / 365.0) * 20.0;
+    final coreRadius = 12.0 + (longestStreak.clamp(0, 365) / 365.0) * 20.0;
 
     final glowPaint = Paint()
       ..shader = RadialGradient(
         colors: [
-          accentColor.withOpacity(0.4),
-          accentColor.withOpacity(0.1),
-          accentColor.withOpacity(0.0),
+          accentColor.withValues(alpha: 0.4),
+          accentColor.withValues(alpha: 0.1),
+          accentColor.withValues(alpha: 0),
         ],
         stops: const [0.0, 0.5, 1.0],
       ).createShader(
@@ -245,13 +244,12 @@ class _OrbitPainter extends CustomPainter {
       );
     canvas.drawCircle(center, coreRadius * 3, glowPaint);
 
-    final pulseScale =
-        1.0 + sin(animationValue * 2 * pi * 0.5) * 0.05;
+    final pulseScale = 1.0 + sin(animationValue * 2 * pi * 0.5) * 0.05;
     final corePaint = Paint()
       ..shader = RadialGradient(
         colors: [
-          accentColor.withOpacity(0.9),
-          accentColor.withOpacity(0.5),
+          accentColor.withValues(alpha: 0.9),
+          accentColor.withValues(alpha: 0.5),
         ],
       ).createShader(
         Rect.fromCircle(

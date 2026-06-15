@@ -30,9 +30,7 @@ class OrbitRing extends StatelessWidget {
           color: color,
           strokeWidth: strokeWidth,
         ),
-        child: child != null
-            ? Center(child: child)
-            : null,
+        child: child != null ? Center(child: child) : null,
       ),
     );
   }
@@ -56,7 +54,7 @@ class _OrbitRingPainter extends CustomPainter {
 
     // Track
     final trackPaint = Paint()
-      ..color = color.withOpacity(0.12)
+      ..color = color.withValues(alpha: 0.12)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;

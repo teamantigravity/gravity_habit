@@ -4,6 +4,10 @@ part 'settings_schema.g.dart';
 
 @JsonSerializable()
 class SettingsEntity {
+  SettingsEntity();
+
+  factory SettingsEntity.fromJson(Map<String, dynamic> json) =>
+      _$SettingsEntityFromJson(json);
   int id = 0; // Singleton
 
   late int themeMode; // 0=system, 1=light, 2=dark
@@ -41,9 +45,5 @@ class SettingsEntity {
   late bool isListMode;
   String? userBirthDateJson; // for under-13 check, stored locally
   late bool isUnder13;
-
-  SettingsEntity();
-
-  factory SettingsEntity.fromJson(Map<String, dynamic> json) => _$SettingsEntityFromJson(json);
   Map<String, dynamic> toJson() => _$SettingsEntityToJson(this);
 }

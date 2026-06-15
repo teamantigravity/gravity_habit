@@ -89,7 +89,7 @@ class _CompletionPainter extends CustomPainter {
 
     if (progress < 0.1) {
       final scale = 1.0 - (progress / 0.1) * 0.06;
-      _drawRing(canvas, center, 60 * scale, 0, color.withOpacity(0.3));
+      _drawRing(canvas, center, 60 * scale, 0, color.withValues(alpha: 0.3));
       return;
     }
 
@@ -99,17 +99,17 @@ class _CompletionPainter extends CustomPainter {
       return;
     }
 
-    final snapProgress = progress < 0.35
-        ? (progress - 0.25) / 0.1
-        : 1.0;
+    final snapProgress = progress < 0.35 ? (progress - 0.25) / 0.1 : 1.0;
     final ringScale = progress < 0.35
         ? 0.94 + snapProgress * 0.12
         : 1.06 - (progress - 0.35) * 0.1;
 
     _drawRing(
-      canvas, center,
+      canvas,
+      center,
       60 * ringScale.clamp(0.95, 1.06),
-      1.0, color,
+      1,
+      color,
     );
 
     if (progress > 0.25) {
@@ -117,8 +117,7 @@ class _CompletionPainter extends CustomPainter {
       const particleCount = 18;
 
       for (var i = 0; i < particleCount; i++) {
-        final angle =
-            (2 * pi * i / particleCount) + random.nextDouble() * 0.3;
+        final angle = (2 * pi * i / particleCount) + random.nextDouble() * 0.3;
         final speed = 0.6 + random.nextDouble() * 0.4;
         final distance = 100 * particleProgress * speed;
         final gravityY = particleProgress * particleProgress * 20;
@@ -131,9 +130,8 @@ class _CompletionPainter extends CustomPainter {
             (3.0 + random.nextDouble() * 2) * (1.0 - particleProgress * 0.5);
 
         final paint = Paint()
-          ..color = color.withOpacity(opacity * 0.8)
-          ..maskFilter =
-              MaskFilter.blur(BlurStyle.normal, particleSize * 0.5);
+          ..color = color.withValues(alpha: opacity * 0.8)
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, particleSize * 0.5);
 
         canvas.drawCircle(Offset(px, py), particleSize, paint);
       }
@@ -145,14 +143,13 @@ class _CompletionPainter extends CustomPainter {
       final glowOpacity = 0.2 * (1.0 - glowProgress);
 
       final glowPaint = Paint()
-        ..color = color.withOpacity(glowOpacity)
+        ..color = color.withValues(alpha: glowOpacity)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 32);
       canvas.drawCircle(center, glowRadius, glowPaint);
     }
 
     if (progress > 0.625 && progress < 0.95) {
-      final textProgress =
-          ((progress - 0.625) / 0.25).clamp(0.0, 1.0);
+      final textProgress = ((progress - 0.625) / 0.25).clamp(0.0, 1.0);
       final textOpacity = (1.0 - textProgress).clamp(0.0, 1.0);
       final textY = center.dy - 80 - textProgress * 60;
 
@@ -161,7 +158,7 @@ class _CompletionPainter extends CustomPainter {
           text: '+\u2728',
           style: TextStyle(
             fontSize: 20,
-            color: color.withOpacity(textOpacity),
+            color: color.withValues(alpha: textOpacity),
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -176,11 +173,14 @@ class _CompletionPainter extends CustomPainter {
   }
 
   void _drawRing(
-    Canvas canvas, Offset center, double radius,
-    double fillProgress, Color ringColor,
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double fillProgress,
+    Color ringColor,
   ) {
     final trackPaint = Paint()
-      ..color = ringColor.withOpacity(0.15)
+      ..color = ringColor.withValues(alpha: 0.15)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 6
       ..strokeCap = StrokeCap.round;

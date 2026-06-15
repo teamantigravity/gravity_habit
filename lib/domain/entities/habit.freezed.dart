@@ -24,19 +24,19 @@ mixin _$Habit {
   String get name => throw _privateConstructorUsedError;
   String get emoji => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
   HabitFrequency get frequency => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get frequencyConfig =>
-      throw _privateConstructorUsedError;
   HabitTargetType get targetType => throw _privateConstructorUsedError;
   double get targetValue => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
-  List<TimeOfDayData> get reminderTimes => throw _privateConstructorUsedError;
-  List<int> get reminderDays => throw _privateConstructorUsedError;
   GravityClass get gravityClass => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime? get archivedAt => throw _privateConstructorUsedError;
   int get order => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get frequencyConfig =>
+      throw _privateConstructorUsedError;
+  List<TimeOfDayData> get reminderTimes => throw _privateConstructorUsedError;
+  List<int> get reminderDays => throw _privateConstructorUsedError;
+  DateTime? get archivedAt => throw _privateConstructorUsedError;
   String? get categoryId => throw _privateConstructorUsedError;
   List<String> get linkedHabitIds => throw _privateConstructorUsedError;
   String? get cueText => throw _privateConstructorUsedError;
@@ -61,18 +61,18 @@ abstract class $HabitCopyWith<$Res> {
       String name,
       String emoji,
       int color,
-      String? description,
       HabitFrequency frequency,
-      Map<String, dynamic>? frequencyConfig,
       HabitTargetType targetType,
       double targetValue,
       String unit,
-      List<TimeOfDayData> reminderTimes,
-      List<int> reminderDays,
       GravityClass gravityClass,
       DateTime createdAt,
-      DateTime? archivedAt,
       int order,
+      String? description,
+      Map<String, dynamic>? frequencyConfig,
+      List<TimeOfDayData> reminderTimes,
+      List<int> reminderDays,
+      DateTime? archivedAt,
       String? categoryId,
       List<String> linkedHabitIds,
       String? cueText,
@@ -98,18 +98,18 @@ class _$HabitCopyWithImpl<$Res, $Val extends Habit>
     Object? name = null,
     Object? emoji = null,
     Object? color = null,
-    Object? description = freezed,
     Object? frequency = null,
-    Object? frequencyConfig = freezed,
     Object? targetType = null,
     Object? targetValue = null,
     Object? unit = null,
-    Object? reminderTimes = null,
-    Object? reminderDays = null,
     Object? gravityClass = null,
     Object? createdAt = null,
-    Object? archivedAt = freezed,
     Object? order = null,
+    Object? description = freezed,
+    Object? frequencyConfig = freezed,
+    Object? reminderTimes = null,
+    Object? reminderDays = null,
+    Object? archivedAt = freezed,
     Object? categoryId = freezed,
     Object? linkedHabitIds = null,
     Object? cueText = freezed,
@@ -132,18 +132,10 @@ class _$HabitCopyWithImpl<$Res, $Val extends Habit>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       frequency: null == frequency
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
               as HabitFrequency,
-      frequencyConfig: freezed == frequencyConfig
-          ? _value.frequencyConfig
-          : frequencyConfig // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
       targetType: null == targetType
           ? _value.targetType
           : targetType // ignore: cast_nullable_to_non_nullable
@@ -156,14 +148,6 @@ class _$HabitCopyWithImpl<$Res, $Val extends Habit>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String,
-      reminderTimes: null == reminderTimes
-          ? _value.reminderTimes
-          : reminderTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDayData>,
-      reminderDays: null == reminderDays
-          ? _value.reminderDays
-          : reminderDays // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       gravityClass: null == gravityClass
           ? _value.gravityClass
           : gravityClass // ignore: cast_nullable_to_non_nullable
@@ -172,14 +156,30 @@ class _$HabitCopyWithImpl<$Res, $Val extends Habit>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      archivedAt: freezed == archivedAt
-          ? _value.archivedAt
-          : archivedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       order: null == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frequencyConfig: freezed == frequencyConfig
+          ? _value.frequencyConfig
+          : frequencyConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      reminderTimes: null == reminderTimes
+          ? _value.reminderTimes
+          : reminderTimes // ignore: cast_nullable_to_non_nullable
+              as List<TimeOfDayData>,
+      reminderDays: null == reminderDays
+          ? _value.reminderDays
+          : reminderDays // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      archivedAt: freezed == archivedAt
+          ? _value.archivedAt
+          : archivedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -212,18 +212,18 @@ abstract class _$$HabitImplCopyWith<$Res> implements $HabitCopyWith<$Res> {
       String name,
       String emoji,
       int color,
-      String? description,
       HabitFrequency frequency,
-      Map<String, dynamic>? frequencyConfig,
       HabitTargetType targetType,
       double targetValue,
       String unit,
-      List<TimeOfDayData> reminderTimes,
-      List<int> reminderDays,
       GravityClass gravityClass,
       DateTime createdAt,
-      DateTime? archivedAt,
       int order,
+      String? description,
+      Map<String, dynamic>? frequencyConfig,
+      List<TimeOfDayData> reminderTimes,
+      List<int> reminderDays,
+      DateTime? archivedAt,
       String? categoryId,
       List<String> linkedHabitIds,
       String? cueText,
@@ -247,18 +247,18 @@ class __$$HabitImplCopyWithImpl<$Res>
     Object? name = null,
     Object? emoji = null,
     Object? color = null,
-    Object? description = freezed,
     Object? frequency = null,
-    Object? frequencyConfig = freezed,
     Object? targetType = null,
     Object? targetValue = null,
     Object? unit = null,
-    Object? reminderTimes = null,
-    Object? reminderDays = null,
     Object? gravityClass = null,
     Object? createdAt = null,
-    Object? archivedAt = freezed,
     Object? order = null,
+    Object? description = freezed,
+    Object? frequencyConfig = freezed,
+    Object? reminderTimes = null,
+    Object? reminderDays = null,
+    Object? archivedAt = freezed,
     Object? categoryId = freezed,
     Object? linkedHabitIds = null,
     Object? cueText = freezed,
@@ -281,18 +281,10 @@ class __$$HabitImplCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       frequency: null == frequency
           ? _value.frequency
           : frequency // ignore: cast_nullable_to_non_nullable
               as HabitFrequency,
-      frequencyConfig: freezed == frequencyConfig
-          ? _value._frequencyConfig
-          : frequencyConfig // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
       targetType: null == targetType
           ? _value.targetType
           : targetType // ignore: cast_nullable_to_non_nullable
@@ -305,14 +297,6 @@ class __$$HabitImplCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String,
-      reminderTimes: null == reminderTimes
-          ? _value._reminderTimes
-          : reminderTimes // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDayData>,
-      reminderDays: null == reminderDays
-          ? _value._reminderDays
-          : reminderDays // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       gravityClass: null == gravityClass
           ? _value.gravityClass
           : gravityClass // ignore: cast_nullable_to_non_nullable
@@ -321,14 +305,30 @@ class __$$HabitImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      archivedAt: freezed == archivedAt
-          ? _value.archivedAt
-          : archivedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       order: null == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frequencyConfig: freezed == frequencyConfig
+          ? _value._frequencyConfig
+          : frequencyConfig // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      reminderTimes: null == reminderTimes
+          ? _value._reminderTimes
+          : reminderTimes // ignore: cast_nullable_to_non_nullable
+              as List<TimeOfDayData>,
+      reminderDays: null == reminderDays
+          ? _value._reminderDays
+          : reminderDays // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      archivedAt: freezed == archivedAt
+          ? _value.archivedAt
+          : archivedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -357,18 +357,18 @@ class _$HabitImpl implements _Habit {
       required this.name,
       required this.emoji,
       required this.color,
-      this.description,
       required this.frequency,
-      final Map<String, dynamic>? frequencyConfig,
       required this.targetType,
       required this.targetValue,
       required this.unit,
-      final List<TimeOfDayData> reminderTimes = const [],
-      final List<int> reminderDays = const [],
       required this.gravityClass,
       required this.createdAt,
-      this.archivedAt,
       required this.order,
+      this.description,
+      final Map<String, dynamic>? frequencyConfig,
+      final List<TimeOfDayData> reminderTimes = const [],
+      final List<int> reminderDays = const [],
+      this.archivedAt,
       this.categoryId,
       final List<String> linkedHabitIds = const [],
       this.cueText,
@@ -390,9 +390,21 @@ class _$HabitImpl implements _Habit {
   @override
   final int color;
   @override
-  final String? description;
-  @override
   final HabitFrequency frequency;
+  @override
+  final HabitTargetType targetType;
+  @override
+  final double targetValue;
+  @override
+  final String unit;
+  @override
+  final GravityClass gravityClass;
+  @override
+  final DateTime createdAt;
+  @override
+  final int order;
+  @override
+  final String? description;
   final Map<String, dynamic>? _frequencyConfig;
   @override
   Map<String, dynamic>? get frequencyConfig {
@@ -403,12 +415,6 @@ class _$HabitImpl implements _Habit {
     return EqualUnmodifiableMapView(value);
   }
 
-  @override
-  final HabitTargetType targetType;
-  @override
-  final double targetValue;
-  @override
-  final String unit;
   final List<TimeOfDayData> _reminderTimes;
   @override
   @JsonKey()
@@ -428,13 +434,7 @@ class _$HabitImpl implements _Habit {
   }
 
   @override
-  final GravityClass gravityClass;
-  @override
-  final DateTime createdAt;
-  @override
   final DateTime? archivedAt;
-  @override
-  final int order;
   @override
   final String? categoryId;
   final List<String> _linkedHabitIds;
@@ -453,7 +453,7 @@ class _$HabitImpl implements _Habit {
 
   @override
   String toString() {
-    return 'Habit(id: $id, name: $name, emoji: $emoji, color: $color, description: $description, frequency: $frequency, frequencyConfig: $frequencyConfig, targetType: $targetType, targetValue: $targetValue, unit: $unit, reminderTimes: $reminderTimes, reminderDays: $reminderDays, gravityClass: $gravityClass, createdAt: $createdAt, archivedAt: $archivedAt, order: $order, categoryId: $categoryId, linkedHabitIds: $linkedHabitIds, cueText: $cueText, whyText: $whyText)';
+    return 'Habit(id: $id, name: $name, emoji: $emoji, color: $color, frequency: $frequency, targetType: $targetType, targetValue: $targetValue, unit: $unit, gravityClass: $gravityClass, createdAt: $createdAt, order: $order, description: $description, frequencyConfig: $frequencyConfig, reminderTimes: $reminderTimes, reminderDays: $reminderDays, archivedAt: $archivedAt, categoryId: $categoryId, linkedHabitIds: $linkedHabitIds, cueText: $cueText, whyText: $whyText)';
   }
 
   @override
@@ -465,28 +465,28 @@ class _$HabitImpl implements _Habit {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.emoji, emoji) || other.emoji == emoji) &&
             (identical(other.color, color) || other.color == color) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.frequency, frequency) ||
                 other.frequency == frequency) &&
-            const DeepCollectionEquality()
-                .equals(other._frequencyConfig, _frequencyConfig) &&
             (identical(other.targetType, targetType) ||
                 other.targetType == targetType) &&
             (identical(other.targetValue, targetValue) ||
                 other.targetValue == targetValue) &&
             (identical(other.unit, unit) || other.unit == unit) &&
-            const DeepCollectionEquality()
-                .equals(other._reminderTimes, _reminderTimes) &&
-            const DeepCollectionEquality()
-                .equals(other._reminderDays, _reminderDays) &&
             (identical(other.gravityClass, gravityClass) ||
                 other.gravityClass == gravityClass) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.order, order) || other.order == order) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._frequencyConfig, _frequencyConfig) &&
+            const DeepCollectionEquality()
+                .equals(other._reminderTimes, _reminderTimes) &&
+            const DeepCollectionEquality()
+                .equals(other._reminderDays, _reminderDays) &&
             (identical(other.archivedAt, archivedAt) ||
                 other.archivedAt == archivedAt) &&
-            (identical(other.order, order) || other.order == order) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             const DeepCollectionEquality()
@@ -503,18 +503,18 @@ class _$HabitImpl implements _Habit {
         name,
         emoji,
         color,
-        description,
         frequency,
-        const DeepCollectionEquality().hash(_frequencyConfig),
         targetType,
         targetValue,
         unit,
-        const DeepCollectionEquality().hash(_reminderTimes),
-        const DeepCollectionEquality().hash(_reminderDays),
         gravityClass,
         createdAt,
-        archivedAt,
         order,
+        description,
+        const DeepCollectionEquality().hash(_frequencyConfig),
+        const DeepCollectionEquality().hash(_reminderTimes),
+        const DeepCollectionEquality().hash(_reminderDays),
+        archivedAt,
         categoryId,
         const DeepCollectionEquality().hash(_linkedHabitIds),
         cueText,
@@ -543,18 +543,18 @@ abstract class _Habit implements Habit {
       required final String name,
       required final String emoji,
       required final int color,
-      final String? description,
       required final HabitFrequency frequency,
-      final Map<String, dynamic>? frequencyConfig,
       required final HabitTargetType targetType,
       required final double targetValue,
       required final String unit,
-      final List<TimeOfDayData> reminderTimes,
-      final List<int> reminderDays,
       required final GravityClass gravityClass,
       required final DateTime createdAt,
-      final DateTime? archivedAt,
       required final int order,
+      final String? description,
+      final Map<String, dynamic>? frequencyConfig,
+      final List<TimeOfDayData> reminderTimes,
+      final List<int> reminderDays,
+      final DateTime? archivedAt,
       final String? categoryId,
       final List<String> linkedHabitIds,
       final String? cueText,
@@ -571,11 +571,7 @@ abstract class _Habit implements Habit {
   @override
   int get color;
   @override
-  String? get description;
-  @override
   HabitFrequency get frequency;
-  @override
-  Map<String, dynamic>? get frequencyConfig;
   @override
   HabitTargetType get targetType;
   @override
@@ -583,17 +579,21 @@ abstract class _Habit implements Habit {
   @override
   String get unit;
   @override
-  List<TimeOfDayData> get reminderTimes;
-  @override
-  List<int> get reminderDays;
-  @override
   GravityClass get gravityClass;
   @override
   DateTime get createdAt;
   @override
-  DateTime? get archivedAt;
-  @override
   int get order;
+  @override
+  String? get description;
+  @override
+  Map<String, dynamic>? get frequencyConfig;
+  @override
+  List<TimeOfDayData> get reminderTimes;
+  @override
+  List<int> get reminderDays;
+  @override
+  DateTime? get archivedAt;
   @override
   String? get categoryId;
   @override

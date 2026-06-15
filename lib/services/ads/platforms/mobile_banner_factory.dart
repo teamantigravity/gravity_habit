@@ -41,8 +41,7 @@ class _MobileBannerPlaceholder extends StatefulWidget {
       _MobileBannerPlaceholderState();
 }
 
-class _MobileBannerPlaceholderState
-    extends State<_MobileBannerPlaceholder> {
+class _MobileBannerPlaceholderState extends State<_MobileBannerPlaceholder> {
   bool _isLoaded = false;
 
   @override
@@ -85,7 +84,7 @@ class _MobileBannerPlaceholderState
       width: double.infinity,
       height: 50,
       child: Container(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.3),
       ),
     );
   }

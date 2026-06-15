@@ -5,7 +5,8 @@ import 'package:gravity_habit/data/isar/database.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_entry_schema.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
-import 'package:sembast/sembast.dart';import 'package:uuid/uuid.dart';
+import 'package:sembast/sembast.dart';
+import 'package:uuid/uuid.dart';
 
 final habitRepositoryProvider = Provider<HabitRepository>((ref) {
   final db = ref.watch(gravityDatabaseProvider);
@@ -40,12 +41,14 @@ class HabitRepository {
   }
 
   Stream<List<Habit>> watchAllHabits() {
-    return _db.habitStore.query().onSnapshots(_db.db).map((snaps) => snaps
-        .map((e) => HabitEntity.fromJson(e.value))
-        .where((e) => e.archivedAt == null)
-        .map(_entityToHabit)
-        .toList()
-      ..sort((a, b) => a.order.compareTo(b.order)));
+    return _db.habitStore.query().onSnapshots(_db.db).map(
+          (snaps) => snaps
+              .map((e) => HabitEntity.fromJson(e.value))
+              .where((e) => e.archivedAt == null)
+              .map(_entityToHabit)
+              .toList()
+            ..sort((a, b) => a.order.compareTo(b.order)),
+        );
   }
 
   Future<Habit> createHabit(Habit habit) async {
@@ -142,7 +145,9 @@ class HabitRepository {
       ),
     );
 
-    return snaps.map((e) => _entityToEntry(HabitEntryEntity.fromJson(e.value))).toList();
+    return snaps
+        .map((e) => _entityToEntry(HabitEntryEntity.fromJson(e.value)))
+        .toList();
   }
 
   Stream<List<HabitEntry>> watchEntriesForDate(DateTime date) {
@@ -159,7 +164,9 @@ class HabitRepository {
           ),
         )
         .onSnapshots(_db.db)
-        .map((snaps) => snaps.map((e) => _entityToEntry(HabitEntryEntity.fromJson(e.value))).toList());
+        .map((snaps) => snaps
+            .map((e) => _entityToEntry(HabitEntryEntity.fromJson(e.value)))
+            .toList());
   }
 
   Future<HabitEntry> createEntry(HabitEntry entry) async {
@@ -187,11 +194,14 @@ class HabitRepository {
       emoji: e.emoji,
       color: e.color,
       description: e.description,
-      frequency: HabitFrequency.values.firstWhere((f) => f.name == e.frequency, orElse: () => HabitFrequency.daily),
+      frequency: HabitFrequency.values.firstWhere((f) => f.name == e.frequency,
+          orElse: () => HabitFrequency.daily),
       frequencyConfig: e.frequencyConfigJson != null
           ? jsonDecode(e.frequencyConfigJson!) as Map<String, dynamic>
           : null,
-      targetType: HabitTargetType.values.firstWhere((t) => t.name == e.targetType, orElse: () => HabitTargetType.binary),
+      targetType: HabitTargetType.values.firstWhere(
+          (t) => t.name == e.targetType,
+          orElse: () => HabitTargetType.binary),
       targetValue: e.targetValue,
       unit: e.unit,
       reminderTimes: e.reminderTimesJson != null
@@ -202,7 +212,9 @@ class HabitRepository {
       reminderDays: e.reminderDaysJson != null
           ? (jsonDecode(e.reminderDaysJson!) as List).cast<int>()
           : [],
-      gravityClass: GravityClass.values.firstWhere((g) => g.name == e.gravityClass, orElse: () => GravityClass.pebble),
+      gravityClass: GravityClass.values.firstWhere(
+          (g) => g.name == e.gravityClass,
+          orElse: () => GravityClass.pebble),
       createdAt: e.createdAt,
       archivedAt: e.archivedAt,
       order: e.order,
@@ -229,7 +241,9 @@ class HabitRepository {
       ..targetValue = h.targetValue
       ..unit = h.unit
       ..reminderTimesJson = h.reminderTimes.isNotEmpty
-          ? jsonEncode(h.reminderTimes.map((t) => {'hour': t.hour, 'minute': t.minute}).toList())
+          ? jsonEncode(h.reminderTimes
+              .map((t) => {'hour': t.hour, 'minute': t.minute})
+              .toList())
           : null
       ..reminderDaysJson =
           h.reminderDays.isNotEmpty ? jsonEncode(h.reminderDays) : null
@@ -238,9 +252,8 @@ class HabitRepository {
       ..archivedAt = h.archivedAt
       ..order = h.order
       ..categoryId = h.categoryId
-      ..linkedHabitIdsJson = h.linkedHabitIds.isNotEmpty
-          ? jsonEncode(h.linkedHabitIds)
-          : null
+      ..linkedHabitIdsJson =
+          h.linkedHabitIds.isNotEmpty ? jsonEncode(h.linkedHabitIds) : null
       ..cueText = h.cueText
       ..whyText = h.whyText;
   }
@@ -255,7 +268,9 @@ class HabitRepository {
       completedAt: e.completedAt,
       note: e.note,
       mood: e.mood,
-      skipReason: e.skipReason != null ? SkipReason.values.firstWhere((s) => s.name == e.skipReason) : null,
+      skipReason: e.skipReason != null
+          ? SkipReason.values.firstWhere((s) => s.name == e.skipReason)
+          : null,
     );
   }
 

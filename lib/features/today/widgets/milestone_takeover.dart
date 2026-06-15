@@ -1,9 +1,9 @@
-import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/domain/gravity_engine/streak_engine.dart';
+import 'package:lottie/lottie.dart';
 
 /// Full-screen milestone celebration (1.8s total, dismissible on tap).
 /// Shown for streaks: 7, 21, 30, 100, 365
@@ -71,7 +71,7 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
     return GestureDetector(
       onTap: widget.onDismiss,
       child: Material(
-        color: Colors.black.withOpacity(0.85),
+        color: Colors.black.withValues(alpha: 0.85),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -82,7 +82,7 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
                 height: 250,
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    widget.color.withOpacity(0.5),
+                    widget.color.withValues(alpha: 0.5),
                     BlendMode.srcATop,
                   ),
                   child: Lottie.asset(
@@ -108,7 +108,7 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
               )
                   .animate()
                   .fadeIn(delay: 400.ms, duration: 600.ms)
-                  .scaleXY(begin: 0.5, end: 1.0),
+                  .scaleXY(begin: 0.5, end: 1),
 
               Text(
                 milestone?.name ?? 'Milestone',
@@ -124,7 +124,7 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
               Text(
                 _identityStatement,
                 style: context.textTheme.bodyLarge?.copyWith(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
@@ -148,4 +148,3 @@ class _MilestoneTakeoverState extends State<MilestoneTakeover>
     );
   }
 }
-

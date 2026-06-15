@@ -21,7 +21,6 @@ class BiometricService {
         localizedReason: 'Unlock Gravity Habit',
         options: const AuthenticationOptions(
           stickyAuth: true,
-          biometricOnly: false, // Allow PIN fallback
         ),
       );
     } catch (_) {

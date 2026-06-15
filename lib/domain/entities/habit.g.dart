@@ -11,12 +11,15 @@ _$HabitImpl _$$HabitImplFromJson(Map<String, dynamic> json) => _$HabitImpl(
       name: json['name'] as String,
       emoji: json['emoji'] as String,
       color: (json['color'] as num).toInt(),
-      description: json['description'] as String?,
       frequency: $enumDecode(_$HabitFrequencyEnumMap, json['frequency']),
-      frequencyConfig: json['frequencyConfig'] as Map<String, dynamic>?,
       targetType: $enumDecode(_$HabitTargetTypeEnumMap, json['targetType']),
       targetValue: (json['targetValue'] as num).toDouble(),
       unit: json['unit'] as String,
+      gravityClass: $enumDecode(_$GravityClassEnumMap, json['gravityClass']),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      order: (json['order'] as num).toInt(),
+      description: json['description'] as String?,
+      frequencyConfig: json['frequencyConfig'] as Map<String, dynamic>?,
       reminderTimes: (json['reminderTimes'] as List<dynamic>?)
               ?.map((e) => TimeOfDayData.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -25,12 +28,9 @@ _$HabitImpl _$$HabitImplFromJson(Map<String, dynamic> json) => _$HabitImpl(
               ?.map((e) => (e as num).toInt())
               .toList() ??
           const [],
-      gravityClass: $enumDecode(_$GravityClassEnumMap, json['gravityClass']),
-      createdAt: DateTime.parse(json['createdAt'] as String),
       archivedAt: json['archivedAt'] == null
           ? null
           : DateTime.parse(json['archivedAt'] as String),
-      order: (json['order'] as num).toInt(),
       categoryId: json['categoryId'] as String?,
       linkedHabitIds: (json['linkedHabitIds'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -46,18 +46,18 @@ Map<String, dynamic> _$$HabitImplToJson(_$HabitImpl instance) =>
       'name': instance.name,
       'emoji': instance.emoji,
       'color': instance.color,
-      'description': instance.description,
       'frequency': _$HabitFrequencyEnumMap[instance.frequency]!,
-      'frequencyConfig': instance.frequencyConfig,
       'targetType': _$HabitTargetTypeEnumMap[instance.targetType]!,
       'targetValue': instance.targetValue,
       'unit': instance.unit,
-      'reminderTimes': instance.reminderTimes,
-      'reminderDays': instance.reminderDays,
       'gravityClass': _$GravityClassEnumMap[instance.gravityClass]!,
       'createdAt': instance.createdAt.toIso8601String(),
-      'archivedAt': instance.archivedAt?.toIso8601String(),
       'order': instance.order,
+      'description': instance.description,
+      'frequencyConfig': instance.frequencyConfig,
+      'reminderTimes': instance.reminderTimes,
+      'reminderDays': instance.reminderDays,
+      'archivedAt': instance.archivedAt?.toIso8601String(),
       'categoryId': instance.categoryId,
       'linkedHabitIds': instance.linkedHabitIds,
       'cueText': instance.cueText,

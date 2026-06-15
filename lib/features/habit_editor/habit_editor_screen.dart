@@ -16,8 +16,7 @@ class HabitEditorScreen extends ConsumerStatefulWidget {
   final String? habitId;
 
   @override
-  ConsumerState<HabitEditorScreen> createState() =>
-      _HabitEditorScreenState();
+  ConsumerState<HabitEditorScreen> createState() => _HabitEditorScreenState();
 }
 
 class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
@@ -93,7 +92,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Section 1: Identity
-            _SectionHeader(title: 'Identity'),
+            const _SectionHeader(title: 'Identity'),
             const SizedBox(height: Spacing.sm),
 
             // Emoji picker
@@ -104,10 +103,10 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
                   width: 72,
                   height: 72,
                   decoration: BoxDecoration(
-                    color: Color(_color).withOpacity(0.15),
+                    color: Color(_color).withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(CornerRadii.md),
                     border: Border.all(
-                      color: Color(_color).withOpacity(0.3),
+                      color: Color(_color).withValues(alpha: 0.3),
                     ),
                   ),
                   child: Center(
@@ -172,7 +171,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // Section 2: Rhythm
-            _SectionHeader(title: 'Rhythm'),
+            const _SectionHeader(title: 'Rhythm'),
             const SizedBox(height: Spacing.sm),
             SegmentedButton<HabitFrequency>(
               segments: const [
@@ -199,7 +198,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // Section 3: Goal
-            _SectionHeader(title: 'Goal'),
+            const _SectionHeader(title: 'Goal'),
             const SizedBox(height: Spacing.sm),
             SegmentedButton<HabitTargetType>(
               segments: const [
@@ -231,12 +230,10 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
                       decoration: InputDecoration(
                         labelText: 'Target',
                         border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(CornerRadii.sm),
+                          borderRadius: BorderRadius.circular(CornerRadii.sm),
                         ),
                       ),
-                      onChanged: (v) =>
-                          _targetValue = double.tryParse(v) ?? 1,
+                      onChanged: (v) => _targetValue = double.tryParse(v) ?? 1,
                     ),
                   ),
                   const SizedBox(width: Spacing.sm),
@@ -248,8 +245,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
                             ? 'reps'
                             : 'minutes',
                         border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(CornerRadii.sm),
+                          borderRadius: BorderRadius.circular(CornerRadii.sm),
                         ),
                       ),
                       onChanged: (v) => _unit = v,
@@ -262,7 +258,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // Section 4: Cue
-            _SectionHeader(title: 'Implementation Intention'),
+            const _SectionHeader(title: 'Implementation Intention'),
             const SizedBox(height: Spacing.sm),
             TextField(
               controller: _cueController,
@@ -270,7 +266,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
               decoration: InputDecoration(
                 hintText: 'After I ___, I will ___',
                 hintStyle: TextStyle(
-                  color: context.colors.onSurface.withOpacity(0.3),
+                  color: context.colors.onSurface.withValues(alpha: 0.3),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(CornerRadii.sm),
@@ -282,7 +278,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // Section 5: Why
-            _SectionHeader(title: 'Why'),
+            const _SectionHeader(title: 'Why'),
             const SizedBox(height: Spacing.sm),
             TextField(
               controller: _whyController,
@@ -291,7 +287,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
               decoration: InputDecoration(
                 hintText: 'Why does this matter to you?',
                 hintStyle: TextStyle(
-                  color: context.colors.onSurface.withOpacity(0.3),
+                  color: context.colors.onSurface.withValues(alpha: 0.3),
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(CornerRadii.sm),
@@ -303,7 +299,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             const SizedBox(height: Spacing.xxl),
 
             // Section 6: Gravity Class
-            _SectionHeader(title: 'Gravity Class'),
+            const _SectionHeader(title: 'Gravity Class'),
             const SizedBox(height: Spacing.sm),
             _GravityClassSlider(
               value: _gravityClass,
@@ -320,9 +316,7 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             CosmicButton(
               label: _isEditing ? 'Save Changes' : 'Create Habit',
               isExpanded: true,
-              onPressed: _nameController.text.trim().isEmpty
-                  ? null
-                  : _save,
+              onPressed: _nameController.text.trim().isEmpty ? null : _save,
             ),
 
             const SizedBox(height: Spacing.massive),
@@ -375,11 +369,51 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
   void _showEmojiPicker() {
     // Simple emoji selection dialog
     final emojis = [
-      '⭐', '🌟', '💧', '🏃', '💪', '📚', '🧘', '✍️', '🎨',
-      '🎵', '💊', '🦷', '🥶', '🌿', '📓', '🎯', '🏋️', '🧘‍♀️',
-      '🫸', '🏗️', '🏊', '📷', '💬', '📞', '🌟', '👀', '📧',
-      '📋', '🌅', '🙏', '🌳', '🌇', '🚫', '📵', '🔌', '🌙',
-      '🚴', '☀️', '🧍', '🎧', '📊', '👂', '🤫', '🫀', '🧠',
+      '⭐',
+      '🌟',
+      '💧',
+      '🏃',
+      '💪',
+      '📚',
+      '🧘',
+      '✍️',
+      '🎨',
+      '🎵',
+      '💊',
+      '🦷',
+      '🥶',
+      '🌿',
+      '📓',
+      '🎯',
+      '🏋️',
+      '🧘‍♀️',
+      '🫸',
+      '🏗️',
+      '🏊',
+      '📷',
+      '💬',
+      '📞',
+      '🌟',
+      '👀',
+      '📧',
+      '📋',
+      '🌅',
+      '🙏',
+      '🌳',
+      '🌇',
+      '🚫',
+      '📵',
+      '🔌',
+      '🌙',
+      '🚴',
+      '☀️',
+      '🧍',
+      '🎧',
+      '📊',
+      '👂',
+      '🤫',
+      '🫀',
+      '🧠',
     ];
 
     showModalBottomSheet<void>(
@@ -391,7 +425,6 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 8,
-              childAspectRatio: 1,
             ),
             itemCount: emojis.length,
             itemBuilder: (ctx, i) {
@@ -415,9 +448,21 @@ class _HabitEditorScreenState extends ConsumerState<HabitEditorScreen> {
   }
 
   static const _colorOptions = [
-    0xFF6EE7FF, 0xFFFF6EC7, 0xFF6EFFB8, 0xFFFF7A3D, 0xFFFF6E8A,
-    0xFF8B9FFF, 0xFFC77DFF, 0xFF80FFD4, 0xFFFFCA28, 0xFFEF5350,
-    0xFF66BB6A, 0xFF42A5F5, 0xFFAB47BC, 0xFF78909C, 0xFFA1887F,
+    0xFF6EE7FF,
+    0xFFFF6EC7,
+    0xFF6EFFB8,
+    0xFFFF7A3D,
+    0xFFFF6E8A,
+    0xFF8B9FFF,
+    0xFFC77DFF,
+    0xFF80FFD4,
+    0xFFFFCA28,
+    0xFFEF5350,
+    0xFF66BB6A,
+    0xFF42A5F5,
+    0xFFAB47BC,
+    0xFF78909C,
+    0xFFA1887F,
     0xFFFF8A65,
   ];
 }
@@ -453,7 +498,7 @@ class _GravityClassSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final classes = GravityClass.values;
+    const classes = GravityClass.values;
     final labels = ['Feather', 'Pebble', 'Stone', 'Boulder', 'Planet'];
     final masses = ['1', '3', '7', '15', '30'];
 
@@ -461,7 +506,6 @@ class _GravityClassSlider extends StatelessWidget {
       children: [
         Slider(
           value: value.index.toDouble(),
-          min: 0,
           max: 4,
           divisions: 4,
           onChanged: (v) => onChanged(classes[v.round()]),
@@ -476,11 +520,10 @@ class _GravityClassSlider extends StatelessWidget {
                   labels[i],
                   style: TextStyle(
                     fontSize: 11,
-                    fontWeight:
-                        isSelected ? FontWeight.w600 : FontWeight.w400,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     color: isSelected
                         ? color
-                        : context.colors.onSurface.withOpacity(0.4),
+                        : context.colors.onSurface.withValues(alpha: 0.4),
                   ),
                 ),
                 Text(
@@ -488,7 +531,7 @@ class _GravityClassSlider extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 9,
                     fontFamily: 'JetBrainsMono',
-                    color: context.colors.onSurface.withOpacity(0.3),
+                    color: context.colors.onSurface.withValues(alpha: 0.3),
                   ),
                 ),
               ],

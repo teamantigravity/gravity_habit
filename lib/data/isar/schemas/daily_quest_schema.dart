@@ -4,6 +4,10 @@ part 'daily_quest_schema.g.dart';
 
 @JsonSerializable()
 class DailyQuestEntity {
+  DailyQuestEntity();
+
+  factory DailyQuestEntity.fromJson(Map<String, dynamic> json) =>
+      _$DailyQuestEntityFromJson(json);
   int id = 0; // Singleton for current quest
 
   late String questId;
@@ -11,9 +15,5 @@ class DailyQuestEntity {
   late bool isCompleted;
   late double progress;
   late int stardustReward;
-
-  DailyQuestEntity();
-
-  factory DailyQuestEntity.fromJson(Map<String, dynamic> json) => _$DailyQuestEntityFromJson(json);
   Map<String, dynamic> toJson() => _$DailyQuestEntityToJson(this);
 }

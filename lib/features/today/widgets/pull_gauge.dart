@@ -16,7 +16,7 @@ class PullGauge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'Today\'s pull: ${pull.round()} percent',
+      label: "Today's pull: ${pull.round()} percent",
       child: SizedBox(
         width: size,
         height: size,
@@ -24,7 +24,7 @@ class PullGauge extends StatelessWidget {
           painter: _PullGaugePainter(
             pull: pull,
             accentColor: context.colors.primary,
-            trackColor: context.colors.outlineVariant.withOpacity(0.2),
+            trackColor: context.colors.outlineVariant.withValues(alpha: 0.2),
             textColor: context.colors.onSurface,
           ),
         ),
@@ -105,6 +105,5 @@ class _PullGaugePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_PullGaugePainter oldDelegate) =>
-      oldDelegate.pull != pull;
+  bool shouldRepaint(_PullGaugePainter oldDelegate) => oldDelegate.pull != pull;
 }

@@ -86,7 +86,7 @@ class _DesktopInterstitialDialogState
                       color: Theme.of(context)
                           .colorScheme
                           .surface
-                          .withOpacity(0.8),
+                          .withValues(alpha: 0.8),
                     ),
                   ),
                 ],
@@ -105,7 +105,7 @@ class _DesktopInterstitialDialogState
                   : Container(
                       width: 32,
                       height: 32,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.black54,
                       ),

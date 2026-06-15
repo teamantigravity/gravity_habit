@@ -39,7 +39,7 @@ void main() {
     });
 
     test('streak milestones exist for all defined days', () {
-      final milestones = StreakEngine.streakMilestones;
+      const milestones = StreakEngine.streakMilestones;
       expect(milestones.containsKey(3), true);
       expect(milestones.containsKey(7), true);
       expect(milestones.containsKey(14), true);

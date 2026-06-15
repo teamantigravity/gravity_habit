@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gravity_habit/services/ads/ad_config.dart';
 import 'package:gravity_habit/services/ads/ad_manager.dart';
-import 'package:gravity_habit/services/ads/platforms/mobile_interstitial.dart';
 import 'package:gravity_habit/services/ads/platforms/desktop_interstitial.dart';
+import 'package:gravity_habit/services/ads/platforms/mobile_interstitial.dart';
 import 'package:gravity_habit/services/ads/platforms/web_interstitial.dart';
 
 /// Universal interstitial controller that works on all ad-supported platforms.

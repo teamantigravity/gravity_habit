@@ -21,12 +21,12 @@ mixin _$OrbitProfile {
   int get streakDays => throw _privateConstructorUsedError;
   int get longestStreak => throw _privateConstructorUsedError;
   double get gravitationalPull => throw _privateConstructorUsedError;
-  List<String> get unlockedConstellations => throw _privateConstructorUsedError;
-  List<String> get unlockedAvatars => throw _privateConstructorUsedError;
-  List<String> get unlockedThemes => throw _privateConstructorUsedError;
   int get collectedStardust => throw _privateConstructorUsedError;
   int get prestigeLevel => throw _privateConstructorUsedError;
   int get streakFreezes => throw _privateConstructorUsedError;
+  List<String> get unlockedConstellations => throw _privateConstructorUsedError;
+  List<String> get unlockedAvatars => throw _privateConstructorUsedError;
+  List<String> get unlockedThemes => throw _privateConstructorUsedError;
 
   /// Create a copy of OrbitProfile
   /// with the given fields replaced by the non-null parameter values.
@@ -47,12 +47,12 @@ abstract class $OrbitProfileCopyWith<$Res> {
       int streakDays,
       int longestStreak,
       double gravitationalPull,
-      List<String> unlockedConstellations,
-      List<String> unlockedAvatars,
-      List<String> unlockedThemes,
       int collectedStardust,
       int prestigeLevel,
-      int streakFreezes});
+      int streakFreezes,
+      List<String> unlockedConstellations,
+      List<String> unlockedAvatars,
+      List<String> unlockedThemes});
 }
 
 /// @nodoc
@@ -75,12 +75,12 @@ class _$OrbitProfileCopyWithImpl<$Res, $Val extends OrbitProfile>
     Object? streakDays = null,
     Object? longestStreak = null,
     Object? gravitationalPull = null,
-    Object? unlockedConstellations = null,
-    Object? unlockedAvatars = null,
-    Object? unlockedThemes = null,
     Object? collectedStardust = null,
     Object? prestigeLevel = null,
     Object? streakFreezes = null,
+    Object? unlockedConstellations = null,
+    Object? unlockedAvatars = null,
+    Object? unlockedThemes = null,
   }) {
     return _then(_value.copyWith(
       totalMass: null == totalMass
@@ -103,18 +103,6 @@ class _$OrbitProfileCopyWithImpl<$Res, $Val extends OrbitProfile>
           ? _value.gravitationalPull
           : gravitationalPull // ignore: cast_nullable_to_non_nullable
               as double,
-      unlockedConstellations: null == unlockedConstellations
-          ? _value.unlockedConstellations
-          : unlockedConstellations // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      unlockedAvatars: null == unlockedAvatars
-          ? _value.unlockedAvatars
-          : unlockedAvatars // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      unlockedThemes: null == unlockedThemes
-          ? _value.unlockedThemes
-          : unlockedThemes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       collectedStardust: null == collectedStardust
           ? _value.collectedStardust
           : collectedStardust // ignore: cast_nullable_to_non_nullable
@@ -127,6 +115,18 @@ class _$OrbitProfileCopyWithImpl<$Res, $Val extends OrbitProfile>
           ? _value.streakFreezes
           : streakFreezes // ignore: cast_nullable_to_non_nullable
               as int,
+      unlockedConstellations: null == unlockedConstellations
+          ? _value.unlockedConstellations
+          : unlockedConstellations // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      unlockedAvatars: null == unlockedAvatars
+          ? _value.unlockedAvatars
+          : unlockedAvatars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      unlockedThemes: null == unlockedThemes
+          ? _value.unlockedThemes
+          : unlockedThemes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -145,12 +145,12 @@ abstract class _$$OrbitProfileImplCopyWith<$Res>
       int streakDays,
       int longestStreak,
       double gravitationalPull,
-      List<String> unlockedConstellations,
-      List<String> unlockedAvatars,
-      List<String> unlockedThemes,
       int collectedStardust,
       int prestigeLevel,
-      int streakFreezes});
+      int streakFreezes,
+      List<String> unlockedConstellations,
+      List<String> unlockedAvatars,
+      List<String> unlockedThemes});
 }
 
 /// @nodoc
@@ -171,12 +171,12 @@ class __$$OrbitProfileImplCopyWithImpl<$Res>
     Object? streakDays = null,
     Object? longestStreak = null,
     Object? gravitationalPull = null,
-    Object? unlockedConstellations = null,
-    Object? unlockedAvatars = null,
-    Object? unlockedThemes = null,
     Object? collectedStardust = null,
     Object? prestigeLevel = null,
     Object? streakFreezes = null,
+    Object? unlockedConstellations = null,
+    Object? unlockedAvatars = null,
+    Object? unlockedThemes = null,
   }) {
     return _then(_$OrbitProfileImpl(
       totalMass: null == totalMass
@@ -199,18 +199,6 @@ class __$$OrbitProfileImplCopyWithImpl<$Res>
           ? _value.gravitationalPull
           : gravitationalPull // ignore: cast_nullable_to_non_nullable
               as double,
-      unlockedConstellations: null == unlockedConstellations
-          ? _value._unlockedConstellations
-          : unlockedConstellations // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      unlockedAvatars: null == unlockedAvatars
-          ? _value._unlockedAvatars
-          : unlockedAvatars // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      unlockedThemes: null == unlockedThemes
-          ? _value._unlockedThemes
-          : unlockedThemes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       collectedStardust: null == collectedStardust
           ? _value.collectedStardust
           : collectedStardust // ignore: cast_nullable_to_non_nullable
@@ -223,6 +211,18 @@ class __$$OrbitProfileImplCopyWithImpl<$Res>
           ? _value.streakFreezes
           : streakFreezes // ignore: cast_nullable_to_non_nullable
               as int,
+      unlockedConstellations: null == unlockedConstellations
+          ? _value._unlockedConstellations
+          : unlockedConstellations // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      unlockedAvatars: null == unlockedAvatars
+          ? _value._unlockedAvatars
+          : unlockedAvatars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      unlockedThemes: null == unlockedThemes
+          ? _value._unlockedThemes
+          : unlockedThemes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -236,12 +236,12 @@ class _$OrbitProfileImpl implements _OrbitProfile {
       required this.streakDays,
       required this.longestStreak,
       required this.gravitationalPull,
-      final List<String> unlockedConstellations = const [],
-      final List<String> unlockedAvatars = const [],
-      final List<String> unlockedThemes = const [],
       required this.collectedStardust,
       required this.prestigeLevel,
-      required this.streakFreezes})
+      required this.streakFreezes,
+      final List<String> unlockedConstellations = const [],
+      final List<String> unlockedAvatars = const [],
+      final List<String> unlockedThemes = const []})
       : _unlockedConstellations = unlockedConstellations,
         _unlockedAvatars = unlockedAvatars,
         _unlockedThemes = unlockedThemes;
@@ -256,6 +256,12 @@ class _$OrbitProfileImpl implements _OrbitProfile {
   final int longestStreak;
   @override
   final double gravitationalPull;
+  @override
+  final int collectedStardust;
+  @override
+  final int prestigeLevel;
+  @override
+  final int streakFreezes;
   final List<String> _unlockedConstellations;
   @override
   @JsonKey()
@@ -285,15 +291,8 @@ class _$OrbitProfileImpl implements _OrbitProfile {
   }
 
   @override
-  final int collectedStardust;
-  @override
-  final int prestigeLevel;
-  @override
-  final int streakFreezes;
-
-  @override
   String toString() {
-    return 'OrbitProfile(totalMass: $totalMass, currentOrbitTier: $currentOrbitTier, streakDays: $streakDays, longestStreak: $longestStreak, gravitationalPull: $gravitationalPull, unlockedConstellations: $unlockedConstellations, unlockedAvatars: $unlockedAvatars, unlockedThemes: $unlockedThemes, collectedStardust: $collectedStardust, prestigeLevel: $prestigeLevel, streakFreezes: $streakFreezes)';
+    return 'OrbitProfile(totalMass: $totalMass, currentOrbitTier: $currentOrbitTier, streakDays: $streakDays, longestStreak: $longestStreak, gravitationalPull: $gravitationalPull, collectedStardust: $collectedStardust, prestigeLevel: $prestigeLevel, streakFreezes: $streakFreezes, unlockedConstellations: $unlockedConstellations, unlockedAvatars: $unlockedAvatars, unlockedThemes: $unlockedThemes)';
   }
 
   @override
@@ -311,18 +310,18 @@ class _$OrbitProfileImpl implements _OrbitProfile {
                 other.longestStreak == longestStreak) &&
             (identical(other.gravitationalPull, gravitationalPull) ||
                 other.gravitationalPull == gravitationalPull) &&
-            const DeepCollectionEquality().equals(
-                other._unlockedConstellations, _unlockedConstellations) &&
-            const DeepCollectionEquality()
-                .equals(other._unlockedAvatars, _unlockedAvatars) &&
-            const DeepCollectionEquality()
-                .equals(other._unlockedThemes, _unlockedThemes) &&
             (identical(other.collectedStardust, collectedStardust) ||
                 other.collectedStardust == collectedStardust) &&
             (identical(other.prestigeLevel, prestigeLevel) ||
                 other.prestigeLevel == prestigeLevel) &&
             (identical(other.streakFreezes, streakFreezes) ||
-                other.streakFreezes == streakFreezes));
+                other.streakFreezes == streakFreezes) &&
+            const DeepCollectionEquality().equals(
+                other._unlockedConstellations, _unlockedConstellations) &&
+            const DeepCollectionEquality()
+                .equals(other._unlockedAvatars, _unlockedAvatars) &&
+            const DeepCollectionEquality()
+                .equals(other._unlockedThemes, _unlockedThemes));
   }
 
   @override
@@ -333,12 +332,12 @@ class _$OrbitProfileImpl implements _OrbitProfile {
       streakDays,
       longestStreak,
       gravitationalPull,
-      const DeepCollectionEquality().hash(_unlockedConstellations),
-      const DeepCollectionEquality().hash(_unlockedAvatars),
-      const DeepCollectionEquality().hash(_unlockedThemes),
       collectedStardust,
       prestigeLevel,
-      streakFreezes);
+      streakFreezes,
+      const DeepCollectionEquality().hash(_unlockedConstellations),
+      const DeepCollectionEquality().hash(_unlockedAvatars),
+      const DeepCollectionEquality().hash(_unlockedThemes));
 
   /// Create a copy of OrbitProfile
   /// with the given fields replaced by the non-null parameter values.
@@ -356,12 +355,12 @@ abstract class _OrbitProfile implements OrbitProfile {
       required final int streakDays,
       required final int longestStreak,
       required final double gravitationalPull,
-      final List<String> unlockedConstellations,
-      final List<String> unlockedAvatars,
-      final List<String> unlockedThemes,
       required final int collectedStardust,
       required final int prestigeLevel,
-      required final int streakFreezes}) = _$OrbitProfileImpl;
+      required final int streakFreezes,
+      final List<String> unlockedConstellations,
+      final List<String> unlockedAvatars,
+      final List<String> unlockedThemes}) = _$OrbitProfileImpl;
 
   @override
   double get totalMass;
@@ -374,17 +373,17 @@ abstract class _OrbitProfile implements OrbitProfile {
   @override
   double get gravitationalPull;
   @override
-  List<String> get unlockedConstellations;
-  @override
-  List<String> get unlockedAvatars;
-  @override
-  List<String> get unlockedThemes;
-  @override
   int get collectedStardust;
   @override
   int get prestigeLevel;
   @override
   int get streakFreezes;
+  @override
+  List<String> get unlockedConstellations;
+  @override
+  List<String> get unlockedAvatars;
+  @override
+  List<String> get unlockedThemes;
 
   /// Create a copy of OrbitProfile
   /// with the given fields replaced by the non-null parameter values.

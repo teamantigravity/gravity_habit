@@ -36,10 +36,12 @@ class _RollingNumberState extends State<RollingNumber>
     _animation = Tween<double>(
       begin: _previousValue.toDouble(),
       end: widget.value.toDouble(),
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOutCubic,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutCubic,
+      ),
+    );
   }
 
   @override
@@ -50,10 +52,12 @@ class _RollingNumberState extends State<RollingNumber>
       _animation = Tween<double>(
         begin: _previousValue.toDouble(),
         end: widget.value.toDouble(),
-      ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOutCubic,
-      ));
+      ).animate(
+        CurvedAnimation(
+          parent: _controller,
+          curve: Curves.easeOutCubic,
+        ),
+      );
       _controller.forward(from: 0);
     }
   }

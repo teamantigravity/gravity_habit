@@ -41,14 +41,14 @@ class StardustCounter extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  context.colors.primary.withOpacity(0.9),
-                  context.colors.primary.withOpacity(0.3),
+                  context.colors.primary.withValues(alpha: 0.9),
+                  context.colors.primary.withValues(alpha: 0.3),
                 ],
               ),
               boxShadow: showAura
                   ? [
                       BoxShadow(
-                        color: context.colors.primary.withOpacity(0.4),
+                        color: context.colors.primary.withValues(alpha: 0.4),
                         blurRadius: 12,
                       ),
                     ]
@@ -60,7 +60,7 @@ class StardustCounter extends StatelessWidget {
               )
               .scaleXY(
                 begin: 0.85,
-                end: 1.0,
+                end: 1,
                 duration: 2.seconds,
                 curve: Curves.easeInOut,
               ),

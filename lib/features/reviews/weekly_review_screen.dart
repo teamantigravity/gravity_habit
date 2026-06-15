@@ -7,7 +7,6 @@ import 'package:gravity_habit/data/repositories/habit_repository.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
 import 'package:gravity_habit/ui/widgets/cosmic_button.dart';
-import 'package:gravity_habit/ui/widgets/stardust_counter.dart';
 
 class WeeklyReviewScreen extends ConsumerStatefulWidget {
   const WeeklyReviewScreen({super.key});
@@ -220,10 +219,10 @@ class WeeklyReviewData {
     required this.completions,
     required this.totalScheduled,
     required this.activeDays,
-    this.starOfWeek,
-    this.quietPerformer,
     required this.avgMood,
     required this.stardustEarned,
+    this.starOfWeek,
+    this.quietPerformer,
   });
 
   final int completions;
@@ -254,7 +253,7 @@ class _ReviewStat extends StatelessWidget {
         Text(
           label,
           style: context.textTheme.bodySmall?.copyWith(
-            color: context.colors.onSurface.withOpacity(0.5),
+            color: context.colors.onSurface.withValues(alpha: 0.5),
           ),
         ),
       ],
@@ -273,9 +272,9 @@ class _AwardCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(Spacing.md),
       decoration: BoxDecoration(
-        color: Color(habit.color).withOpacity(0.08),
+        color: Color(habit.color).withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(CornerRadii.md),
-        border: Border.all(color: Color(habit.color).withOpacity(0.15)),
+        border: Border.all(color: Color(habit.color).withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [

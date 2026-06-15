@@ -29,28 +29,20 @@ class HapticService {
     switch (type) {
       case HapticType.tap:
         await _tap();
-        break;
       case HapticType.complete:
         await _complete();
-        break;
       case HapticType.milestone:
         await _milestone();
-        break;
       case HapticType.freeze:
         await _freeze();
-        break;
       case HapticType.error:
         await _error();
-        break;
       case HapticType.slide:
         await _slide();
-        break;
       case HapticType.boundary:
         await _boundary();
-        break;
       case HapticType.orbitPull:
         await _orbitPull();
-        break;
     }
   }
 

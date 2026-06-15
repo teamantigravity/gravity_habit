@@ -27,7 +27,7 @@ class MobileBannerAd extends StatefulWidget {
 }
 
 class _MobileBannerAdState extends State<MobileBannerAd> {
-  bool _isLoaded = false;
+  final bool _isLoaded = false;
   dynamic _bannerAd;
 
   @override

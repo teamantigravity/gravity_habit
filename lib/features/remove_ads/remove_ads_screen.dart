@@ -5,7 +5,6 @@ import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/features/settings/settings_provider.dart';
 import 'package:gravity_habit/services/haptics/haptic_service.dart';
-import 'package:gravity_habit/ui/widgets/cosmic_button.dart';
 
 class RemoveAdsScreen extends ConsumerWidget {
   const RemoveAdsScreen({super.key});
@@ -34,8 +33,8 @@ class RemoveAdsScreen extends ConsumerWidget {
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      context.colors.primary.withOpacity(0.3),
-                      context.colors.primary.withOpacity(0.05),
+                      context.colors.primary.withValues(alpha: 0.3),
+                      context.colors.primary.withValues(alpha: 0.05),
                       Colors.transparent,
                     ],
                   ),
@@ -43,7 +42,7 @@ class RemoveAdsScreen extends ConsumerWidget {
                 child: Icon(
                   Icons.auto_awesome,
                   size: 64,
-                  color: context.colors.primary.withOpacity(0.8),
+                  color: context.colors.primary.withValues(alpha: 0.8),
                 ),
               ).animate().fadeIn(duration: 600.ms).scaleXY(begin: 0.8, end: 1),
 
@@ -64,7 +63,7 @@ class RemoveAdsScreen extends ConsumerWidget {
                 'Everything else is already yours. Forever.',
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodyLarge?.copyWith(
-                  color: context.colors.onSurface.withOpacity(0.6),
+                  color: context.colors.onSurface.withValues(alpha: 0.6),
                 ),
               ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
 
@@ -73,7 +72,7 @@ class RemoveAdsScreen extends ConsumerWidget {
               // Pricing cards
               _PricingCard(
                 title: 'Lifetime',
-                price: '\$9.99',
+                price: r'$9.99',
                 period: 'One-time purchase',
                 isRecommended: true,
                 onTap: () => _purchase(context, ref, 'lifetime'),
@@ -83,7 +82,7 @@ class RemoveAdsScreen extends ConsumerWidget {
 
               _PricingCard(
                 title: 'Yearly',
-                price: '\$3.99',
+                price: r'$3.99',
                 period: 'per year',
                 onTap: () => _purchase(context, ref, 'yearly'),
               ).animate().fadeIn(delay: 700.ms, duration: 300.ms),
@@ -92,7 +91,7 @@ class RemoveAdsScreen extends ConsumerWidget {
 
               _PricingCard(
                 title: 'Monthly',
-                price: '\$0.99',
+                price: r'$0.99',
                 period: 'per month',
                 onTap: () => _purchase(context, ref, 'monthly'),
               ).animate().fadeIn(delay: 800.ms, duration: 300.ms),
@@ -104,7 +103,7 @@ class RemoveAdsScreen extends ConsumerWidget {
                 child: Text(
                   'Restore purchases',
                   style: TextStyle(
-                    color: context.colors.onSurface.withOpacity(0.5),
+                    color: context.colors.onSurface.withValues(alpha: 0.5),
                   ),
                 ),
               ),
@@ -115,7 +114,7 @@ class RemoveAdsScreen extends ConsumerWidget {
                 'Cancel anytime from your device settings.\nPrices may vary by region.',
                 textAlign: TextAlign.center,
                 style: context.textTheme.bodySmall?.copyWith(
-                  color: context.colors.onSurface.withOpacity(0.3),
+                  color: context.colors.onSurface.withValues(alpha: 0.3),
                 ),
               ),
 
@@ -182,13 +181,13 @@ class _PricingCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: isRecommended
-              ? context.colors.primaryContainer.withOpacity(0.2)
+              ? context.colors.primaryContainer.withValues(alpha: 0.2)
               : context.colors.surface,
           borderRadius: BorderRadius.circular(CornerRadii.md),
           border: Border.all(
             color: isRecommended
                 ? context.colors.primary
-                : context.colors.outlineVariant.withOpacity(0.2),
+                : context.colors.outlineVariant.withValues(alpha: 0.2),
             width: isRecommended ? 2 : 1,
           ),
         ),
@@ -232,7 +231,7 @@ class _PricingCard extends StatelessWidget {
                   Text(
                     period,
                     style: context.textTheme.bodySmall?.copyWith(
-                      color: context.colors.onSurface.withOpacity(0.5),
+                      color: context.colors.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
                 ],

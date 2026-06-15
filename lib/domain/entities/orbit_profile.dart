@@ -10,11 +10,11 @@ class OrbitProfile with _$OrbitProfile {
     required int streakDays,
     required int longestStreak,
     required double gravitationalPull,
-    @Default([]) List<String> unlockedConstellations,
-    @Default([]) List<String> unlockedAvatars,
-    @Default([]) List<String> unlockedThemes,
     required int collectedStardust,
     required int prestigeLevel,
     required int streakFreezes,
+    @Default([]) List<String> unlockedConstellations,
+    @Default([]) List<String> unlockedAvatars,
+    @Default([]) List<String> unlockedThemes,
   }) = _OrbitProfile;
 }

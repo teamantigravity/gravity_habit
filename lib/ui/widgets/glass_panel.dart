@@ -29,10 +29,10 @@ class GlassPanel extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            color: context.colors.surface.withOpacity(opacity),
+            color: context.colors.surface.withValues(alpha: opacity),
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(
-              color: context.colors.outlineVariant.withOpacity(0.15),
+              color: context.colors.outlineVariant.withValues(alpha: 0.15),
             ),
           ),
           child: child,

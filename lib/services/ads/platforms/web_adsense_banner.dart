@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gravity_habit/services/ads/ad_config.dart';
 
 /// Web/PWA ad banner using AdSense via the google_adsense Flutter package.
 ///
@@ -110,7 +109,7 @@ class _WebAdsenseBannerState extends State<WebAdsenseBanner> {
       // HtmlElementView(viewType: _viewId)
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(0.5),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

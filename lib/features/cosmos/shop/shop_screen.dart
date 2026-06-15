@@ -33,7 +33,8 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cosmos Shop', style: TextStyle(fontFamily: 'SpaceGrotesk')),
+        title: const Text('Cosmos Shop',
+            style: TextStyle(fontFamily: 'SpaceGrotesk')),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -65,7 +66,7 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
                     Text(
                       'All cosmetics. Zero gameplay impact.',
                       style: context.textTheme.bodySmall?.copyWith(
-                        color: context.colors.onSurface.withOpacity(0.4),
+                        color: context.colors.onSurface.withValues(alpha: 0.4),
                       ),
                     ),
                   ],
@@ -112,7 +113,7 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
       ),
     );
 
-    if (confirm == true) {
+    if (confirm ?? false) {
       final success =
           await ref.read(orbitRepositoryProvider).spendStardust(item.cost);
       if (success && mounted) {
@@ -130,28 +131,64 @@ class _ShopScreenState extends ConsumerState<ShopScreen>
   }
 
   static ShopItem _p(String id, String name, String emoji, Color tint) =>
-      ShopItem(id: id, name: name, cost: 300, emoji: emoji, imagePath: 'assets/images/shop/planet_premium.png', tint: tint);
-  
+      ShopItem(
+          id: id,
+          name: name,
+          cost: 300,
+          emoji: emoji,
+          imagePath: 'assets/images/shop/planet_premium.png',
+          tint: tint);
+
   static ShopItem _t(String id, String name, String emoji, Color tint) =>
-      ShopItem(id: id, name: name, cost: 500, emoji: emoji, imagePath: 'assets/images/shop/theme_premium.png', tint: tint);
+      ShopItem(
+          id: id,
+          name: name,
+          cost: 500,
+          emoji: emoji,
+          imagePath: 'assets/images/shop/theme_premium.png',
+          tint: tint);
 
-  static ShopItem _a(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 400, emoji: emoji, imagePath: 'assets/images/shop/avatar_premium.png');
+  static ShopItem _a(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 400,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/avatar_premium.png');
 
-  static ShopItem _s(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 800, emoji: emoji, imagePath: 'assets/images/shop/sound_premium.png');
+  static ShopItem _s(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 800,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/sound_premium.png');
 
-  static ShopItem _i(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 600, emoji: emoji, imagePath: 'assets/images/shop/icon_premium.png');
+  static ShopItem _i(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 600,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/icon_premium.png');
 
-  static ShopItem _pt(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 700, emoji: emoji, imagePath: 'assets/images/shop/particle_premium.png');
+  static ShopItem _pt(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 700,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/particle_premium.png');
 
-  static ShopItem _am(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 500, emoji: emoji, imagePath: 'assets/images/shop/ambient_premium.png');
+  static ShopItem _am(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 500,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/ambient_premium.png');
 
-  static ShopItem _ct(String id, String name, String emoji) =>
-      ShopItem(id: id, name: name, cost: 1000, emoji: emoji, imagePath: 'assets/images/shop/orbit_premium.png');
+  static ShopItem _ct(String id, String name, String emoji) => ShopItem(
+      id: id,
+      name: name,
+      cost: 1000,
+      emoji: emoji,
+      imagePath: 'assets/images/shop/orbit_premium.png');
 
   // Planet skins
   static final _planetItems = [
@@ -299,7 +336,7 @@ class _ShopGrid extends StatelessWidget {
               color: context.colors.surface,
               borderRadius: BorderRadius.circular(CornerRadii.md),
               border: Border.all(
-                color: context.colors.outlineVariant.withOpacity(0.15),
+                color: context.colors.outlineVariant.withValues(alpha: 0.15),
               ),
             ),
             clipBehavior: Clip.hardEdge,
@@ -309,7 +346,7 @@ class _ShopGrid extends StatelessWidget {
                   child: item.tint != null
                       ? ColorFiltered(
                           colorFilter: ColorFilter.mode(
-                            item.tint!.withOpacity(0.4),
+                            item.tint!.withValues(alpha: 0.4),
                             BlendMode.color,
                           ),
                           child: Image.asset(item.imagePath, fit: BoxFit.cover),
@@ -324,7 +361,7 @@ class _ShopGrid extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          context.colors.surface.withOpacity(0.9),
+                          context.colors.surface.withValues(alpha: 0.9),
                         ],
                         stops: const [0.4, 1.0],
                       ),
@@ -351,9 +388,11 @@ class _ShopGrid extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: context.colors.primaryContainer.withOpacity(0.5),
+                          color: context.colors.primaryContainer
+                              .withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -377,4 +416,3 @@ class _ShopGrid extends StatelessWidget {
     );
   }
 }
-

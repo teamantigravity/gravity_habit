@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_entry_schema.dart';
-import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/data/repositories/habit_repository.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
@@ -76,8 +75,7 @@ class TodayNotifier extends StateNotifier<AsyncValue<TodayState>> {
       for (final habit in habits) {
         final entries = await _habitRepo.getEntriesForHabit(habit.id);
         // For simplicity, build scheduled dates as all days from creation
-        final daysSinceCreation =
-            today.difference(habit.createdAt).inDays + 1;
+        final daysSinceCreation = today.difference(habit.createdAt).inDays + 1;
         final scheduledDates = List.generate(
           daysSinceCreation,
           (i) => habit.createdAt.add(Duration(days: i)),
@@ -93,14 +91,12 @@ class TodayNotifier extends StateNotifier<AsyncValue<TodayState>> {
         }
       }
 
-      final completedCount =
-          todayEntries.where((e) => e.isComplete).length;
+      final completedCount = todayEntries.where((e) => e.isComplete).length;
       final totalScheduled = habits.length; // simplified
 
       final dailyPull = PullCalculator.calculateDailyPull(
-        todayCompletionRatio: totalScheduled > 0
-            ? completedCount / totalScheduled
-            : 0,
+        todayCompletionRatio:
+            totalScheduled > 0 ? completedCount / totalScheduled : 0,
         weeklyConsistency: 0.5, // Would calculate from 7-day data
         hasActiveStreak: streaks.values.any((s) => s > 0),
         recentRecovery: false,

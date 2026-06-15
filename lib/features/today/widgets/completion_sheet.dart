@@ -64,7 +64,8 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                       width: 36,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: context.colors.outlineVariant.withOpacity(0.4),
+                        color: context.colors.outlineVariant
+                            .withValues(alpha: 0.4),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -127,8 +128,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                           padding: const EdgeInsets.all(Spacing.md),
                           decoration: BoxDecoration(
                             color: context.colors.primaryContainer,
-                            borderRadius:
-                                BorderRadius.circular(CornerRadii.md),
+                            borderRadius: BorderRadius.circular(CornerRadii.md),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -140,8 +140,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                               const SizedBox(width: Spacing.xs),
                               Text(
                                 'Completed',
-                                style:
-                                    context.textTheme.titleMedium?.copyWith(
+                                style: context.textTheme.titleMedium?.copyWith(
                                   color: context.colors.primary,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -215,21 +214,19 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                           hintText: 'Add a note...',
                           hintStyle: TextStyle(
                             color:
-                                context.colors.onSurface.withOpacity(0.3),
+                                context.colors.onSurface.withValues(alpha: 0.3),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(CornerRadii.sm),
+                            borderRadius: BorderRadius.circular(CornerRadii.sm),
                             borderSide: BorderSide(
                               color: context.colors.outlineVariant,
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(CornerRadii.sm),
+                            borderRadius: BorderRadius.circular(CornerRadii.sm),
                             borderSide: BorderSide(
                               color: context.colors.outlineVariant
-                                  .withOpacity(0.3),
+                                  .withValues(alpha: 0.3),
                             ),
                           ),
                           counterText: '',
@@ -268,8 +265,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                       ),
 
                     // Why text
-                    if (habit.whyText != null &&
-                        habit.whyText!.isNotEmpty) ...[
+                    if (habit.whyText != null && habit.whyText!.isNotEmpty) ...[
                       const SizedBox(height: Spacing.md),
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -278,7 +274,8 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
                         child: Text(
                           habit.whyText!,
                           style: context.textTheme.bodySmall?.copyWith(
-                            color: context.colors.onSurface.withOpacity(0.4),
+                            color:
+                                context.colors.onSurface.withValues(alpha: 0.4),
                             fontStyle: FontStyle.italic,
                           ),
                           textAlign: TextAlign.center,
@@ -310,7 +307,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
     );
   }
 
-  Widget _buildPrimaryAction(habit) {
+  Widget _buildPrimaryAction(Habit habit) {
     if (habit.targetType == HabitTargetType.binary) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: Spacing.xxl),
@@ -320,7 +317,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
           child: CosmicButton(
             label: 'Complete',
             isExpanded: true,
-            onPressed: _isCompleting ? null : () => _complete(),
+            onPressed: _isCompleting ? null : _complete,
           ),
         ),
       );
@@ -334,7 +331,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
           Text(
             'Target: ${habit.targetValue.toStringAsFixed(0)} ${habit.unit}',
             style: context.textTheme.bodyMedium?.copyWith(
-              color: context.colors.onSurface.withOpacity(0.6),
+              color: context.colors.onSurface.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: Spacing.md),
@@ -344,7 +341,7 @@ class _CompletionSheetState extends ConsumerState<CompletionSheet> {
             child: CosmicButton(
               label: 'Complete',
               isExpanded: true,
-              onPressed: _isCompleting ? null : () => _complete(),
+              onPressed: _isCompleting ? null : _complete,
             ),
           ),
         ],
@@ -401,14 +398,14 @@ class _SkipChip extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(CornerRadii.xl),
           border: Border.all(
-            color: context.colors.outlineVariant.withOpacity(0.3),
+            color: context.colors.outlineVariant.withValues(alpha: 0.3),
           ),
         ),
         child: Text(
           label,
           style: context.textTheme.labelSmall?.copyWith(
             fontFamily: 'Inter',
-            color: context.colors.onSurface.withOpacity(0.6),
+            color: context.colors.onSurface.withValues(alpha: 0.6),
           ),
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gravity_habit/core/extensions/context_extensions.dart';
 import 'package:gravity_habit/domain/entities/habit.dart';
 
 class HeatmapYear extends StatelessWidget {
@@ -45,8 +44,8 @@ class HeatmapYear extends StatelessWidget {
               height: 10,
               decoration: BoxDecoration(
                 color: count == 0
-                    ? accentColor.withOpacity(0.05)
-                    : accentColor.withOpacity(0.2 + intensity * 0.8),
+                    ? accentColor.withValues(alpha: 0.05)
+                    : accentColor.withValues(alpha: 0.2 + intensity * 0.8),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),

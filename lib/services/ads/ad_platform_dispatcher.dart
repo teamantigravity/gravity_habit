@@ -1,7 +1,6 @@
 // lib/services/ads/ad_platform_dispatcher.dart
 // COMPLETE NEW FILE — replaces all conditional import patterns
 
-import 'package:flutter/foundation.dart';
 import 'package:gravity_habit/services/ads/ad_config.dart';
 
 /// This file provides platform-safe ad operations.

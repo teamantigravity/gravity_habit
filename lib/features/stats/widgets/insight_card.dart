@@ -13,10 +13,10 @@ class InsightCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(Spacing.md),
       decoration: BoxDecoration(
-        color: context.colors.primaryContainer.withOpacity(0.15),
+        color: context.colors.primaryContainer.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(CornerRadii.sm),
         border: Border.all(
-          color: context.colors.primary.withOpacity(0.1),
+          color: context.colors.primary.withValues(alpha: 0.1),
         ),
       ),
       child: Row(
@@ -24,14 +24,14 @@ class InsightCard extends StatelessWidget {
           Icon(
             Icons.auto_awesome,
             size: 18,
-            color: context.colors.primary.withOpacity(0.7),
+            color: context.colors.primary.withValues(alpha: 0.7),
           ),
           const SizedBox(width: Spacing.sm),
           Expanded(
             child: Text(
               text,
               style: context.textTheme.bodyMedium?.copyWith(
-                color: context.colors.onSurface.withOpacity(0.8),
+                color: context.colors.onSurface.withValues(alpha: 0.8),
               ),
             ),
           ),

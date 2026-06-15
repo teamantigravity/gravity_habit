@@ -118,7 +118,7 @@ Widget _fadeTransition(
   return FadeTransition(
     opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
     child: ScaleTransition(
-      scale: Tween<double>(begin: 0.98, end: 1.0)
+      scale: Tween<double>(begin: 0.98, end: 1)
           .chain(CurveTween(curve: Curves.easeOut))
           .animate(animation),
       child: child,

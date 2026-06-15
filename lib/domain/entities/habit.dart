@@ -2,8 +2,8 @@
 // COMPLETE CORRECTED FILE
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 import 'package:gravity_habit/data/isar/schemas/habit_entry_schema.dart';
+import 'package:gravity_habit/data/isar/schemas/habit_schema.dart';
 
 part 'habit.freezed.dart';
 part 'habit.g.dart';
@@ -15,18 +15,18 @@ class Habit with _$Habit {
     required String name,
     required String emoji,
     required int color,
-    String? description,
     required HabitFrequency frequency,
-    Map<String, dynamic>? frequencyConfig,
     required HabitTargetType targetType,
     required double targetValue,
     required String unit,
-    @Default([]) List<TimeOfDayData> reminderTimes,
-    @Default([]) List<int> reminderDays,
     required GravityClass gravityClass,
     required DateTime createdAt,
-    DateTime? archivedAt,
     required int order,
+    String? description,
+    Map<String, dynamic>? frequencyConfig,
+    @Default([]) List<TimeOfDayData> reminderTimes,
+    @Default([]) List<int> reminderDays,
+    DateTime? archivedAt,
     String? categoryId,
     @Default([]) List<String> linkedHabitIds,
     String? cueText,
@@ -58,7 +58,8 @@ class HabitEntry with _$HabitEntry {
     DateTime? completedAt,
     String? note,
     int? mood,
-    SkipReason? skipReason, // Now correctly imported from habit_entry_schema.dart
+    SkipReason?
+        skipReason, // Now correctly imported from habit_entry_schema.dart
   }) = _HabitEntry;
 
   factory HabitEntry.fromJson(Map<String, dynamic> json) =>

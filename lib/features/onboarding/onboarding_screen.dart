@@ -52,7 +52,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
     // Create selected habits
     final repo = ref.read(habitRepositoryProvider);
-    final templates = HabitTemplates.all;
+    const templates = HabitTemplates.all;
     var order = 0;
 
     for (final templateId in _selectedTemplateIds) {
@@ -73,7 +73,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   TimeOfDayData(
                     hour: _reminderTime.hour,
                     minute: _reminderTime.minute,
-                  )
+                  ),
                 ]
               : [],
           reminderDays: const [1, 2, 3, 4, 5, 6, 7],
@@ -199,7 +199,7 @@ class _WelcomePage extends StatelessWidget {
             Text(
               'No account. No tracking. Ever.',
               style: context.textTheme.bodySmall?.copyWith(
-                color: context.colors.onSurface.withOpacity(0.5),
+                color: context.colors.onSurface.withValues(alpha: 0.5),
               ),
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 1000.ms, duration: 400.ms),
@@ -223,9 +223,9 @@ class _CosmicDriftPainter extends CustomPainter {
     // Core glow
     final coreGradient = RadialGradient(
       colors: [
-        color.withOpacity(0.6),
-        color.withOpacity(0.2),
-        color.withOpacity(0.05),
+        color.withValues(alpha: 0.6),
+        color.withValues(alpha: 0.2),
+        color.withValues(alpha: 0.05),
         Colors.transparent,
       ],
       stops: const [0.0, 0.3, 0.6, 1.0],
@@ -240,7 +240,7 @@ class _CosmicDriftPainter extends CustomPainter {
     // Orbit rings
     for (var i = 1; i <= 3; i++) {
       final ringPaint = Paint()
-        ..color = color.withOpacity(0.1 + i * 0.03)
+        ..color = color.withValues(alpha: 0.1 + i * 0.03)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1;
       canvas.drawCircle(center, 30.0 + i * 25.0, ringPaint);
@@ -283,7 +283,7 @@ class _PickOrbitsPage extends StatelessWidget {
             Text(
               'Choose up to 3 habits to begin. You can always add more.',
               style: context.textTheme.bodyMedium?.copyWith(
-                color: context.colors.onSurface.withOpacity(0.6),
+                color: context.colors.onSurface.withValues(alpha: 0.6),
               ),
             ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
             const SizedBox(height: Spacing.xl),
@@ -353,13 +353,13 @@ class _OrbitCard extends StatelessWidget {
             border: Border.all(
               color: isSelected
                   ? context.colors.primary
-                  : context.colors.outlineVariant.withOpacity(0.3),
+                  : context.colors.outlineVariant.withValues(alpha: 0.3),
               width: isSelected ? 2 : 1,
             ),
             boxShadow: isSelected
                 ? [
                     BoxShadow(
-                      color: context.colors.primary.withOpacity(0.15),
+                      color: context.colors.primary.withValues(alpha: 0.15),
                       blurRadius: 16,
                       offset: const Offset(0, 4),
                     ),
@@ -367,7 +367,7 @@ class _OrbitCard extends StatelessWidget {
                 : null,
           ),
           transform: isSelected
-              ? (Matrix4.identity()..translate(0.0, -4.0))
+              ? (Matrix4.identity()..translate(0.0, -4))
               : Matrix4.identity(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -562,7 +562,7 @@ class _TimeWheelPickerState extends State<_TimeWheelPicker> {
                           isSelected ? FontWeight.w700 : FontWeight.w400,
                       color: isSelected
                           ? context.colors.primary
-                          : context.colors.onSurface.withOpacity(0.3),
+                          : context.colors.onSurface.withValues(alpha: 0.3),
                     ),
                   ),
                 );
@@ -607,7 +607,7 @@ class _TimeWheelPickerState extends State<_TimeWheelPicker> {
                           isSelected ? FontWeight.w700 : FontWeight.w400,
                       color: isSelected
                           ? context.colors.primary
-                          : context.colors.onSurface.withOpacity(0.3),
+                          : context.colors.onSurface.withValues(alpha: 0.3),
                     ),
                   ),
                 );

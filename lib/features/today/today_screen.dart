@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,9 +41,7 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
               return const EmptyCosmos();
             }
 
-            return isListMode
-                ? _buildListMode(state)
-                : _buildOrbitMode(state);
+            return isListMode ? _buildListMode(state) : _buildOrbitMode(state);
           },
           loading: () => const Center(
             child: SizedBox(
@@ -55,8 +51,10 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
             ),
           ),
           error: (e, _) => Center(
-            child: Text('Something drifted. Pull to refresh.',
-                style: context.textTheme.bodyLarge),
+            child: Text(
+              'Something drifted. Pull to refresh.',
+              style: context.textTheme.bodyLarge,
+            ),
           ),
         ),
       ),
@@ -92,7 +90,7 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
                     Text(
                       greeting,
                       style: context.textTheme.bodyMedium?.copyWith(
-                        color: context.colors.onSurface.withOpacity(0.6),
+                        color: context.colors.onSurface.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -128,8 +126,8 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        context.colors.primary.withOpacity(0.8),
-                        context.colors.primary.withOpacity(0.3),
+                        context.colors.primary.withValues(alpha: 0.8),
+                        context.colors.primary.withValues(alpha: 0.3),
                       ],
                     ),
                   ),
@@ -161,16 +159,14 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
           child: GlassPanel(
-            padding: const EdgeInsets.all(Spacing.md),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _StatChip(
                   label: 'Done',
-                  value:
-                      '${state.completedCount}/${state.totalScheduled}',
+                  value: '${state.completedCount}/${state.totalScheduled}',
                 ),
-                PullGauge(pull: state.dailyPull, size: 56),
+                PullGauge(pull: state.dailyPull),
                 _StatChip(
                   label: 'Streak',
                   value: '${state.metaStreak}d',
@@ -215,7 +211,8 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
                       Text(
                         greeting,
                         style: context.textTheme.bodyMedium?.copyWith(
-                          color: context.colors.onSurface.withOpacity(0.6),
+                          color:
+                              context.colors.onSurface.withValues(alpha: 0.6),
                         ),
                       ),
                     ],
@@ -255,8 +252,7 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
                 children: [
                   _StatChip(
                     label: 'Done',
-                    value:
-                        '${state.completedCount}/${state.totalScheduled}',
+                    value: '${state.completedCount}/${state.totalScheduled}',
                   ),
                   PullGauge(pull: state.dailyPull, size: 48),
                   _StatChip(
@@ -349,7 +345,9 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
       'morning' => 'Good morning',
       'afternoon' => 'Good afternoon',
       'evening' => 'Good evening',
-      'night' => now.isLateNight ? 'It\'s late. One small act is enough.' : 'Good evening',
+      'night' => now.isLateNight
+          ? "It's late. One small act is enough."
+          : 'Good evening',
       _ => 'Welcome back',
     };
   }
@@ -376,7 +374,7 @@ class _StatChip extends StatelessWidget {
         Text(
           label,
           style: context.textTheme.bodySmall?.copyWith(
-            color: context.colors.onSurface.withOpacity(0.5),
+            color: context.colors.onSurface.withValues(alpha: 0.5),
           ),
         ),
       ],

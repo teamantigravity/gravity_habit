@@ -9,6 +9,7 @@
 /// 5. Every ad load uses error callbacks with full error chain inspection
 /// 6. "No Fill" from any network is handled silently — never crashes
 /// 7. Context is always Activity on Android (passed from FlutterActivity)
+library;
 
 import 'dart:async';
 
@@ -190,11 +191,11 @@ Future<void> _loadInterstitial(String adUnitId) async {
 /// No extra parameters needed — the adapters handle bidding internally.
 AdRequest _buildAdRequest() {
   return const AdRequest(
-    // AdMob handles mediation partner bidding automatically.
-    // Unity Ads adapter and Meta adapter are included via
-    // pubspec dependency and AdMob console configuration.
-    // No manual network extras needed for bidding.
-  );
+      // AdMob handles mediation partner bidding automatically.
+      // Unity Ads adapter and Meta adapter are included via
+      // pubspec dependency and AdMob console configuration.
+      // No manual network extras needed for bidding.
+      );
 }
 
 /// Extract the winning ad network name for logging.
@@ -202,8 +203,7 @@ String _getAdNetworkName(Ad ad) {
   try {
     final info = ad.responseInfo;
     if (info != null) {
-      final mediationAdapterClassName =
-          info.mediationAdapterClassName;
+      final mediationAdapterClassName = info.mediationAdapterClassName;
       if (mediationAdapterClassName != null) {
         // Extract readable name
         if (mediationAdapterClassName.contains('UnityAds')) {

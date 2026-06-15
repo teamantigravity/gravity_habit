@@ -15,21 +15,26 @@ void main() {
     test('all achievements have non-empty names and descriptions', () {
       for (final a in AchievementCatalog.all) {
         expect(a.name, isNotEmpty, reason: 'ID ${a.id} has empty name');
-        expect(a.description, isNotEmpty,
-            reason: 'ID ${a.id} has empty description');
+        expect(
+          a.description,
+          isNotEmpty,
+          reason: 'ID ${a.id} has empty description',
+        );
       }
     });
 
     test('all achievements have positive stardust rewards', () {
       for (final a in AchievementCatalog.all) {
-        expect(a.stardustReward, greaterThan(0),
-            reason: 'ID ${a.id} has 0 reward');
+        expect(
+          a.stardustReward,
+          greaterThan(0),
+          reason: 'ID ${a.id} has 0 reward',
+        );
       }
     });
 
     test('all 6 groups are represented', () {
-      final groups =
-          AchievementCatalog.all.map((a) => a.group).toSet();
+      final groups = AchievementCatalog.all.map((a) => a.group).toSet();
       expect(groups, containsAll(AchievementCatalog.groups));
     });
 

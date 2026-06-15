@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gravity_habit/core/constants/spacing.dart';
 import 'package:gravity_habit/core/extensions/context_extensions.dart';
+import 'package:gravity_habit/data/isar/schemas/achievement_schema.dart';
 import 'package:gravity_habit/data/repositories/orbit_repository.dart';
 import 'package:gravity_habit/domain/entities/achievement.dart';
 import 'package:gravity_habit/domain/entities/achievement_catalog.dart';
 import 'package:gravity_habit/domain/entities/orbit_profile.dart';
 import 'package:gravity_habit/domain/gravity_engine/tier_system.dart';
-import 'package:gravity_habit/data/isar/schemas/achievement_schema.dart';
 import 'package:gravity_habit/features/today/widgets/orbit_ring.dart';
 
 class CosmosScreen extends ConsumerWidget {
@@ -30,12 +30,14 @@ class CosmosScreen extends ConsumerWidget {
           future: dataFuture,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+              return const Center(
+                  child: CircularProgressIndicator(strokeWidth: 2));
             }
-            final results = snapshot.data as List<dynamic>;
+            final results = snapshot.data! as List<dynamic>;
             final profile = results[0] as OrbitProfile;
             final unlockedList = results[1] as List<AchievementEntity>;
-            final unlockedIds = unlockedList.map((e) => e.achievementId).toSet();
+            final unlockedIds =
+                unlockedList.map((e) => e.achievementId).toSet();
             final tier = TierSystem.tierFromMass(profile.totalMass);
             final tierName = TierSystem.tierName(tier);
             final era = TierSystem.eraForTier(tier);
@@ -46,7 +48,10 @@ class CosmosScreen extends ConsumerWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
-                      Spacing.md, Spacing.sm, Spacing.md, 0,
+                      Spacing.md,
+                      Spacing.sm,
+                      Spacing.md,
+                      0,
                     ),
                     child: Text(
                       'Cosmos',
@@ -75,7 +80,8 @@ class CosmosScreen extends ConsumerWidget {
                               children: [
                                 Text(
                                   '$tier',
-                                  style: context.textTheme.displaySmall?.copyWith(
+                                  style:
+                                      context.textTheme.displaySmall?.copyWith(
                                     fontFamily: 'SpaceGrotesk',
                                     fontWeight: FontWeight.w700,
                                     color: context.colors.primary,
@@ -83,7 +89,9 @@ class CosmosScreen extends ConsumerWidget {
                                 ),
                               ],
                             ),
-                          ).animate().scaleXY(begin: 0.8, end: 1, duration: 400.ms),
+                          )
+                              .animate()
+                              .scaleXY(begin: 0.8, end: 1, duration: 400.ms),
                           const SizedBox(height: Spacing.sm),
                           Text(
                             tierName,
@@ -95,7 +103,8 @@ class CosmosScreen extends ConsumerWidget {
                           Text(
                             '${era.eraLabel} — ${era.displayName}',
                             style: context.textTheme.bodyMedium?.copyWith(
-                              color: context.colors.onSurface.withOpacity(0.5),
+                              color: context.colors.onSurface
+                                  .withValues(alpha: 0.5),
                             ),
                           ),
                         ],
@@ -113,7 +122,8 @@ class CosmosScreen extends ConsumerWidget {
                       icon: const Icon(Icons.storefront_outlined),
                       label: const Text('Cosmos Shop'),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: Spacing.sm),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: Spacing.sm),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(CornerRadii.sm),
                         ),
@@ -125,46 +135,55 @@ class CosmosScreen extends ConsumerWidget {
                 const SliverToBoxAdapter(child: SizedBox(height: Spacing.xxl)),
 
                 // Achievements by group
-                ...AchievementCatalog.groups.expand((group) => [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        Spacing.md, Spacing.md, Spacing.md, Spacing.sm,
-                      ),
-                      child: Text(
-                        group,
-                        style: context.textTheme.titleMedium?.copyWith(
-                          fontFamily: 'SpaceGrotesk',
-                          fontWeight: FontWeight.w600,
+                ...AchievementCatalog.groups.expand(
+                  (group) => [
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          Spacing.md,
+                          Spacing.md,
+                          Spacing.md,
+                          Spacing.sm,
+                        ),
+                        child: Text(
+                          group,
+                          style: context.textTheme.titleMedium?.copyWith(
+                            fontFamily: 'SpaceGrotesk',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
-                    sliver: SliverGrid(
-                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 140,
-                        childAspectRatio: 0.85,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          final achievements = AchievementCatalog.byGroup(group);
-                          if (index >= achievements.length) return null;
-                          final achievement = achievements[index];
-                          final isUnlocked = unlockedIds.contains(achievement.id);
-                          return _AchievementCard(
-                            achievement: achievement,
-                            isUnlocked: isUnlocked,
-                          );
-                        },
-                        childCount: AchievementCatalog.byGroup(group).length,
+                    SliverPadding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: Spacing.md),
+                      sliver: SliverGrid(
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 140,
+                          childAspectRatio: 0.85,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final achievements =
+                                AchievementCatalog.byGroup(group);
+                            if (index >= achievements.length) return null;
+                            final achievement = achievements[index];
+                            final isUnlocked =
+                                unlockedIds.contains(achievement.id);
+                            return _AchievementCard(
+                              achievement: achievement,
+                              isUnlocked: isUnlocked,
+                            );
+                          },
+                          childCount: AchievementCatalog.byGroup(group).length,
+                        ),
                       ),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
 
                 const SliverToBoxAdapter(child: SizedBox(height: 120)),
               ],
@@ -194,13 +213,13 @@ class _AchievementCard extends StatelessWidget {
         padding: const EdgeInsets.all(Spacing.xs),
         decoration: BoxDecoration(
           color: isUnlocked
-              ? context.colors.primaryContainer.withOpacity(0.2)
+              ? context.colors.primaryContainer.withValues(alpha: 0.2)
               : context.colors.surface,
           borderRadius: BorderRadius.circular(CornerRadii.sm),
           border: Border.all(
             color: isUnlocked
-                ? context.colors.primary.withOpacity(0.3)
-                : context.colors.outlineVariant.withOpacity(0.15),
+                ? context.colors.primary.withValues(alpha: 0.3)
+                : context.colors.outlineVariant.withValues(alpha: 0.15),
           ),
         ),
         child: Column(
@@ -221,7 +240,7 @@ class _AchievementCard extends StatelessWidget {
                 fontWeight: isUnlocked ? FontWeight.w700 : FontWeight.w600,
                 color: isUnlocked
                     ? context.colors.onSurface
-                    : context.colors.onSurface.withOpacity(0.6),
+                    : context.colors.onSurface.withValues(alpha: 0.6),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
@@ -234,7 +253,7 @@ class _AchievementCard extends StatelessWidget {
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'JetBrainsMono',
-                color: context.colors.onSurface.withOpacity(0.5),
+                color: context.colors.onSurface.withValues(alpha: 0.5),
               ),
             ),
           ],
